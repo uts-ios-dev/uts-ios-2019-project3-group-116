@@ -11,7 +11,7 @@ import UIKit
 class RegisterViewController: UIViewController {
 
     var firebase = FirebaseHelper()
-    var imagePicker: ImagePicker!
+    var imagePicker: ImagePickerHelper!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -36,7 +36,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
     }
 
     // TODO: check if content is empty

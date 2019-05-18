@@ -14,7 +14,7 @@ public protocol ImagePickerDelegate: class {
     func selectedImage(image: UIImage?)
 }
 
-class ImagePicker: NSObject {
+class ImagePickerHelper: NSObject {
 
     let imagePickerController = UIImagePickerController()
     var presentationController: UIViewController?
@@ -59,7 +59,7 @@ class ImagePicker: NSObject {
 
 //Resource: https://stackoverflow.com/questions/51342028/cannot-subscript-a-value-of-type-string-any-with-an-index-of-type-uiimage
 
-extension ImagePicker: UIImagePickerControllerDelegate {
+extension ImagePickerHelper: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
@@ -69,5 +69,5 @@ extension ImagePicker: UIImagePickerControllerDelegate {
     }
 }
 
-extension ImagePicker: UINavigationControllerDelegate {
+extension ImagePickerHelper: UINavigationControllerDelegate {
 }

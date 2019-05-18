@@ -22,7 +22,7 @@
 		41DB928C228E32DF009031F0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB928B228E32DF009031F0 /* UserModel.swift */; };
 		41DB928E228E3969009031F0 /* LostItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB928D228E3969009031F0 /* LostItemModel.swift */; };
 		41DB9291228E40CD009031F0 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9290228E40CD009031F0 /* FirebaseHelper.swift */; };
-		41DB9298228E5CE1009031F0 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9297228E5CE1009031F0 /* ImagePicker.swift */; };
+		41DB9298228E5CE1009031F0 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9297228E5CE1009031F0 /* ImagePickerHelper.swift */; };
 		41DB929A228E75A3009031F0 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9299228E75A3009031F0 /* LostItemCollectionViewCell.swift */; };
 		D2A34ADC512A6F2BF2BAA5ED /* Pods_iLost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA8986420B08DA5DBD96C15 /* Pods_iLost.framework */; };
 /* End PBXBuildFile section */
@@ -45,7 +45,7 @@
 		41DB928B228E32DF009031F0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		41DB928D228E3969009031F0 /* LostItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemModel.swift; sourceTree = "<group>"; };
 		41DB9290228E40CD009031F0 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
-		41DB9297228E5CE1009031F0 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		41DB9297228E5CE1009031F0 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
 		41DB9299228E75A3009031F0 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FA8986420B08DA5DBD96C15 /* Pods_iLost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iLost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70470777BECD89C900D04D24 /* Pods-iLost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iLost.debug.xcconfig"; path = "Target Support Files/Pods-iLost/Pods-iLost.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				41DB9290228E40CD009031F0 /* FirebaseHelper.swift */,
-				41DB9297228E5CE1009031F0 /* ImagePicker.swift */,
+				41DB9297228E5CE1009031F0 /* ImagePickerHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -292,7 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41DB9288228E2E01009031F0 /* ProfileViewController.swift in Sources */,
-				41DB9298228E5CE1009031F0 /* ImagePicker.swift in Sources */,
+				41DB9298228E5CE1009031F0 /* ImagePickerHelper.swift in Sources */,
 				41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */,
 				41CD2FE7228DB90D00DD0A54 /* StartViewController.swift in Sources */,
 				41DB9286228E2DD9009031F0 /* LostViewController.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController{
-    var imagePicker: ImagePicker!
+    var imagePicker: ImagePickerHelper!
     var firebase = FirebaseHelper()
     var user:UserModel? = nil
 
@@ -42,7 +42,7 @@ class ProfileViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
         self.firebase.delegateLoadedProfile = self
         firebase.loadUserProfile()
     }

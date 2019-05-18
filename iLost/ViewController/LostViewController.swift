@@ -10,7 +10,7 @@ import UIKit
 
 class LostViewController: UIViewController {
     var images = [UIImage]()
-    var imagePicker: ImagePicker!
+    var imagePicker: ImagePickerHelper!
 
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBAction func addImagePressed(_ sender: Any) {
@@ -18,7 +18,7 @@ class LostViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
     }
