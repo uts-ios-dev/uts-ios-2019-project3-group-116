@@ -104,7 +104,7 @@ class FirebaseHelper {
         var values = item.getValues()
         values["User"] = uid
         let child = Database.database().reference().root.child("items").childByAutoId()
-        child.updateChildValues(values, withCompletionBlock: {
+        child.updateChildValues(values as [AnyHashable : Any], withCompletionBlock: {
             (error, ref) in
             if let error = error {
                 print("Failed to update DB: ", error.localizedDescription)
@@ -134,7 +134,7 @@ class FirebaseHelper {
         let storageRef = storage.reference()
         let imagesRef = storageRef.child("images").child(uid).child(item)
         let spaceRef = imagesRef.child(fileName)
-        let uploadTask = spaceRef.putData(data, metadata: nil) { (metadata, error) in
+        let _ = spaceRef.putData(data, metadata: nil) { (metadata, error) in
 //            guard let metadata = metadata else { return }
             if let error = error {
                 print("Failed Image Upload: ", error.localizedDescription)

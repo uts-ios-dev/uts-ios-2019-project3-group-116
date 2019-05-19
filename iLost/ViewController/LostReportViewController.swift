@@ -110,12 +110,6 @@ extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDa
             }
         }
 
-        if segue.identifier == "MapSegue" {
-            if let viewController = segue.destination as? MapLostViewController {
-                viewController.lostItem = lostItem
-            }
-        }
-
     }
 }
 
@@ -172,7 +166,10 @@ extension LostReportViewController {
             break
         case .authorizedAlways:
             break
+        default:
+            print("error")
         }
+
     }
 }
 

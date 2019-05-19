@@ -26,7 +26,6 @@
 		41D4C21B228EA873006195E9 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4C21A228EA873006195E9 /* ImageViewController.swift */; };
 		41DB9286228E2DD9009031F0 /* LostReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9285228E2DD9009031F0 /* LostReportViewController.swift */; };
 		41DB9288228E2E01009031F0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9287228E2E01009031F0 /* ProfileViewController.swift */; };
-		41DB928A228E2E5C009031F0 /* MapLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9289228E2E5C009031F0 /* MapLostViewController.swift */; };
 		41DB928C228E32DF009031F0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB928B228E32DF009031F0 /* UserModel.swift */; };
 		41DB928E228E3969009031F0 /* LostItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB928D228E3969009031F0 /* LostItemModel.swift */; };
 		41DB9291228E40CD009031F0 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9290228E40CD009031F0 /* FirebaseHelper.swift */; };
@@ -57,7 +56,6 @@
 		41D4C21A228EA873006195E9 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		41DB9285228E2DD9009031F0 /* LostReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostReportViewController.swift; sourceTree = "<group>"; };
 		41DB9287228E2E01009031F0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		41DB9289228E2E5C009031F0 /* MapLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLostViewController.swift; sourceTree = "<group>"; };
 		41DB928B228E32DF009031F0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		41DB928D228E3969009031F0 /* LostItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemModel.swift; sourceTree = "<group>"; };
 		41DB9290228E40CD009031F0 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 				41C07137228DD2F500F73F69 /* RegisterViewController.swift */,
 				41DB9285228E2DD9009031F0 /* LostReportViewController.swift */,
 				41DB9287228E2E01009031F0 /* ProfileViewController.swift */,
-				41DB9289228E2E5C009031F0 /* MapLostViewController.swift */,
 				41D4C21A228EA873006195E9 /* ImageViewController.swift */,
 				410FBE892290E10700594A76 /* LostSearchTableViewController.swift */,
 				410FBE8B2290E11600594A76 /* FoundSearchTableViewController.swift */,
@@ -332,7 +329,6 @@
 				41DB928C228E32DF009031F0 /* UserModel.swift in Sources */,
 				41C07138228DD2F500F73F69 /* RegisterViewController.swift in Sources */,
 				41CD2FE5228DB90D00DD0A54 /* AppDelegate.swift in Sources */,
-				41DB928A228E2E5C009031F0 /* MapLostViewController.swift in Sources */,
 				410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */,
 				410FBE952290FA4F00594A76 /* FoundReportViewController.swift in Sources */,
 				410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */,
