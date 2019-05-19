@@ -40,8 +40,12 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>&quot;Camera Access&quot;</string>
+	<string>&quot;Camera Access needed&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;Share Photos&quot;</string>
+	<string>&quot;Access needed to Share Photos&quot;</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>&quot;Location needed for Maps&quot;</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;Location needed for Maps&quot;</string>
 </dict>
 </plist>

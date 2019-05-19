@@ -25,7 +25,10 @@ class ProfileViewController: UIViewController{
         guard let email = user?.email else { return }
 
         let userNew = UserModel(name: name, surname: surname , username: username, email: email, phone: phone, address: address, postcode: postcode, city: city)
-        firebase.saveUserProfile(user: userNew)
+        if let values = user?.getValues() {
+            firebase.saveUserProfile(values: values)
+        }
+
     }
     @IBOutlet weak var nameTextField: UITextField!
 
@@ -44,7 +47,10 @@ class ProfileViewController: UIViewController{
         super.viewDidLoad()
         self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
         self.firebase.delegateLoadedProfile = self
+
         firebase.loadUserProfile()
+
+
     }
 
 

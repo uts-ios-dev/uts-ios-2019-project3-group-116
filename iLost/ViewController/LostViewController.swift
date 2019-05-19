@@ -7,20 +7,58 @@
 //
 
 import UIKit
+import CoreLocation
+
 
 class LostViewController: UIViewController {
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var categoryTextField: UITextField!
     var images = [UIImage]()
     var imagePicker: ImagePickerHelper!
+    var locationsCoordinates = [CLLocationCoordinate2D]()
+    var lostItem = LostItemModel()
+    var firebase = FirebaseHelper()
 
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        if let category = categoryTextField.text {
+             lostItem.category = category
+        }
+        if let date = dateTextField.text {
+            lostItem.dateLost = date
+        }
+        if let description = descriptionTextView.text {
+            lostItem.description = description
+        }
+        firebase.saveItemDescription(item: lostItem)
+
+        if let image = images.first {
+            guard let data = image.jpegData(compressionQuality: CGFloat(0.0)) else { return }
+            firebase.saveImage(data: data, item: "Item1", fileName: "Image1")
+        }
+
+    }
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBAction func addImagePressed(_ sender: Any) {
          self.imagePicker.present(view: sender as! UIView)
     }
+
+    @IBAction func UnwindToLostViewController(segue: UIStoryboardSegue) {
+        print(lostItem.lostLocationsCoordinates.count)
+
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
@@ -63,6 +101,14 @@ extension LostViewController: UICollectionViewDelegate, UICollectionViewDataSour
                  viewController.images = images
             }
         }
+
+        if segue.identifier == "MapSegue" {
+            if let viewController = segue.destination as? MapLostViewController {
+                viewController.lostItem = lostItem
+            }
+        }
+
+        
     }
 }
 

@@ -7,16 +7,11 @@
 //
 
 import UIKit
-import Firebase
-class StartViewController: UIViewController {
-    @IBAction func logoutButtonPressed(_ sender: Any) {
 
-        do{
-            try Auth.auth().signOut()
-        }
-        catch {
-            print("error logout")
-        }
+class StartViewController: UIViewController {
+    var firebase = FirebaseHelper()
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+        firebase.logOutUser()
         dismiss(animated: true, completion: nil)
 
     }
@@ -27,7 +22,7 @@ class StartViewController: UIViewController {
 
         print("---------")
 
-        if let username = Auth.auth().currentUser?.displayName {
+        if let username = firebase.getUserName() {
             print(username)
         }
 

@@ -19,6 +19,7 @@ class UserModel {
     var postcode: String
     var city: String
     var image: UIImage?
+    var userID: String?
 
     init(name: String, surname: String, username: String, email: String, phone: String, address: String, postcode: String, city: String)
     {

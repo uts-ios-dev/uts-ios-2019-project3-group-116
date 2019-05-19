@@ -20,10 +20,11 @@ protocol FirebaseLoadedProfileDelegate {
     func userProfile(user: UserModel)
 }
 
-//Resource Firebase https://www.youtube.com/watch?v=76ANW9VJwCQ
+//Resource Firebase https://firebase.google.com/docs/database/ios/start?authuser=0
 
 class FirebaseHelper {
 
+    var uid:String?
     var delegateSignIn: FirebaseSignInDelegate?
     var delegateCreatedUser: FirebaseCreateUserDelegate?
     var delegateLoadedProfile: FirebaseLoadedProfileDelegate?
@@ -55,14 +56,16 @@ class FirebaseHelper {
                 return
             }else{
                 print("signed in")
+
                 self.delegateSignIn?.SignedIn()
             }
         }
+         self.uid = Auth.auth().currentUser?.uid
     }
 
     func loadUserProfile(){
-        let userID = Auth.auth().currentUser?.uid
-        Database.database().reference().child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let username = value?["username"] as? String ?? ""
             let name = value?["name"] as? String ?? ""
@@ -82,10 +85,10 @@ class FirebaseHelper {
         }
     }
 
-    func saveUserProfile(user: UserModel){
+    func saveUserProfile(values: [String:String]){
         let ref = Database.database().reference()
         guard let key = Auth.auth().currentUser?.uid else { return }
-        let childUpdates = ["/users/\(key)": user.getValues()]
+        let childUpdates = ["/users/\(key)": values]
         ref.updateChildValues(childUpdates, withCompletionBlock: {
             (error, ref) in
             if let error = error {
@@ -94,5 +97,81 @@ class FirebaseHelper {
             }
             print("Profile Data updatet successful")
         })
+    }
+
+    func saveItemDescription(item: LostItemModel){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        var values = item.getValues()
+        values["User"] = uid
+        let child = Database.database().reference().root.child("items").childByAutoId()
+        child.updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to update DB: ", error.localizedDescription)
+                return
+            }
+            print("success update DB")
+            self.delegateCreatedUser?.userCreated()
+        })
+
+        let locations = item.getLocations()
+        for index in locations.indices {
+            child.child("locations").child("Location \(index)").updateChildValues(locations[index], withCompletionBlock: {
+                (error, ref) in
+                if let error = error {
+                    print("Failed to update DB: ", error.localizedDescription)
+                    return
+                }
+                print("success update DB")
+                self.delegateCreatedUser?.userCreated()
+            })
+        }
+    }
+
+    func saveImage(data: Data, item: String, fileName: String ){
+        guard let uid = uid else { return }
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let imagesRef = storageRef.child("images").child(uid).child(item)
+        let spaceRef = imagesRef.child(fileName)
+        let uploadTask = spaceRef.putData(data, metadata: nil) { (metadata, error) in
+            guard let metadata = metadata else { return }
+            if let error = error {
+                print("Failed Image Upload: ", error.localizedDescription)
+                return
+            }
+        }
+    }
+
+    func downloadImage(item: String, fileName: String) {
+        guard let uid = uid else { return }
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let imagesRef = storageRef.child("images").child(uid).child(item)
+        let spaceRef = imagesRef.child(fileName)
+        // You can also access to download URL after upload.
+        spaceRef.getData(maxSize: 2 * 1024 * 1024) { data, error in
+            if let error = error {
+                print("Failed Image Upload: ", error.localizedDescription)
+                return
+            } else {
+                // Data for "images/island.jpg" is returned
+                let image = UIImage(data: data!)
+            }
+        }
+    }
+
+    func logOutUser(){
+        do{
+            try Auth.auth().signOut()
+        }
+        catch {
+            print("error logout")
+        }
+    }
+
+    func getUserName() -> String? {
+        guard let username = Auth.auth().currentUser?.displayName else { return nil }
+        return username
     }
 }
