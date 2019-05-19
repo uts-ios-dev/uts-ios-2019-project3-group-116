@@ -20,9 +20,8 @@ class LostReportViewController: UIViewController {
     var locationsCoordinates = [CLLocationCoordinate2D]()
     var lostItem = LostItemModel()
     var firebase = FirebaseHelper()
-    let locationManager = CLLocationManager()
-    let regionInMeters: Double = 2500
-   
+    var map:MapHelper?
+
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         if let category = categoryTextField.text {
@@ -49,24 +48,14 @@ class LostReportViewController: UIViewController {
 
     @IBAction func UnwindToLostViewController(segue: UIStoryboardSegue) {
         print(lostItem.lostLocationsCoordinates.count)
-
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-
-        checkLocationServices()
-        mapView.delegate = self
-
-    }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+        map = MapHelper(delegate: self, mapView: mapView)
     }
 }
 
@@ -79,7 +68,6 @@ extension LostReportViewController: ImagePickerDelegate {
 }
 
 extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1     //return number of sections in collection view
     }
@@ -89,13 +77,9 @@ extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! LostItemCollectionViewCell
-
         let image = images[indexPath.row]
-
         cell.imageView.image = image
-
         return cell
     }
 
@@ -116,85 +100,18 @@ extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDa
 extension LostReportViewController {
     @IBAction func addPinGesture(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            let location = sender.location(in: self.mapView)
-            let locationCoordinate = self.mapView.convert(location, toCoordinateFrom: self.mapView)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = locationCoordinate
-            //            annotation.title = "Title "
-            //            annotation.subtitle = "Subtitle"
-            lostItem.lostLocationsCoordinates.append(annotation.coordinate)
-
-            self.mapView.addAnnotation(annotation)
-        }
-    }
-
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-
-    func centerViewOnUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
-        }
-    }
-
-    func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
-            checkLocationAuthorization()
-        } else {
-            // Show alert letting the user know they have to turn this on.
-        }
-    }
-
-    func checkLocationAuthorization() {
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-            centerViewOnUserLocation()
-            locationManager.startUpdatingLocation()
-            break
-        case .denied:
-            // Show alert instructing them how to turn on permissions
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            // Show an alert letting them know what's up
-            break
-        case .authorizedAlways:
-            break
-        default:
-            print("error")
-        }
-
-    }
-}
-
-extension LostReportViewController: CLLocationManagerDelegate {
-
-    //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    //        guard let location = locations.last else { return }
-    //        let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-    //        mapView.setRegion(region, animated: true)
-    //    }
-
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthorization()
-    }
-}
-
-extension LostReportViewController: MKMapViewDelegate {
-
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("tapped")
-        if let annotation = view.annotation {
-            mapView.removeAnnotation(annotation)
-            lostItem.lostLocationsCoordinates.removeAll(where: { $0.latitude == annotation.coordinate.latitude && $0.longitude == annotation.coordinate.longitude } )
+            map!.setAnnotation(sender: sender)
         }
     }
 }
 
+extension LostReportViewController: MapViewDelegate {
+    func annotationRemove(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
+        print("delegate annot remvove")
+    }
+
+    func annotaionSet(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
+       print("delegate annot Set")
+    }
+}
 

@@ -1359,7 +1359,14 @@
                             <outlet property="delegate" destination="7h9-Zh-xdG" id="Rlc-n6-G08"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Found Search" id="jeu-q4-9ed"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Found Search" id="jeu-q4-9ed">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Filter" id="9dO-fR-LCt"/>
+                            <barButtonItem title="Map" id="9s6-Rk-qLD"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Gb-Z4-a0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

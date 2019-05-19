@@ -15,6 +15,7 @@
 		410FBE9722910A6800594A76 /* FoundSearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9622910A6800594A76 /* FoundSearchDetailViewController.swift */; };
 		410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */; };
 		410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */; };
+		411C327822912DC600D44C80 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C327722912DC600D44C80 /* MapHelper.swift */; };
 		41C07134228DC76500F73F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C07133228DC76400F73F69 /* GoogleService-Info.plist */; };
 		41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07135228DD2E300F73F69 /* LoginViewController.swift */; };
 		41C07138228DD2F500F73F69 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07137228DD2F500F73F69 /* RegisterViewController.swift */; };
@@ -43,6 +44,7 @@
 		410FBE9622910A6800594A76 /* FoundSearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundSearchDetailViewController.swift; sourceTree = "<group>"; };
 		410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundSearchTableViewCell.swift; sourceTree = "<group>"; };
 		410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		411C327722912DC600D44C80 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		41C07133228DC76400F73F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C07135228DD2E300F73F69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		41C07137228DD2F500F73F69 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				41DB9290228E40CD009031F0 /* FirebaseHelper.swift */,
 				41DB9297228E5CE1009031F0 /* ImagePickerHelper.swift */,
+				411C327722912DC600D44C80 /* MapHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */,
 				410FBE952290FA4F00594A76 /* FoundReportViewController.swift in Sources */,
 				410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */,
+				411C327822912DC600D44C80 /* MapHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
