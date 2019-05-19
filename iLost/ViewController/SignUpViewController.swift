@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class SignUpViewController: UIViewController {
 
     var firebase = FirebaseHelper()
     var imagePicker: ImagePickerHelper!
@@ -51,23 +51,18 @@ class RegisterViewController: UIViewController {
         guard let address = addressTextField.text else { return nil }
         guard let postcode = postcodeTextField.text else { return nil }
         guard let city = cityTextField.text else { return nil }
-       
-
         let user = UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city)
-
-
-
         return user
     }
 }
 
-extension RegisterViewController: FirebaseCreateUserDelegate {
+extension SignUpViewController: FirebaseCreateUserDelegate {
     func userCreated() {
        self.performSegue(withIdentifier: "RegisterToHomeSegue", sender: nil )
     }
 }
 
-extension RegisterViewController: ImagePickerDelegate {
+extension SignUpViewController: ImagePickerDelegate {
     func selectedImage(image: UIImage?) {
         self.photoImageView.image = image
     }

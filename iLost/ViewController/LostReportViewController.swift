@@ -22,7 +22,6 @@ class LostReportViewController: UIViewController {
     var firebase = FirebaseHelper()
     var map:MapHelper?
 
-
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         if let category = categoryTextField.text {
              lostItem.category = category
@@ -39,7 +38,6 @@ class LostReportViewController: UIViewController {
             guard let data = image.jpegData(compressionQuality: CGFloat(0.0)) else { return }
             firebase.saveImage(data: data, item: "Item1", fileName: "Image1")
         }
-
     }
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBAction func addImagePressed(_ sender: Any) {
@@ -93,7 +91,6 @@ extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDa
                  viewController.images = images
             }
         }
-
     }
 }
 

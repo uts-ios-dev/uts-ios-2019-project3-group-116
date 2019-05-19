@@ -88,7 +88,6 @@ extension MapHelper {
         default:
             print("error")
         }
-
     }
 
     func setAnnotation(sender: UILongPressGestureRecognizer){
@@ -106,13 +105,6 @@ extension MapHelper {
 }
 
 extension MapHelper: CLLocationManagerDelegate {
-
-    //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    //        guard let location = locations.last else { return }
-    //        let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-    //        mapView.setRegion(region, animated: true)
-    //    }
-
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }

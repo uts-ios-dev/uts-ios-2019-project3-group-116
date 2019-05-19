@@ -18,7 +18,7 @@
 		411C327822912DC600D44C80 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C327722912DC600D44C80 /* MapHelper.swift */; };
 		41C07134228DC76500F73F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C07133228DC76400F73F69 /* GoogleService-Info.plist */; };
 		41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07135228DD2E300F73F69 /* LoginViewController.swift */; };
-		41C07138228DD2F500F73F69 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07137228DD2F500F73F69 /* RegisterViewController.swift */; };
+		41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07137228DD2F500F73F69 /* SignUpViewController.swift */; };
 		41CD2FE5228DB90D00DD0A54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD2FE4228DB90D00DD0A54 /* AppDelegate.swift */; };
 		41CD2FE7228DB90D00DD0A54 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD2FE6228DB90D00DD0A54 /* HomeViewController.swift */; };
 		41CD2FEA228DB90D00DD0A54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD2FE8228DB90D00DD0A54 /* Main.storyboard */; };
@@ -47,7 +47,7 @@
 		411C327722912DC600D44C80 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		41C07133228DC76400F73F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C07135228DD2E300F73F69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		41C07137228DD2F500F73F69 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		41C07137228DD2F500F73F69 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		41CD2FE1228DB90D00DD0A54 /* iLost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CD2FE4228DB90D00DD0A54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41CD2FE6228DB90D00DD0A54 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -80,12 +80,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		411C327922913CF200D44C80 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				410FBE8D2290E1E600594A76 /* LostSearchTableViewCell.swift */,
+				410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		411C327A22913CFF00D44C80 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				41DB9299228E75A3009031F0 /* LostItemCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
 		41C07139228DD35400F73F69 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				41CD2FE6228DB90D00DD0A54 /* HomeViewController.swift */,
 				41C07135228DD2E300F73F69 /* LoginViewController.swift */,
-				41C07137228DD2F500F73F69 /* RegisterViewController.swift */,
+				41C07137228DD2F500F73F69 /* SignUpViewController.swift */,
 				41DB9285228E2DD9009031F0 /* LostReportViewController.swift */,
 				41DB9287228E2E01009031F0 /* ProfileViewController.swift */,
 				41D4C21A228EA873006195E9 /* ImageViewController.swift */,
@@ -112,11 +129,10 @@
 		41C0713B228DD37100F73F69 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				411C327A22913CFF00D44C80 /* CollectionViewCell */,
+				411C327922913CF200D44C80 /* TableViewCell */,
 				41CD2FE8228DB90D00DD0A54 /* Main.storyboard */,
 				41CD2FED228DB90F00DD0A54 /* LaunchScreen.storyboard */,
-				41DB9299228E75A3009031F0 /* LostItemCollectionViewCell.swift */,
-				410FBE8D2290E1E600594A76 /* LostSearchTableViewCell.swift */,
-				410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,7 +346,7 @@
 				410FBE8A2290E10700594A76 /* LostSearchTableViewController.swift in Sources */,
 				410FBE8C2290E11600594A76 /* FoundSearchTableViewController.swift in Sources */,
 				41DB928C228E32DF009031F0 /* UserModel.swift in Sources */,
-				41C07138228DD2F500F73F69 /* RegisterViewController.swift in Sources */,
+				41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */,
 				41CD2FE5228DB90D00DD0A54 /* AppDelegate.swift in Sources */,
 				410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */,
 				410FBE952290FA4F00594A76 /* FoundReportViewController.swift in Sources */,
