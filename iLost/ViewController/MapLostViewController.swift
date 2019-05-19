@@ -90,12 +90,10 @@ class MapLostViewController: UIViewController {
             break
         }
     }
-
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == "SegueToLostViewController" {
-            if let destination = segue.destination as? LostViewController {
+            if let destination = segue.destination as? LostReportViewController {
                 destination.lostItem = lostItem!
             }
         }

@@ -25,9 +25,9 @@ class ProfileViewController: UIViewController{
         guard let email = user?.email else { return }
 
         let userNew = UserModel(name: name, surname: surname , username: username, email: email, phone: phone, address: address, postcode: postcode, city: city)
-        if let values = user?.getValues() {
-            firebase.saveUserProfile(values: values)
-        }
+
+        firebase.saveUserProfile(values: userNew.getValues())
+
 
     }
     @IBOutlet weak var nameTextField: UITextField!

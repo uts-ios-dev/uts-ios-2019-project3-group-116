@@ -11,16 +11,20 @@
 		410FBE8C2290E11600594A76 /* FoundSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8B2290E11600594A76 /* FoundSearchTableViewController.swift */; };
 		410FBE8E2290E1E600594A76 /* LostSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8D2290E1E600594A76 /* LostSearchTableViewCell.swift */; };
 		410FBE902290E4F300594A76 /* LostSearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8F2290E4F300594A76 /* LostSearchDetailViewController.swift */; };
+		410FBE952290FA4F00594A76 /* FoundReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE942290FA4F00594A76 /* FoundReportViewController.swift */; };
+		410FBE9722910A6800594A76 /* FoundSearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9622910A6800594A76 /* FoundSearchDetailViewController.swift */; };
+		410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */; };
+		410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */; };
 		41C07134228DC76500F73F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C07133228DC76400F73F69 /* GoogleService-Info.plist */; };
 		41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07135228DD2E300F73F69 /* LoginViewController.swift */; };
 		41C07138228DD2F500F73F69 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07137228DD2F500F73F69 /* RegisterViewController.swift */; };
 		41CD2FE5228DB90D00DD0A54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD2FE4228DB90D00DD0A54 /* AppDelegate.swift */; };
-		41CD2FE7228DB90D00DD0A54 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD2FE6228DB90D00DD0A54 /* StartViewController.swift */; };
+		41CD2FE7228DB90D00DD0A54 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CD2FE6228DB90D00DD0A54 /* HomeViewController.swift */; };
 		41CD2FEA228DB90D00DD0A54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD2FE8228DB90D00DD0A54 /* Main.storyboard */; };
 		41CD2FEC228DB90F00DD0A54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CD2FEB228DB90F00DD0A54 /* Assets.xcassets */; };
 		41CD2FEF228DB90F00DD0A54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD2FED228DB90F00DD0A54 /* LaunchScreen.storyboard */; };
 		41D4C21B228EA873006195E9 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4C21A228EA873006195E9 /* ImageViewController.swift */; };
-		41DB9286228E2DD9009031F0 /* LostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9285228E2DD9009031F0 /* LostViewController.swift */; };
+		41DB9286228E2DD9009031F0 /* LostReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9285228E2DD9009031F0 /* LostReportViewController.swift */; };
 		41DB9288228E2E01009031F0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9287228E2E01009031F0 /* ProfileViewController.swift */; };
 		41DB928A228E2E5C009031F0 /* MapLostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9289228E2E5C009031F0 /* MapLostViewController.swift */; };
 		41DB928C228E32DF009031F0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB928B228E32DF009031F0 /* UserModel.swift */; };
@@ -36,18 +40,22 @@
 		410FBE8B2290E11600594A76 /* FoundSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundSearchTableViewController.swift; sourceTree = "<group>"; };
 		410FBE8D2290E1E600594A76 /* LostSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostSearchTableViewCell.swift; sourceTree = "<group>"; };
 		410FBE8F2290E4F300594A76 /* LostSearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostSearchDetailViewController.swift; sourceTree = "<group>"; };
+		410FBE942290FA4F00594A76 /* FoundReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundReportViewController.swift; sourceTree = "<group>"; };
+		410FBE9622910A6800594A76 /* FoundSearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundSearchDetailViewController.swift; sourceTree = "<group>"; };
+		410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundSearchTableViewCell.swift; sourceTree = "<group>"; };
+		410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		41C07133228DC76400F73F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C07135228DD2E300F73F69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		41C07137228DD2F500F73F69 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		41CD2FE1228DB90D00DD0A54 /* iLost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iLost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41CD2FE4228DB90D00DD0A54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		41CD2FE6228DB90D00DD0A54 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		41CD2FE6228DB90D00DD0A54 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		41CD2FE9228DB90D00DD0A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41CD2FEB228DB90F00DD0A54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41CD2FEE228DB90F00DD0A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41CD2FF0228DB90F00DD0A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		41D4C21A228EA873006195E9 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
-		41DB9285228E2DD9009031F0 /* LostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostViewController.swift; sourceTree = "<group>"; };
+		41DB9285228E2DD9009031F0 /* LostReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostReportViewController.swift; sourceTree = "<group>"; };
 		41DB9287228E2E01009031F0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		41DB9289228E2E5C009031F0 /* MapLostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLostViewController.swift; sourceTree = "<group>"; };
 		41DB928B228E32DF009031F0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -75,16 +83,19 @@
 		41C07139228DD35400F73F69 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				41CD2FE6228DB90D00DD0A54 /* StartViewController.swift */,
+				41CD2FE6228DB90D00DD0A54 /* HomeViewController.swift */,
 				41C07135228DD2E300F73F69 /* LoginViewController.swift */,
 				41C07137228DD2F500F73F69 /* RegisterViewController.swift */,
-				41DB9285228E2DD9009031F0 /* LostViewController.swift */,
+				41DB9285228E2DD9009031F0 /* LostReportViewController.swift */,
 				41DB9287228E2E01009031F0 /* ProfileViewController.swift */,
 				41DB9289228E2E5C009031F0 /* MapLostViewController.swift */,
 				41D4C21A228EA873006195E9 /* ImageViewController.swift */,
 				410FBE892290E10700594A76 /* LostSearchTableViewController.swift */,
 				410FBE8B2290E11600594A76 /* FoundSearchTableViewController.swift */,
 				410FBE8F2290E4F300594A76 /* LostSearchDetailViewController.swift */,
+				410FBE942290FA4F00594A76 /* FoundReportViewController.swift */,
+				410FBE9622910A6800594A76 /* FoundSearchDetailViewController.swift */,
+				410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -106,6 +117,7 @@
 				41CD2FED228DB90F00DD0A54 /* LaunchScreen.storyboard */,
 				41DB9299228E75A3009031F0 /* LostItemCollectionViewCell.swift */,
 				410FBE8D2290E1E600594A76 /* LostSearchTableViewCell.swift */,
+				410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,11 +319,12 @@
 				41DB9298228E5CE1009031F0 /* ImagePickerHelper.swift in Sources */,
 				41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */,
 				410FBE8E2290E1E600594A76 /* LostSearchTableViewCell.swift in Sources */,
-				41CD2FE7228DB90D00DD0A54 /* StartViewController.swift in Sources */,
-				41DB9286228E2DD9009031F0 /* LostViewController.swift in Sources */,
+				41CD2FE7228DB90D00DD0A54 /* HomeViewController.swift in Sources */,
+				41DB9286228E2DD9009031F0 /* LostReportViewController.swift in Sources */,
 				410FBE902290E4F300594A76 /* LostSearchDetailViewController.swift in Sources */,
 				41DB9291228E40CD009031F0 /* FirebaseHelper.swift in Sources */,
 				41D4C21B228EA873006195E9 /* ImageViewController.swift in Sources */,
+				410FBE9722910A6800594A76 /* FoundSearchDetailViewController.swift in Sources */,
 				41DB929A228E75A3009031F0 /* LostItemCollectionViewCell.swift in Sources */,
 				41DB928E228E3969009031F0 /* LostItemModel.swift in Sources */,
 				410FBE8A2290E10700594A76 /* LostSearchTableViewController.swift in Sources */,
@@ -320,6 +333,9 @@
 				41C07138228DD2F500F73F69 /* RegisterViewController.swift in Sources */,
 				41CD2FE5228DB90D00DD0A54 /* AppDelegate.swift in Sources */,
 				41DB928A228E2E5C009031F0 /* MapLostViewController.swift in Sources */,
+				410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */,
+				410FBE952290FA4F00594A76 /* FoundReportViewController.swift in Sources */,
+				410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

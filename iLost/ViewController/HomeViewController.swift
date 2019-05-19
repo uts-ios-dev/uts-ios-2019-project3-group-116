@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
+class HomeViewController: UIViewController {
     var firebase = FirebaseHelper()
     @IBAction func logoutButtonPressed(_ sender: Any) {
         firebase.logOutUser()

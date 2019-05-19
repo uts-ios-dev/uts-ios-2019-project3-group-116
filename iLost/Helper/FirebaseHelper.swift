@@ -135,7 +135,7 @@ class FirebaseHelper {
         let imagesRef = storageRef.child("images").child(uid).child(item)
         let spaceRef = imagesRef.child(fileName)
         let uploadTask = spaceRef.putData(data, metadata: nil) { (metadata, error) in
-            guard let metadata = metadata else { return }
+//            guard let metadata = metadata else { return }
             if let error = error {
                 print("Failed Image Upload: ", error.localizedDescription)
                 return
@@ -156,7 +156,7 @@ class FirebaseHelper {
                 return
             } else {
                 // Data for "images/island.jpg" is returned
-                let image = UIImage(data: data!)
+//                let image = UIImage(data: data!)
             }
         }
     }

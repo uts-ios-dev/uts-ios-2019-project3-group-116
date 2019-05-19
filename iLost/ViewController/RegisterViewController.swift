@@ -22,12 +22,14 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
-    @IBAction func registerButtonPressed(_ sender: Any) {
+    
+    @IBAction func SignUpButtonPressed(_ sender: Any) {
         guard let password = passwordTextField.text else { return }
         if let user = createUser() {
-           firebase.createUser(user: user, password: password)
+            firebase.createUser(user: user, password: password)
         }
     }
+
     @IBAction func addPhotoPressed(_ sender: Any) {
         self.imagePicker.present(view: sender as! UIView)
     }
