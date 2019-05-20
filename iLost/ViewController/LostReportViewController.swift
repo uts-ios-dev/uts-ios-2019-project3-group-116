@@ -98,18 +98,21 @@ extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDa
 extension LostReportViewController {
     @IBAction func addPinGesture(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            map!.setAnnotation(sender: sender)
+            map!.setAnnotationWithLongPress(sender: sender)
         }
     }
 }
 
 extension LostReportViewController: MapViewDelegate {
     func annotationRemove(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
+        locationsCoordinates = lostLocationsCoordinates
         print("delegate annot remvove")
     }
 
     func annotaionSet(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
+      locationsCoordinates = lostLocationsCoordinates
        print("delegate annot Set")
     }
 }
+
 

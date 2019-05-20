@@ -12,6 +12,7 @@ import MapKit
 class FoundReportViewController: UIViewController {
 
     var map:MapHelper?
+    var locationsCoordinates = [CLLocationCoordinate2D]()
 
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
@@ -46,17 +47,19 @@ extension FoundReportViewController {
 
     @objc func addPinGesture(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            map!.setAnnotation(sender: sender)
+            map!.setAnnotationWithLongPress(sender: sender)
         }
     }
 }
 
 extension FoundReportViewController: MapViewDelegate {
     func annotationRemove(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
+        locationsCoordinates = lostLocationsCoordinates
         print("delegate annot remvove")
     }
 
     func annotaionSet(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
+        locationsCoordinates = lostLocationsCoordinates
         print("delegate annot Set")
     }
 }

@@ -90,7 +90,15 @@ extension MapHelper {
         }
     }
 
-    func setAnnotation(sender: UILongPressGestureRecognizer){
+    func setAnnotation(lostLocationsCoordinates: [CLLocationCoordinate2D]){
+        for locationCoordinate in lostLocationsCoordinates {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = locationCoordinate
+            self.mapView!.addAnnotation(annotation)
+        }
+    }
+
+    func setAnnotationWithLongPress(sender: UILongPressGestureRecognizer){
         let location = sender.location(in: self.mapView)
         let locationCoordinate = self.mapView!.convert(location, toCoordinateFrom: self.mapView)
         let annotation = MKPointAnnotation()
