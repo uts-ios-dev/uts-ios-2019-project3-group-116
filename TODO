@@ -1,0 +1,50 @@
+Functions:
+	- Database read, write and update functionality for:
+    - Notifications
+    - Items
+      - Images
+    - User
+  - Create Test Data
+  
+  - Notification 
+   - Create Notification Model 
+  
+  - All Views that have DB access
+   - Remove data dummies
+   - Implement
+    - Read data from DB 
+    - Save Data 
+    - Update Data (e.g. user wants to changes description, picture for already created Item)
+    - Implement observer for new items or update in periodically
+    
+	-	LostSearchTableView, FoundSearchTableView 
+    - Filter, Show all items per annotation on map
+    - Select annotation an get the detail view of the item
+    
+	- HomeviewController 
+    - Show LostITems, FoundItems, Notifications
+    - Implement segues to LostReportViewController, NotifcationsViewController and FoundReportViewController for updating informations by clicking the row
+    - Delet Items, notification from table by swiping the row in the table
+    
+  - FoundSearchDetailViewController
+    - Show annotation on map (see FoundSearchDetailView)
+    
+  - LostDetailViewController
+    - Problem!! Annotation is deletable but should not
+
+Usability:
+	- Make views fency
+  - Contraints
+  - Check if views work on different devices correct
+	- Add information for the users by alerts
+    - e.g. data saved, uploaded, no internet connection
+    - login View: check email address, 
+    - signUp View: Name, Address required etc. if textfield is empty
+       
+Test:
+	- Test UI
+	- Test code
+
+Cleaning:
+  - Add comments
+  - Code cleaning
