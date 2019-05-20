@@ -1,40 +1,44 @@
 Functions:
-	- Database read, write and update functionality for:
+- Database 
+  - Implement read, write and update functionality for:
     - Notifications
     - Items
       - Images
     - User
   - Create Test Data
   
-  - Notification 
-   - Create Notification Model 
+- Notification 
+ - Create NotificationModel 
   
-  - All Views that have DB access
-   - Remove data dummies
-   - Implement
-    - Read data from DB 
-    - Save Data 
-    - Update Data (e.g. user wants to changes description, picture for already created Item)
-    - Implement observer for new items or update in periodically
+- All Views that have DB access
+ - Remove data dummies
+ - Implement
+  - Read data from DB and fill Modells e.g. ItemModell
+  - Save Data 
+  - Update Data (e.g. user wants to changes the description or a picture for already created Items)
+   - Load Data and than update data in DB
+ - Implement observer or update periodically HomeViewController and Lost-/ FoundSearchDetailViewController for new items
+  - Or use an update button 
+
+- LostSearchTableView, FoundSearchTableView 
+ - Filter e.g. Date, Category etc.
+ - Show all items per annotation on map
+ - Select annotation an get the detail view of the item
     
-	-	LostSearchTableView, FoundSearchTableView 
-    - Filter, Show all items per annotation on map
-    - Select annotation an get the detail view of the item
+- HomeViewController 
+ - Show LostITems, FoundItems, Notifications in Table
+ - Implement segues to LostReportViewController, NotifcationsViewController and FoundReportViewController for updating informations by clicking the row
+ - Delet Items, notification from table by swiping the row in the table
     
-	- HomeviewController 
-    - Show LostITems, FoundItems, Notifications
-    - Implement segues to LostReportViewController, NotifcationsViewController and FoundReportViewController for updating informations by clicking the row
-    - Delet Items, notification from table by swiping the row in the table
+- FoundSearchDetailViewController
+ - Show annotation on map (see FoundSearchDetailView)
     
-  - FoundSearchDetailViewController
-    - Show annotation on map (see FoundSearchDetailView)
-    
-  - LostDetailViewController
-    - Problem!! Annotation is deletable but should not
+- LostDetailViewController
+ - Problem!! Annotation is deletable but should not
 
 Usability:
-	- Make views fency
-  - Contraints
+  - Make views look fency
+  	- Contraints
   - Check if views work on different devices correct
 	- Add information for the users by alerts
     - e.g. data saved, uploaded, no internet connection
@@ -42,8 +46,8 @@ Usability:
     - signUp View: Name, Address required etc. if textfield is empty
        
 Test:
-	- Test UI
-	- Test code
+ - Test UI
+ - Test code
 
 Cleaning:
   - Add comments
