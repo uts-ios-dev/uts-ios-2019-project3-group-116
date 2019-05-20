@@ -44,7 +44,11 @@ Usability:
     - e.g. data saved, uploaded, no internet connection
     - login View: check email address, 
     - signUp View: Name, Address required etc. if textfield is empty
-       
+
+Start Screen:
+ - add start screen
+ - create icons
+ 
 Test:
  - Test UI
  - Test code
