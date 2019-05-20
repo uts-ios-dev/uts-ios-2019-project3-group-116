@@ -99,7 +99,7 @@ class FirebaseHelper {
         })
     }
 
-    func saveItemDescription(item: LostItemModel){
+    func saveItemDescription(item: ItemModel){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         var values = item.getValues()
         values["User"] = uid

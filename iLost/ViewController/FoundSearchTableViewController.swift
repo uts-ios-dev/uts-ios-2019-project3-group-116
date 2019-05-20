@@ -10,8 +10,8 @@ import UIKit
 
 class FoundSearchTableViewController: UITableViewController {
 
-    var foundItems = [LostItemModel]()
-    var foundItem = LostItemModel()
+    var foundItems = [ItemModel]()
+    var foundItem = ItemModel()
 
 
     override func viewDidLoad() {
@@ -62,5 +62,4 @@ class FoundSearchTableViewController: UITableViewController {
             }
         }
     }
-
 }

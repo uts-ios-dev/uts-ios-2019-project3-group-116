@@ -9,12 +9,8 @@
 import UIKit
 
 class LostSearchDetailViewController: UIViewController {
+    var lostItem:ItemModel?
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    var lostItem:LostItemModel?
-
-
-
     @IBOutlet weak var descriptionTextView: UITextView!
     
     @IBAction func notiyOwnerButtonPressed(_ sender: Any) {
@@ -25,11 +21,16 @@ class LostSearchDetailViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-
-        
-
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ImageSegue" {
+            if let viewController = segue.destination as? ImageViewController {
+                viewController.images = lostItem!.images
+                viewController.currentImage = collectionView.indexPathsForSelectedItems!.first!.row
+            }
+        }
+    }
 }
 
 extension LostSearchDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -55,5 +56,9 @@ extension LostSearchDetailViewController: UICollectionViewDelegate, UICollection
         cell.imageView?.image = image
 
         return cell
-}
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ImageSegue", sender: nil)
+    }
 }

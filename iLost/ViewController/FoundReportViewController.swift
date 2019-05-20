@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import MapKit
 
 class FoundReportViewController: UIViewController {
+
+    var map:MapHelper?
 
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var mapView: MKMapView!
 
     @IBOutlet weak var descriptionTextView: UITextView!
     override func viewDidLoad() {
@@ -20,6 +24,9 @@ class FoundReportViewController: UIViewController {
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
+
+        addLongTapGesture()
+         map = MapHelper(delegate: self, mapView: mapView)
 
     }
 
@@ -29,5 +36,27 @@ class FoundReportViewController: UIViewController {
 
     @IBAction func saveButtonPressed(_ sender: Any) {
     }
+}
 
+extension FoundReportViewController {
+    func addLongTapGesture(){
+        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(addPinGesture))
+        view.addGestureRecognizer(longTap)
+    }
+
+    @objc func addPinGesture(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            map!.setAnnotation(sender: sender)
+        }
+    }
+}
+
+extension FoundReportViewController: MapViewDelegate {
+    func annotationRemove(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
+        print("delegate annot remvove")
+    }
+
+    func annotaionSet(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
+        print("delegate annot Set")
+    }
 }

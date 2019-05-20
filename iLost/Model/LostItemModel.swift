@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class LostItemModel {
+class ItemModel {
     var title: String?
     var description: String?
     var category: String?
@@ -19,6 +19,8 @@ class LostItemModel {
     var dateFound: String?
     var lostLocationsCoordinates = [CLLocationCoordinate2D]()
     var itemID: String?
+    var foundID: String?
+    var lostID: String?
 
 //    init(description: String, category: String, date: Date, images: [UIImage]){
 //        self.description = description

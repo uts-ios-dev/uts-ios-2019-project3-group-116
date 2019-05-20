@@ -18,7 +18,7 @@ class LostReportViewController: UIViewController {
     var images = [UIImage]()
     var imagePicker: ImagePickerHelper!
     var locationsCoordinates = [CLLocationCoordinate2D]()
-    var lostItem = LostItemModel()
+    var lostItem = ItemModel()
     var firebase = FirebaseHelper()
     var map:MapHelper?
 
@@ -45,7 +45,7 @@ class LostReportViewController: UIViewController {
     }
 
     @IBAction func UnwindToLostViewController(segue: UIStoryboardSegue) {
-        print(lostItem.lostLocationsCoordinates.count)
+        print("unwind")
     }
 
     override func viewDidLoad() {
@@ -89,6 +89,7 @@ extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDa
         if segue.identifier == "ImageSegue" {
             if let viewController = segue.destination as? ImageViewController {
                  viewController.images = images
+                 viewController.currentImage = imagesCollectionView.indexPathsForSelectedItems!.first!.row
             }
         }
     }

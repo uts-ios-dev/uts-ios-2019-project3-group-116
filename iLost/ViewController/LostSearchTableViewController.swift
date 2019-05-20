@@ -10,8 +10,8 @@ import UIKit
 
 class LostSearchTableViewController: UITableViewController {
 
-    var lostItems = [LostItemModel]()
-    var lostItem = LostItemModel()
+    var lostItems = [ItemModel]()
+    var lostItem = ItemModel()
 
 
     override func viewDidLoad() {
