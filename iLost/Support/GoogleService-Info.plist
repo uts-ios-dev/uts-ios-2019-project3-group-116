@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>736316567856-udjd48hb386i7o7umj0rm40v2ue30p1o.apps.googleusercontent.com</string>
+	<string>518745839628-4js2f6qbv89nvulmldrnj4ap24t7pujd.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.736316567856-udjd48hb386i7o7umj0rm40v2ue30p1o</string>
+	<string>com.googleusercontent.apps.518745839628-4js2f6qbv89nvulmldrnj4ap24t7pujd</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCCSxdTyjXnmjJ216dp7HmdixE0HPnYNlQ</string>
+	<string>AIzaSyAJef0FbJqhea0b98l2-yP7ABnHKYG13_Q</string>
 	<key>GCM_SENDER_ID</key>
-	<string>736316567856</string>
+	<string>518745839628</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ak-design.iLost</string>
+	<string>com.uts.iLost</string>
 	<key>PROJECT_ID</key>
-	<string>ilost-bb1d1</string>
+	<string>ilost-464d2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ilost-bb1d1.appspot.com</string>
+	<string>ilost-464d2.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:736316567856:ios:f2f1df180bf4f8f1</string>
+	<string>1:518745839628:ios:46b5fae47a969694</string>
 	<key>DATABASE_URL</key>
-	<string>https://ilost-bb1d1.firebaseio.com</string>
+	<string>https://ilost-464d2.firebaseio.com</string>
 </dict>
 </plist>
