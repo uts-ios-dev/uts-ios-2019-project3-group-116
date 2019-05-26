@@ -12,23 +12,16 @@ import UIKit
 class LoginViewController: UIViewController {
     var firebase = FirebaseHelper()
 
-    @IBOutlet weak var logoImageView: UIImageView!
-    @IBAction func loginButtonPressed(_ sender: Any) {
-//        guard let email = emailTextField.text else { return }
-//        guard let password = passwordTextField.text else { return }
-
-        let email = "testuser6@gmail.com"
-        let password = "testuser6"
-        firebase.signIn(email: email, password: password)
-    }
-
-    @IBOutlet weak var loginButton: UIButton!
+    // UI elements
+    @IBOutlet weak var loginButton: CustomButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         firebase.delegateSignIn = self
-        loginButton.layer.cornerRadius = 20
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -46,14 +39,36 @@ class LoginViewController: UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    // Check if an email address and password are entered and send them to the firebase
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        if (emailTextField.text == "" || passwordTextField.text == "") {
+            if (emailTextField.text == "") {
+                emailTextField.attributedPlaceholder = NSAttributedString(string: "Email Address", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            }
+            
+            if (passwordTextField.text == "") {
+                passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+            }
+            
+            loginButton.shake()
+        } else {
+            let email = "testuser6@gmail.com"
+            let password = "testuser6"
+            firebase.signIn(email: email, password: password)
+//            firebase.signIn(email: emailTextField.text!, password: passwordTextField.text!)
+        }
+    }
 }
 
+// Switch to Home Scene after login process was successful
 extension LoginViewController: FirebaseSignInDelegate {
     func SignedIn() {
         self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil )
     }
 }
 
+// Go to next textfield by return button
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
