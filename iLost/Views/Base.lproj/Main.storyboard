@@ -1217,7 +1217,7 @@
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhh-iv-rYO">
                                                             <rect key="frame" x="117" y="0.0" width="30" height="30"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" white="1" alpha="0.00016505281690140845" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="238-Fu-YB0"/>
                                                                 <constraint firstAttribute="height" constant="30" id="OiF-Km-Mzd"/>
@@ -1242,6 +1242,41 @@
                                                     <segue destination="ZtE-71-d80" kind="presentation" identifier="ImageSegue" id="Ocg-x4-ZVJ"/>
                                                 </connections>
                                             </collectionViewCell>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddCollectionViewCell" id="9Fy-cv-94L" customClass="AddImageCollectionViewCell" customModule="iLost" customModuleProvider="target">
+                                                <rect key="frame" x="157" y="0.0" width="147" height="144"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="147" height="144"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m0D-FF-uwl">
+                                                            <rect key="frame" x="48.5" y="47" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="FJy-wm-R6t"/>
+                                                                <constraint firstAttribute="width" constant="50" id="x1D-sV-wBB"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqR-e4-O1N">
+                                                            <rect key="frame" x="0.0" y="0.0" width="147" height="144"/>
+                                                            <state key="normal" title="Add Photo"/>
+                                                            <connections>
+                                                                <action selector="addButtonTapped:" destination="9Fy-cv-94L" eventType="touchUpInside" id="QQD-Yv-U2g"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="m0D-FF-uwl" firstAttribute="centerY" secondItem="9Fy-cv-94L" secondAttribute="centerY" id="2X4-bU-NDM"/>
+                                                    <constraint firstItem="RqR-e4-O1N" firstAttribute="top" secondItem="m0D-FF-uwl" secondAttribute="bottom" constant="-97" id="KS3-RX-hKC"/>
+                                                    <constraint firstItem="RqR-e4-O1N" firstAttribute="bottom" secondItem="9Fy-cv-94L" secondAttribute="bottomMargin" constant="8" id="UbH-fY-n7I"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="RqR-e4-O1N" secondAttribute="trailing" constant="-8" id="XtI-v8-sz5"/>
+                                                    <constraint firstItem="m0D-FF-uwl" firstAttribute="centerX" secondItem="9Fy-cv-94L" secondAttribute="centerX" id="bnI-mu-r7j"/>
+                                                    <constraint firstItem="RqR-e4-O1N" firstAttribute="leading" secondItem="9Fy-cv-94L" secondAttribute="leadingMargin" constant="-8" id="e5m-Gl-yNb"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="imageView" destination="m0D-FF-uwl" id="qth-NG-gIM"/>
+                                                </connections>
+                                            </collectionViewCell>
                                         </cells>
                                         <connections>
                                             <outlet property="dataSource" destination="nwE-FJ-Ams" id="bUr-se-WAo"/>
@@ -1249,7 +1284,7 @@
                                         </connections>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Z7N-yX-Kdp">
-                                        <rect key="frame" x="23" y="190" width="368" height="122"/>
+                                        <rect key="frame" x="23" y="164" width="368" height="122"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="128" translatesAutoresizingMaskIntoConstraints="NO" id="Sbk-Gq-fkF">
                                                 <rect key="frame" x="0.0" y="0.0" width="368" height="30"/>
@@ -1323,7 +1358,7 @@
                                         </subviews>
                                     </stackView>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="G86-c3-RLS">
-                                        <rect key="frame" x="8" y="487" width="398" height="442"/>
+                                        <rect key="frame" x="8" y="461" width="398" height="442"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="442" id="621-v7-3Tn"/>
@@ -1333,7 +1368,7 @@
                                         </connections>
                                     </mapView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Jsx-nT-TlQ">
-                                        <rect key="frame" x="8" y="332" width="398" height="128"/>
+                                        <rect key="frame" x="8" y="306" width="398" height="128"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="8Xk-xb-oLp"/>
@@ -1342,16 +1377,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEl-nC-KRY">
-                                        <rect key="frame" x="161" y="152" width="88" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="Mh6-46-jJp"/>
-                                        </constraints>
-                                        <state key="normal" title="Add Photo"/>
-                                        <connections>
-                                            <action selector="addImagePressed:" destination="nwE-FJ-Ams" eventType="touchUpInside" id="H5a-af-xRV"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="8MC-Oj-63W" firstAttribute="trailing" secondItem="Jsx-nT-TlQ" secondAttribute="trailing" id="11n-8a-Npu"/>
@@ -1361,15 +1386,12 @@
                                     <constraint firstItem="8MC-Oj-63W" firstAttribute="leading" secondItem="l0Z-wX-9Ra" secondAttribute="leadingMargin" id="BtA-VU-PWr"/>
                                     <constraint firstAttribute="bottom" secondItem="G86-c3-RLS" secondAttribute="bottom" id="EhM-8j-jcG"/>
                                     <constraint firstItem="Jsx-nT-TlQ" firstAttribute="top" secondItem="Z7N-yX-Kdp" secondAttribute="bottom" constant="20" id="N5S-Sn-0qq"/>
-                                    <constraint firstItem="ZEl-nC-KRY" firstAttribute="top" secondItem="8MC-Oj-63W" secondAttribute="bottom" constant="8" symbolic="YES" id="Uny-0r-M07"/>
+                                    <constraint firstItem="Z7N-yX-Kdp" firstAttribute="top" secondItem="8MC-Oj-63W" secondAttribute="bottom" constant="20" id="Ngb-YP-f9t"/>
                                     <constraint firstItem="8MC-Oj-63W" firstAttribute="centerX" secondItem="l0Z-wX-9Ra" secondAttribute="centerX" id="XeF-Vf-fpp"/>
                                     <constraint firstItem="Jsx-nT-TlQ" firstAttribute="trailing" secondItem="G86-c3-RLS" secondAttribute="trailing" id="ZT4-q8-EKL"/>
                                     <constraint firstItem="Z7N-yX-Kdp" firstAttribute="centerX" secondItem="Jsx-nT-TlQ" secondAttribute="centerX" id="dKs-8P-2Vx"/>
                                     <constraint firstItem="G86-c3-RLS" firstAttribute="top" secondItem="Jsx-nT-TlQ" secondAttribute="bottom" constant="27" id="dmY-UU-sdX"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZEl-nC-KRY" secondAttribute="trailing" constant="20" symbolic="YES" id="dno-v6-IZR"/>
-                                    <constraint firstItem="ZEl-nC-KRY" firstAttribute="leading" secondItem="l0Z-wX-9Ra" secondAttribute="leading" constant="161" id="f4k-MI-Cf2"/>
                                     <constraint firstItem="8MC-Oj-63W" firstAttribute="top" secondItem="l0Z-wX-9Ra" secondAttribute="top" id="m99-NI-XvR"/>
-                                    <constraint firstItem="Z7N-yX-Kdp" firstAttribute="top" secondItem="ZEl-nC-KRY" secondAttribute="bottom" constant="8" symbolic="YES" id="qTu-aL-D40"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -1406,7 +1428,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="8772" y="-1740"/>
+            <point key="canvasLocation" x="8771.0144927536239" y="-1740.4017857142856"/>
         </scene>
         <!--Date Picker Popup View Controller-->
         <scene sceneID="uhf-MG-Ycb">

@@ -19,6 +19,7 @@
 		412180882292738F002BAC44 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412180872292738F002BAC44 /* NotificationViewController.swift */; };
 		4162DE74229BD192003789BC /* DatePickerPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */; };
 		4162DE76229BD5B5003789BC /* DateFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */; };
+		4162DE78229BFCC1003789BC /* AddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */; };
 		41C07134228DC76500F73F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C07133228DC76400F73F69 /* GoogleService-Info.plist */; };
 		41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07135228DD2E300F73F69 /* LoginViewController.swift */; };
 		41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07137228DD2F500F73F69 /* SignUpViewController.swift */; };
@@ -52,6 +53,7 @@
 		412180872292738F002BAC44 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopupViewController.swift; sourceTree = "<group>"; };
 		4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterHelper.swift; sourceTree = "<group>"; };
+		4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		41C07133228DC76400F73F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C07135228DD2E300F73F69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		41C07137228DD2F500F73F69 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				41DB9299228E75A3009031F0 /* LostItemCollectionViewCell.swift */,
+				4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -129,7 +132,6 @@
 		41C0713A228DD36400F73F69 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				5AFF15A8229AA20E006965DB /* CustomUI */,
 				41CD2FF0228DB90F00DD0A54 /* Info.plist */,
 				41C07133228DC76400F73F69 /* GoogleService-Info.plist */,
 				41CD2FEB228DB90F00DD0A54 /* Assets.xcassets */,
@@ -140,6 +142,7 @@
 		41C0713B228DD37100F73F69 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5AFF15A8229AA20E006965DB /* CustomUI */,
 				411C327A22913CFF00D44C80 /* CollectionViewCell */,
 				411C327922913CF200D44C80 /* TableViewCell */,
 				41CD2FE8228DB90D00DD0A54 /* Main.storyboard */,
@@ -348,6 +351,7 @@
 				410FBE8E2290E1E600594A76 /* LostSearchTableViewCell.swift in Sources */,
 				41CD2FE7228DB90D00DD0A54 /* HomeViewController.swift in Sources */,
 				41DB9286228E2DD9009031F0 /* LostReportViewController.swift in Sources */,
+				4162DE78229BFCC1003789BC /* AddImageCollectionViewCell.swift in Sources */,
 				410FBE902290E4F300594A76 /* LostSearchDetailViewController.swift in Sources */,
 				41DB9291228E40CD009031F0 /* FirebaseHelper.swift in Sources */,
 				41D4C21B228EA873006195E9 /* ImageViewController.swift in Sources */,
