@@ -39,6 +39,13 @@ class LostReportViewController: UIViewController {
             firebase.saveImage(data: data, item: "Item1", fileName: "Image1")
         }
     }
+
+    @IBAction func unwindToLostReportViewController(segue: UIStoryboardSegue) {
+
+        dateTextField.text = lostItem.dateLost
+
+    }
+
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBAction func addImagePressed(_ sender: Any) {
          self.imagePicker.present(view: sender as! UIView)
@@ -48,13 +55,26 @@ class LostReportViewController: UIViewController {
         print("unwind")
     }
 
+    fileprivate func setTapGetureOnDateTextField() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(performSegueSetDate))
+        dateTextField.isUserInteractionEnabled = true
+        dateTextField.addGestureRecognizer(tapGesture)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
         map = MapHelper(delegate: self, mapView: mapView)
+
+        setTapGetureOnDateTextField()
     }
+    
+    @objc func performSegueSetDate(){
+        performSegue(withIdentifier: "SetDateSegue", sender: nil)
+    }
+
 }
 
 extension LostReportViewController: ImagePickerDelegate {

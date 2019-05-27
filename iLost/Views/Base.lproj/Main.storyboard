@@ -1382,6 +1382,7 @@
                         <outlet property="descriptionTextView" destination="Jsx-nT-TlQ" id="aDv-gO-kkH"/>
                         <outlet property="imagesCollectionView" destination="8MC-Oj-63W" id="XJv-g7-7Ab"/>
                         <outlet property="mapView" destination="G86-c3-RLS" id="2b8-XQ-NOZ"/>
+                        <segue destination="38r-qV-hXe" kind="presentation" identifier="SetDateSegue" id="psX-hL-HPQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1L-a0-1nP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1392,6 +1393,79 @@
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="8772" y="-1740"/>
+        </scene>
+        <!--Date Picker Popup View Controller-->
+        <scene sceneID="uhf-MG-Ycb">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="38r-qV-hXe" customClass="DatePickerPopupViewController" customModule="iLost" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JW6-D5-vsm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iyg-nr-EU6">
+                                <rect key="frame" x="47" y="295" width="320" height="306"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="wmg-28-jwy">
+                                        <rect key="frame" x="0.0" y="40" width="320" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="580576244.51567698">
+                                            <!--2019-05-26 15:10:44 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyC-Ng-22A">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                        <color key="backgroundColor" red="0.2828708761" green="0.70724424799999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="pWe-tS-zFt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3N-Or-Xyq">
+                                        <rect key="frame" x="0.0" y="266" width="320" height="40"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="G4n-Fe-KJs"/>
+                                        </constraints>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="doneButtonTapped:" destination="38r-qV-hXe" eventType="touchUpInside" id="d73-h3-em0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="o3N-Or-Xyq" secondAttribute="trailing" id="1WK-fx-4In"/>
+                                    <constraint firstItem="jyC-Ng-22A" firstAttribute="leading" secondItem="iyg-nr-EU6" secondAttribute="leading" id="4LC-3z-TJ2"/>
+                                    <constraint firstAttribute="trailing" secondItem="wmg-28-jwy" secondAttribute="trailing" id="6dA-qO-3Tc"/>
+                                    <constraint firstAttribute="trailing" secondItem="jyC-Ng-22A" secondAttribute="trailing" id="Dfa-P4-G1R"/>
+                                    <constraint firstAttribute="bottom" secondItem="o3N-Or-Xyq" secondAttribute="bottom" id="K7H-j3-aBD"/>
+                                    <constraint firstItem="o3N-Or-Xyq" firstAttribute="top" secondItem="wmg-28-jwy" secondAttribute="bottom" constant="10" id="WCL-5K-NBY"/>
+                                    <constraint firstItem="jyC-Ng-22A" firstAttribute="top" secondItem="iyg-nr-EU6" secondAttribute="top" id="axD-fH-8A5"/>
+                                    <constraint firstItem="wmg-28-jwy" firstAttribute="top" secondItem="jyC-Ng-22A" secondAttribute="bottom" id="esb-pq-aPQ"/>
+                                    <constraint firstItem="o3N-Or-Xyq" firstAttribute="leading" secondItem="iyg-nr-EU6" secondAttribute="leading" id="tEF-bQ-ugI"/>
+                                    <constraint firstItem="wmg-28-jwy" firstAttribute="leading" secondItem="iyg-nr-EU6" secondAttribute="leading" id="x9v-Cr-B2W"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iyg-nr-EU6" firstAttribute="centerX" secondItem="JW6-D5-vsm" secondAttribute="centerX" id="UuM-Gm-Ucx"/>
+                            <constraint firstItem="iyg-nr-EU6" firstAttribute="centerY" secondItem="JW6-D5-vsm" secondAttribute="centerY" id="fjh-z1-bE2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mo4-CS-lMy"/>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="wmg-28-jwy" id="XaT-VY-7k4"/>
+                        <outlet property="doneButton" destination="o3N-Or-Xyq" id="rfO-60-XIj"/>
+                        <outlet property="viewDatePicker" destination="iyg-nr-EU6" id="j06-l2-FFQ"/>
+                        <segue destination="Cal-dd-oL6" kind="unwind" identifier="unwindToLostReportViewControllerWithSegue" unwindAction="unwindToLostReportViewControllerWithSegue:" id="FIe-Ro-XcH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C5A-WA-zmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Cal-dd-oL6" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="9557.971014492754" y="-2371.2053571428569"/>
         </scene>
         <!--Images-->
         <scene sceneID="U84-Pr-YjO">

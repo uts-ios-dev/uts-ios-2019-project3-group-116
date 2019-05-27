@@ -17,6 +17,8 @@
 		410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */; };
 		411C327822912DC600D44C80 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C327722912DC600D44C80 /* MapHelper.swift */; };
 		412180882292738F002BAC44 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412180872292738F002BAC44 /* NotificationViewController.swift */; };
+		4162DE74229BD192003789BC /* DatePickerPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */; };
+		4162DE76229BD5B5003789BC /* DateFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */; };
 		41C07134228DC76500F73F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C07133228DC76400F73F69 /* GoogleService-Info.plist */; };
 		41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07135228DD2E300F73F69 /* LoginViewController.swift */; };
 		41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07137228DD2F500F73F69 /* SignUpViewController.swift */; };
@@ -48,6 +50,8 @@
 		410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		411C327722912DC600D44C80 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		412180872292738F002BAC44 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopupViewController.swift; sourceTree = "<group>"; };
+		4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterHelper.swift; sourceTree = "<group>"; };
 		41C07133228DC76400F73F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C07135228DD2E300F73F69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		41C07137228DD2F500F73F69 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 				410FBE9622910A6800594A76 /* FoundSearchDetailViewController.swift */,
 				410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */,
 				412180872292738F002BAC44 /* NotificationViewController.swift */,
+				4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				41DB9290228E40CD009031F0 /* FirebaseHelper.swift */,
 				41DB9297228E5CE1009031F0 /* ImagePickerHelper.swift */,
 				411C327722912DC600D44C80 /* MapHelper.swift */,
+				4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 				41DB9288228E2E01009031F0 /* ProfileViewController.swift in Sources */,
 				5AFF15AA229AA226006965DB /* CustomButton.swift in Sources */,
 				41DB9298228E5CE1009031F0 /* ImagePickerHelper.swift in Sources */,
+				4162DE76229BD5B5003789BC /* DateFormatterHelper.swift in Sources */,
 				41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */,
 				410FBE8E2290E1E600594A76 /* LostSearchTableViewCell.swift in Sources */,
 				41CD2FE7228DB90D00DD0A54 /* HomeViewController.swift in Sources */,
@@ -347,6 +354,7 @@
 				410FBE9722910A6800594A76 /* FoundSearchDetailViewController.swift in Sources */,
 				41DB929A228E75A3009031F0 /* LostItemCollectionViewCell.swift in Sources */,
 				41DB928E228E3969009031F0 /* ItemModel.swift in Sources */,
+				4162DE74229BD192003789BC /* DatePickerPopupViewController.swift in Sources */,
 				412180882292738F002BAC44 /* NotificationViewController.swift in Sources */,
 				410FBE8A2290E10700594A76 /* LostSearchTableViewController.swift in Sources */,
 				410FBE8C2290E11600594A76 /* FoundSearchTableViewController.swift in Sources */,
