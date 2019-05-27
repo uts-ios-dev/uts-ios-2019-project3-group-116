@@ -20,6 +20,7 @@ class FoundReportViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
 
     @IBOutlet weak var descriptionTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +37,20 @@ class FoundReportViewController: UIViewController {
     }
 
     @IBAction func saveButtonPressed(_ sender: Any) {
+        let category = categoryTextField.text
+        let title = titleTextField.text
+        let date = dateTextField.text
+        if (category?.isEmpty)! || (title?.isEmpty)! || (date?.isEmpty)!{
+            showAlert()
+        }
+    }
+    func showAlert() {
+        let alert = UIAlertController(title: "Incomplete Data", message: "Please fill all the textboxes", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
+            //Cancel Action
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
