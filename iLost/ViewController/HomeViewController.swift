@@ -60,7 +60,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeViewTableCell", for: indexPath)
-
+    
         cell.textLabel?.text = sections[indexPath.section][indexPath.row]
         return cell
     }
