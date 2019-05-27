@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import BTNavigationDropdownMenu
 
 class LostReportViewController: UIViewController {
 
@@ -48,6 +49,12 @@ class LostReportViewController: UIViewController {
         map = MapHelper( mapView: mapView)
         setTapGetureOnDateTextField()
         addPlusImageToImages()
+        
+        var navigationMenu = CustomDropDownMenu.setup(items: ["Lost Report", "Found Report"])
+        navigationMenu.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
+            print("Did select item at index: \(indexPath)")
+        }
+        navigationItem.titleView = navigationMenu
     }
 
 

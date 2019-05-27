@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController {
     
     // UI elements
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var addPhotoButton: CustomButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
@@ -101,7 +102,7 @@ class SignUpViewController: UIViewController {
             firebase.createUser(user: user, password: password)
         }
     }
-
+    
     // Starts the photo selection process
     @IBAction func addPhotoPressed(_ sender: Any) {
         self.imagePicker.present(view: sender as! UIView)
@@ -111,7 +112,7 @@ class SignUpViewController: UIViewController {
 // Switch to Home Scene after sign up process was successful
 extension SignUpViewController: FirebaseCreateUserDelegate {
     func userCreated() {
-       self.performSegue(withIdentifier: "RegisterToHomeSegue", sender: nil )
+        self.performSegue(withIdentifier: "RegisterToHomeSegue", sender: nil )
     }
 }
 
@@ -119,6 +120,8 @@ extension SignUpViewController: FirebaseCreateUserDelegate {
 extension SignUpViewController: ImagePickerDelegate {
     func selectedImage(image: UIImage?) {
         self.photoImageView.image = image
+        addPhotoButton.isHidden = true
+        photoImageView.isHidden = false
     }
 }
 
@@ -141,4 +144,5 @@ extension SignUpViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+
 }
