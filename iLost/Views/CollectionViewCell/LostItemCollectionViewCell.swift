@@ -8,7 +8,20 @@
 
 import UIKit
 
+protocol DeleteImageCollectionViewDelegate {
+    func deleteImage(indexPath: IndexPath)
+}
+
 class LostItemCollectionViewCell: UICollectionViewCell {
+
+    var delegate: DeleteImageCollectionViewDelegate?
+
+    var indexPath: IndexPath?
     
     @IBOutlet weak var imageView: UIImageView!
+
+    @IBAction func xButtonTapped(_ sender: Any) {
+        delegate?.deleteImage(indexPath: indexPath!)
+       
+    }
 }

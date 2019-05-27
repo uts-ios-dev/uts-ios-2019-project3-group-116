@@ -11,6 +11,7 @@ import CoreLocation
 import MapKit
 
 class LostReportViewController: UIViewController {
+
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var dateTextField: UITextField!
@@ -21,6 +22,7 @@ class LostReportViewController: UIViewController {
     var lostItem = ItemModel()
     var firebase = FirebaseHelper()
     var map:MapHelper?
+
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         if let category = categoryTextField.text {
@@ -69,6 +71,7 @@ class LostReportViewController: UIViewController {
         map = MapHelper(delegate: self, mapView: mapView)
 
         setTapGetureOnDateTextField()
+
     }
     
     @objc func performSegueSetDate(){
@@ -98,11 +101,13 @@ extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! LostItemCollectionViewCell
         let image = images[indexPath.row]
         cell.imageView.image = image
+        cell.indexPath = indexPath
+        cell.delegate = self
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      performSegue(withIdentifier: "ImageSegue", sender: nil)
+        performSegue(withIdentifier: "ImageSegue", sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -112,6 +117,13 @@ extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDa
                  viewController.currentImage = imagesCollectionView.indexPathsForSelectedItems!.first!.row
             }
         }
+    }
+}
+
+extension LostReportViewController: DeleteImageCollectionViewDelegate {
+    func deleteImage(indexPath: IndexPath) {
+        images.remove(at: indexPath.row)
+        imagesCollectionView.reloadData()
     }
 }
 
