@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController{
         guard let username = user?.username else { return }
         guard let email = user?.email else { return }
 
-        let userNew = UserModel(name: name, surname: surname , username: username, email: email, phone: phone, address: address, postcode: postcode, city: city)
+        let userNew = UserModel(name: name, surname: surname , username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil)
 
         firebase.saveUserProfile(values: userNew.getValues())
 

@@ -92,7 +92,7 @@ class SignUpViewController: UIViewController {
             password = passwordTextField.text!
         }
         // Create user
-        return UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city)
+        return UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: self.photoImageView.image)
     }
     
     // Handles the sign up and create user process

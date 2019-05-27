@@ -36,6 +36,25 @@ class FirebaseHelper {
                 return
             }
             guard let uid = result?.user.uid else { return }
+            let storage = Storage.storage()
+            let storageRef = storage.reference()
+            let riversRef = storageRef.child("userProfile/\(user.username).jpg")
+            _ = riversRef.putData((user.image?.pngData())!, metadata: nil) { (metadata, error) in
+//                guard let metadata = metadata else {
+//                    // Uh-oh, an error occurred!
+//                    return
+//                }
+                // Metadata contains file metadata such as size, content-type.
+                //_ = metadata.size
+                // You can also access to download URL after upload.
+                riversRef.downloadURL { (url, error) in
+                    guard url != nil else {
+                        // Uh-oh, an error occurred!
+                        return
+                    }
+                    user.imageURL = "\(url)"
+                }
+            }
             let values = user.getValues()
             Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
                 (error, ref) in
@@ -76,7 +95,7 @@ class FirebaseHelper {
             let postcode = value?["postcode"] as? String ?? ""
             let city = value?["city"] as? String ?? ""
 
-            let user = UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city)
+            let user = UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil)
             self.delegateLoadedProfile?.userProfile(user: user)
             print("Profile Data loaded successful")
         })
