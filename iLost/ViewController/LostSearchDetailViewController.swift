@@ -26,10 +26,8 @@ class LostSearchDetailViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        map = MapHelper(delegate: self, mapView: mapView)
+        map = MapHelper(mapView: mapView)
         dummyData()
-        map?.setAnnotation(lostLocationsCoordinates: lostItem!.lostLocationsCoordinates)
-
     }
 
     func dummyData(){
@@ -74,15 +72,5 @@ extension LostSearchDetailViewController: UICollectionViewDelegate, UICollection
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ImageSegue", sender: nil)
-    }
-}
-
-extension LostSearchDetailViewController: MapViewDelegate {
-    func annotationRemove(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
-
-    }
-
-    func annotaionSet(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
-       
     }
 }

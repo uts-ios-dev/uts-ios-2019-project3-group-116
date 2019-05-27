@@ -20,6 +20,7 @@
 		4162DE74229BD192003789BC /* DatePickerPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */; };
 		4162DE76229BD5B5003789BC /* DateFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */; };
 		4162DE78229BFCC1003789BC /* AddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */; };
+		4162DE7A229C1830003789BC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE79229C1830003789BC /* MapViewController.swift */; };
 		41C07134228DC76500F73F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C07133228DC76400F73F69 /* GoogleService-Info.plist */; };
 		41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07135228DD2E300F73F69 /* LoginViewController.swift */; };
 		41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07137228DD2F500F73F69 /* SignUpViewController.swift */; };
@@ -54,6 +55,7 @@
 		4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopupViewController.swift; sourceTree = "<group>"; };
 		4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterHelper.swift; sourceTree = "<group>"; };
 		4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4162DE79229C1830003789BC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		41C07133228DC76400F73F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C07135228DD2E300F73F69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		41C07137228DD2F500F73F69 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */,
 				412180872292738F002BAC44 /* NotificationViewController.swift */,
 				4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */,
+				4162DE79229C1830003789BC /* MapViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				41DB928C228E32DF009031F0 /* UserModel.swift in Sources */,
 				41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */,
 				41CD2FE5228DB90D00DD0A54 /* AppDelegate.swift in Sources */,
+				4162DE7A229C1830003789BC /* MapViewController.swift in Sources */,
 				410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */,
 				410FBE952290FA4F00594A76 /* FoundReportViewController.swift in Sources */,
 				410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */,

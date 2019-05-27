@@ -26,10 +26,7 @@ class FoundReportViewController: UIViewController {
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
-
-        addLongTapGesture()
-         map = MapHelper(delegate: self, mapView: mapView)
-
+        map = MapHelper(mapView: mapView)
     }
 
     @objc func dismissKeyboard() {
@@ -51,30 +48,5 @@ class FoundReportViewController: UIViewController {
             //Cancel Action
         }))
         self.present(alert, animated: true, completion: nil)
-    }
-}
-
-extension FoundReportViewController {
-    func addLongTapGesture(){
-        let longTap = UILongPressGestureRecognizer(target: self, action: #selector(addPinGesture))
-        view.addGestureRecognizer(longTap)
-    }
-
-    @objc func addPinGesture(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
-            map!.setAnnotationWithLongPress(sender: sender)
-        }
-    }
-}
-
-extension FoundReportViewController: MapViewDelegate {
-    func annotationRemove(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
-        locationsCoordinates = lostLocationsCoordinates
-        print("delegate annot remvove")
-    }
-
-    func annotaionSet(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
-        locationsCoordinates = lostLocationsCoordinates
-        print("delegate annot Set")
     }
 }

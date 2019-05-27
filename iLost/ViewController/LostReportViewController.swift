@@ -26,15 +26,16 @@ class LostReportViewController: UIViewController {
     var firebase = FirebaseHelper()
     var map:MapHelper?
 
+
     //MARK: - Unwind
     @IBAction func unwindToLostReportViewController(segue: UIStoryboardSegue) {
         dateTextField.text = lostItem.dateLost
     }
 
 
-
-    @IBAction func UnwindToLostViewController(segue: UIStoryboardSegue) {
-        print("unwind")
+    @IBAction func unwindToLostReportViewControllerFromMap(segue: UIStoryboardSegue) {
+        map?.removeAllAnnotation()
+        map?.lostLocationsCoordinates = locationsCoordinates
     }
 
 
@@ -43,7 +44,8 @@ class LostReportViewController: UIViewController {
         self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
         imagesCollectionView.delegate = self
         imagesCollectionView.dataSource = self
-        map = MapHelper(delegate: self, mapView: mapView)
+        mapView.isUserInteractionEnabled = false
+        map = MapHelper( mapView: mapView)
         setTapGetureOnDateTextField()
         addPlusImageToImages()
     }
@@ -104,6 +106,12 @@ extension LostReportViewController: UICollectionViewDelegate, UICollectionViewDa
                 viewController.currentImage = imagesCollectionView.indexPathsForSelectedItems!.first!.row
             }
         }
+
+        if segue.identifier == "MapSegue" {
+            if let viewController = segue.destination as? MapViewController {
+                viewController.locationsCoordinates = map!.lostLocationsCoordinates
+            }
+        }
     }
 }
 
@@ -132,13 +140,9 @@ extension LostReportViewController: ImagePickerDelegate {
     }
 }
 
-//MARK: - Gestures
+
+// MARK: - Gestures
 extension LostReportViewController {
-    @IBAction func addPinGesture(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
-            map!.setAnnotationWithLongPress(sender: sender)
-        }
-    }
 
     fileprivate func setTapGetureOnDateTextField() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(performSegueSetDate))
@@ -169,20 +173,9 @@ extension LostReportViewController {
             firebase.saveImage(data: data, item: "Item1", fileName: "Image1")
         }
     }
-}
-
-// MARK: - Map
-extension LostReportViewController: MapViewDelegate {
-    func annotationRemove(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
-        locationsCoordinates = lostLocationsCoordinates
-        print("delegate annot remvove")
-    }
 
 
-    func annotaionSet(lostLocationsCoordinates: [CLLocationCoordinate2D]) {
-      locationsCoordinates = lostLocationsCoordinates
-       print("delegate annot Set")
+    @IBAction func mapButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "MapSegue", sender: nil)
     }
 }
-
-
