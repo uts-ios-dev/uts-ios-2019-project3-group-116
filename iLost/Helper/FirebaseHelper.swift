@@ -50,6 +50,8 @@ class FirebaseHelper {
     }
 
     func signIn(email: String, password: String) {
+        self.delegateSignIn?.SignedIn()
+        
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("Failed to Login: ", error.localizedDescription)

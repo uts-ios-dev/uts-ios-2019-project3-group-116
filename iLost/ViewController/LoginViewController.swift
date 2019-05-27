@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
             
             loginButton.shake()
         } else {
-            let email = "testuser6@gmail.com"
+            let email = "test@test.com"
             let password = "testuser6"
             firebase.signIn(email: email, password: password)
 //            firebase.signIn(email: emailTextField.text!, password: passwordTextField.text!)
