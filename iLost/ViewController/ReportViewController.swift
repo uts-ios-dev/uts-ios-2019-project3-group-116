@@ -42,7 +42,7 @@ class ReportViewController: UIViewController {
     
     // Setup the top navigation menu and handles the switching between lost and found report
     private func setUpNavigationMenu() {
-        let navigationMenu = CustomDropDownMenu.setup(items: ["Lost Report", "Found Report"])
+        let navigationMenu = CustomDropDownMenu.setup(items: ["Report Lost Item", "Report Found Item"])
         navigationMenu.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
             if (indexPath == 0) {
                 self!.reportLost = true
@@ -61,12 +61,12 @@ class ReportViewController: UIViewController {
     }
     
     // Unwind from date picker view to report view controller
-    @IBAction func unwindToLostReportViewController(segue: UIStoryboardSegue) {
-        dateTextField.text = lostItem.dateLost
+    @IBAction func unwindToReportViewControllerFromDatePicker(segue: UIStoryboardSegue) {
+        dateTextField.text = item.dateLost
     }
     
     // Unwind from map view to report view controller
-    @IBAction func unwindToLostReportViewControllerFromMap(segue: UIStoryboardSegue) {
+    @IBAction func unwindToReportViewControllerFromMap(segue: UIStoryboardSegue) {
         map?.removeAllAnnotation()
         map?.lostLocationsCoordinates = locationsCoordinates
     }
@@ -131,7 +131,6 @@ class ReportViewController: UIViewController {
     private func checkMandatoryFields() -> Bool {
         if (categoryTextField.text!.isEmpty) || (titleTextfield.text!.isEmpty) || (dateTextField.text!.isEmpty){
             let alert = UIAlertController(title: "Incomplete Data", message: "Please fill in all mandatory text fields!", preferredStyle: UIAlertController.Style.alert)
-            
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
                 //Cancel Action
             }))
@@ -201,3 +200,42 @@ extension ReportViewController: ImagePickerDelegate {
         imagesCollectionView.reloadData()
     }
 }
+
+//// MARK: - Gestures
+//extension LostReportViewController {
+//    
+//    fileprivate func setTapGetureOnDateTextField() {
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(performSegueSetDate))
+//        dateTextField.isUserInteractionEnabled = true
+//        dateTextField.addGestureRecognizer(tapGesture)
+//    }
+//    
+//    
+//    @objc func performSegueSetDate(){
+//        performSegue(withIdentifier: "SetDateSegue", sender: nil)
+//    }
+//    
+//    
+//    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+//        if let category = categoryTextField.text {
+//            lostItem.category = category
+//        }
+//        if let date = dateTextField.text {
+//            lostItem.dateLost = date
+//        }
+//        if let description = descriptionTextView.text {
+//            lostItem.description = description
+//        }
+//        firebase.saveItemDescription(item: lostItem)
+//        
+//        if let image = images.first {
+//            guard let data = image.jpegData(compressionQuality: CGFloat(0.0)) else { return }
+//            firebase.saveImage(data: data, item: "Item1", fileName: "Image1")
+//        }
+//    }
+//    
+//    
+//    @IBAction func mapButtonTapped(_ sender: Any) {
+//        performSegue(withIdentifier: "MapSegue", sender: nil)
+//    }
+//}

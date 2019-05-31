@@ -24,7 +24,7 @@ class CustomButton: UIButton {
     func setupButton() {
         setShadow()
         
-        titleLabel?.font = UIFont(name: "Verdana", size: 30)
+        titleLabel?.font = UIFont(name: "Verdana", size: 25)
         setTitleColor(.white, for: .normal)
         
         backgroundColor = UIColor(red: 39/255, green: 159/255, blue: 238/255, alpha: 1)

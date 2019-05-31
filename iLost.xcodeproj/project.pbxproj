@@ -30,7 +30,7 @@
 		41CD2FEC228DB90F00DD0A54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CD2FEB228DB90F00DD0A54 /* Assets.xcassets */; };
 		41CD2FEF228DB90F00DD0A54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD2FED228DB90F00DD0A54 /* LaunchScreen.storyboard */; };
 		41D4C21B228EA873006195E9 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4C21A228EA873006195E9 /* ImageViewController.swift */; };
-		41DB9286228E2DD9009031F0 /* LostReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9285228E2DD9009031F0 /* LostReportViewController.swift */; };
+		41DB9286228E2DD9009031F0 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9285228E2DD9009031F0 /* ReportViewController.swift */; };
 		41DB9288228E2E01009031F0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9287228E2E01009031F0 /* ProfileViewController.swift */; };
 		41DB928C228E32DF009031F0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB928B228E32DF009031F0 /* UserModel.swift */; };
 		41DB928E228E3969009031F0 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB928D228E3969009031F0 /* ItemModel.swift */; };
@@ -68,7 +68,7 @@
 		41CD2FEE228DB90F00DD0A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41CD2FF0228DB90F00DD0A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		41D4C21A228EA873006195E9 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
-		41DB9285228E2DD9009031F0 /* LostReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostReportViewController.swift; sourceTree = "<group>"; };
+		41DB9285228E2DD9009031F0 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		41DB9287228E2E01009031F0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		41DB928B228E32DF009031F0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		41DB928D228E3969009031F0 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				41CD2FE6228DB90D00DD0A54 /* HomeViewController.swift */,
 				41C07135228DD2E300F73F69 /* LoginViewController.swift */,
 				41C07137228DD2F500F73F69 /* SignUpViewController.swift */,
-				41DB9285228E2DD9009031F0 /* LostReportViewController.swift */,
+				41DB9285228E2DD9009031F0 /* ReportViewController.swift */,
 				41DB9287228E2E01009031F0 /* ProfileViewController.swift */,
 				41D4C21A228EA873006195E9 /* ImageViewController.swift */,
 				410FBE892290E10700594A76 /* LostSearchTableViewController.swift */,
@@ -357,7 +357,7 @@
 				41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */,
 				410FBE8E2290E1E600594A76 /* LostSearchTableViewCell.swift in Sources */,
 				41CD2FE7228DB90D00DD0A54 /* HomeViewController.swift in Sources */,
-				41DB9286228E2DD9009031F0 /* LostReportViewController.swift in Sources */,
+				41DB9286228E2DD9009031F0 /* ReportViewController.swift in Sources */,
 				4162DE78229BFCC1003789BC /* AddImageCollectionViewCell.swift in Sources */,
 				410FBE902290E4F300594A76 /* LostSearchDetailViewController.swift in Sources */,
 				41DB9291228E40CD009031F0 /* FirebaseHelper.swift in Sources */,
