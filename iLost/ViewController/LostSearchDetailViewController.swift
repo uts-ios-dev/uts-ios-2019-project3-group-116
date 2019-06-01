@@ -14,14 +14,15 @@ import CoreLocation
 class LostSearchDetailViewController: UIViewController {
     var lostItem:ItemModel?
     var map:MapHelper?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var descriptionTextView: UITextView!
-    
-    @IBAction func notiyOwnerButtonPressed(_ sender: Any) {
-    }
-    @IBOutlet weak var commentTextView: UITextView!
-    @IBOutlet weak var lostDateLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateDescriptionLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var commentTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -33,6 +34,9 @@ class LostSearchDetailViewController: UIViewController {
     func dummyData(){
         lostItem = ItemModel()
         lostItem?.lostLocationsCoordinates = [CLLocationCoordinate2D(latitude: -33.86785, longitude: 151.20732)]
+    }
+    
+    @IBAction func notiyOwnerButtonPressed(_ sender: Any) {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,9 +63,9 @@ extension LostSearchDetailViewController: UICollectionViewDelegate, UICollection
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! LostItemCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! ItemCollectionViewCell
 
-        guard let images = lostItem?.images else { return LostItemCollectionViewCell() }
+        guard let images = lostItem?.images else { return ItemCollectionViewCell() }
 
         let row = indexPath.row
         let image = images[row]

@@ -26,8 +26,6 @@ class HomeViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        print("---------")
-        
         if let username = firebase.getUserName() {
             print(username)
         }

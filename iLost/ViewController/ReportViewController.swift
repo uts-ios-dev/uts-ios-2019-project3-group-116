@@ -161,7 +161,7 @@ extension ReportViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.delegate = self
             return cell
         }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! LostItemCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! ItemCollectionViewCell
             let image = images[indexPath.row]
             cell.imageView.image = image
             cell.indexPath = indexPath
