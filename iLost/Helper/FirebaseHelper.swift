@@ -28,6 +28,8 @@ class FirebaseHelper {
     var delegateSignIn: FirebaseSignInDelegate?
     var delegateCreatedUser: FirebaseCreateUserDelegate?
     var delegateLoadedProfile: FirebaseLoadedProfileDelegate?
+    
+    
 
     func createUser(user: UserModel, password: String) {
         Auth.auth().createUser(withEmail: user.email, password: password) { (result, error) in
@@ -36,10 +38,10 @@ class FirebaseHelper {
                 return
             }
             guard let uid = result?.user.uid else { return }
-            let storage = Storage.storage()
-            let storageRef = storage.reference()
-            let riversRef = storageRef.child("userProfile/\(user.username).jpg")
-            _ = riversRef.putData((user.image?.pngData())!, metadata: nil) { (metadata, error) in
+//            let storage = Storage.storage()
+//            let storageRef = storage.reference()
+//            let riversRef = storageRef.child("userProfile/\(user.username).jpg")
+            //_ = riversRef.putData((user.image?.pngData())!, metadata: nil) { (metadata, error) in
 //                guard let metadata = metadata else {
 //                    // Uh-oh, an error occurred!
 //                    return
@@ -47,14 +49,14 @@ class FirebaseHelper {
                 // Metadata contains file metadata such as size, content-type.
                 //_ = metadata.size
                 // You can also access to download URL after upload.
-                riversRef.downloadURL { (url, error) in
-                    guard url != nil else {
-                        // Uh-oh, an error occurred!
-                        return
-                    }
-                    user.imageURL = "\(url)"
-                }
-            }
+//                riversRef.downloadURL { (url, error) in
+//                    guard url != nil else {
+//                        // Uh-oh, an error occurred!
+//                        return
+//                    }
+//                    user.imageURL = "\(url)"
+//                }
+//            }
             let values = user.getValues()
             Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
                 (error, ref) in
@@ -64,6 +66,7 @@ class FirebaseHelper {
                 }
                 print("success update DB")
                 self.delegateCreatedUser?.userCreated()
+                self.signIn(email: user.email, password: password);
             })
         }
     }
@@ -104,6 +107,28 @@ class FirebaseHelper {
             print(error.localizedDescription)
         }
     }
+    
+    func loadLostItems(){
+        var items = [ItemModel]()
+        Database.database().reference().child("items").observe(.value, with: { (snapshot) in
+            if let test = snapshot.value as? [String:AnyObject] {
+                for child in test {
+                    let value = child.value as? NSDictionary
+                    let description = value?["description"] as? String ?? ""
+                    let category = value?["category"] as? String ?? ""
+                    let dateLost = value?["dateLost"] as? String ?? ""
+                    let dateFound = value?["dateFound"] as? String ?? ""
+                    if dateFound == "" {
+                        let item = ItemModel(description: description, category: category, dateLost: dateLost, dateFound: dateFound, images: nil)
+                        items.append(item)
+                    }
+                }
+            }
+        })
+        { (error) in
+            print(error.localizedDescription)
+        }
+    }
 
     func saveUserProfile(values: [String:String]){
         let ref = Database.database().reference()
@@ -119,7 +144,7 @@ class FirebaseHelper {
         })
     }
 
-    func saveItemDescription(item: ItemModel){
+    func saveItemDescription(item: ItemModel) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         var values = item.getValues()
         values["User"] = uid
@@ -146,21 +171,45 @@ class FirebaseHelper {
                 self.delegateCreatedUser?.userCreated()
             })
         }
+        
+        saveImage(image: (item.images?.first)!, folderName: "items", fileName: "\(item.title)")
     }
 
-    func saveImage(data: Data, item: String, fileName: String ){
-        guard let uid = uid else { return }
+    func saveImage(image: UIImage, folderName: String, fileName: String ) -> URL? {
+//        guard let uid = uid else { return }
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let imagesRef = storageRef.child("images").child(uid).child(item)
-        let spaceRef = imagesRef.child(fileName)
-        let _ = spaceRef.putData(data, metadata: nil) { (metadata, error) in
-//            guard let metadata = metadata else { return }
-            if let error = error {
-                print("Failed Image Upload: ", error.localizedDescription)
-                return
+//        let imagesRef = storageRef.child("images").child(uid).child(item)
+//        let spaceRef = imagesRef.child(fileName)
+//        let _ = spaceRef.putData(data, metadata: nil) { (metadata, error) in
+////            guard let metadata = metadata else { return }
+//            if let error = error {
+//                print("Failed Image Upload: ", error.localizedDescription)
+//                return
+//            }
+//        }
+        var imageUrl: URL?
+        
+        let imagesRef = storageRef.child("\(folderName)/\(fileName).jpg")
+        imagesRef.putData((image.pngData())!, metadata: nil) { (metadata, error) in
+//            guard let metadata = metadata else {
+//                // Uh-oh, an error occurred!
+//                return
+//            }
+             // Metadata contains file metadata such as size, content-type.
+            // _ = metadata.size
+             // You can also access to download URL after upload.
+            imagesRef.downloadURL { (url, error) in
+                guard url != nil else {
+                    // Uh-oh, an error occurred!
+                    return
+                }
+                imageUrl = url
             }
         }
+        print("image URL: \(String(describing: imageUrl))")
+        
+        return imageUrl
     }
 
     func downloadImage(item: String, fileName: String) {

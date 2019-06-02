@@ -112,6 +112,7 @@ class ReportViewController: UIViewController {
             item.title = titleTextfield.text!
             item.category = categoryTextField.text!
             item.description = descriptionTextView.text!
+            item.images = images
             if (reportLost) {
                 item.dateLost = dateTextField.text!
             } else {
@@ -120,10 +121,11 @@ class ReportViewController: UIViewController {
             
             firebase.saveItemDescription(item: item)
             
-            if let image = images.first {
-                guard let data = image.jpegData(compressionQuality: CGFloat(0.0)) else { return }
-                firebase.saveImage(data: data, item: "Item1", fileName: "Image1")
-            }
+//            if let image = images.first {
+//                // guard let data = image.jpegData(compressionQuality: CGFloat(0.0)) else { return }
+//                // firebase.saveImage(data: data, item: "Item1", fileName: "Image1")
+//                firebase.saveImage(image: image, folderName: "items", fileName: "\(item.title)-1")
+//            }
         }
     }
     

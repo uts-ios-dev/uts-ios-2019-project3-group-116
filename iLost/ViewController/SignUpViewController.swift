@@ -93,7 +93,7 @@ class SignUpViewController: UIViewController {
             password = passwordTextField.text!
         }
         // Create user
-        return UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: self.photoImageView.image)
+        return UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil)// self.photoImageView.image)
     }
     
     // Handles the sign up and create user process
@@ -106,6 +106,24 @@ class SignUpViewController: UIViewController {
     // Starts the photo selection process
     @IBAction func addPhotoPressed(_ sender: Any) {
         self.imagePicker.present(view: sender as! UIView)
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                print("default")
+                
+            case .cancel:
+                print("cancel")
+                
+            case .destructive:
+                print("destructive")
+                
+                
+            }}))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
