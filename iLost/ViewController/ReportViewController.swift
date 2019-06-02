@@ -19,6 +19,7 @@ class ReportViewController: UIViewController {
     var item = ItemModel()
     var firebase = FirebaseHelper()
     var map:MapHelper?
+    private var datePicker: UIDatePicker?
     
     // UI elements
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -35,11 +36,30 @@ class ReportViewController: UIViewController {
         imagesCollectionView.dataSource = self
         mapView.isUserInteractionEnabled = false
         map = MapHelper( mapView: mapView)
-        setTapGetureOnDateTextField()
+        //setTapGetureOnDateTextField()
         addPlusImageToImages()
         setUpNavigationMenu()
+        
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.addTarget(self, action: #selector(ReportViewController.dateChanged(datePicker:)), for: .valueChanged)
+        
+        let closeDatePicker = UITapGestureRecognizer(target: self, action: #selector(ReportViewController.viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(closeDatePicker)
+        
+        dateTextField.inputView = datePicker
+        
+    }
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
+        view.endEditing(true)
     }
     
+    @objc func dateChanged(datePicker: UIDatePicker){
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MM/dd/yyyy"
+        dateTextField.text = dateFormatterPrint.string(from: datePicker.date)
+        //view.endEditing(true)
+    }
     // Setup the top navigation menu and handles the switching between lost and found report
     private func setUpNavigationMenu() {
         let navigationMenu = CustomDropDownMenu.setup(items: ["Report Lost Item", "Report Found Item"])
@@ -76,6 +96,7 @@ class ReportViewController: UIViewController {
         performSegue(withIdentifier: "MapSegue", sender: nil)
     }
     
+    /*
     // Handles the tap gesture on date text field
     fileprivate func setTapGetureOnDateTextField() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(performSegueSetDate))
@@ -87,6 +108,7 @@ class ReportViewController: UIViewController {
     @objc func performSegueSetDate(){
         performSegue(withIdentifier: "SetDateSegue", sender: nil)
     }
+    */
     
     // Passes data to the image and map view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
