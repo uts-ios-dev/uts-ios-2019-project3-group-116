@@ -36,7 +36,7 @@ class SignUpViewController: UIViewController {
     // Create user if all the user information are entered to the textfields
     func createUser() -> UserModel?{
         let name, email, username, surname, phone, address, postcode, city: String
-        
+    
         // Check if any textfield is empty
         if nameTextField.text?.isEmpty ?? true {
             nameTextField.shakeTextField()
@@ -93,7 +93,7 @@ class SignUpViewController: UIViewController {
             password = passwordTextField.text!
         }
         // Create user
-        return UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: self.photoImageView.image)
+        return UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil)// self.photoImageView.image)
     }
     
     // Handles the sign up and create user process
@@ -111,8 +111,12 @@ class SignUpViewController: UIViewController {
 
 // Switch to Home Scene after sign up process was successful
 extension SignUpViewController: FirebaseCreateUserDelegate {
-    func userCreated() {
-        self.performSegue(withIdentifier: "RegisterToHomeSegue", sender: nil )
+    func saved(success: Bool, errorMessage: String) {
+        if (success) {
+            self.performSegue(withIdentifier: "SignupToHomeSegue", sender: nil )
+        } else {
+            self.present(CustomAlertBox.setup(title: "Sign up unsuccessful", message: errorMessage, action: "OK"), animated: true, completion: nil)
+        }
     }
 }
 

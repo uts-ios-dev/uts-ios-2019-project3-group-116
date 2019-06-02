@@ -62,8 +62,14 @@ class LoginViewController: UIViewController {
 
 // Switch to Home Scene after login process was successful
 extension LoginViewController: FirebaseSignInDelegate {
-    func SignedIn() {
-        self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil )
+    func SignedIn(success: Bool) {
+        if (success) {
+            self.performSegue(withIdentifier: "LoginToHomeSegue", sender: nil )
+        } else {
+            self.present(CustomAlertBox.setup(title: "Login unsuccessful", message: "Wrong Email Address or Password!", action: "Try again"), animated: true, completion: nil)
+            emailTextField.text = ""
+            passwordTextField.text = ""
+        }
     }
 }
 

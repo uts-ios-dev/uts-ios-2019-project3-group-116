@@ -25,12 +25,12 @@ class MapViewController: UIViewController {
     
     // Closes map view and returns to report view after date is picked
     @IBAction func doneButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: "unwindToLostReportViewControllerFromMap", sender: self)
+        performSegue(withIdentifier: "unwindToReportViewControllerFromMap", sender: self)
     }
 
     // Passes the selected location to the report view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "unwindToLostReportViewControllerFromMap" {
+        if segue.identifier == "unwindToReportViewControllerFromMap" {
             if let destVC = segue.destination as? ReportViewController {
                 destVC.locationsCoordinates = map!.lostLocationsCoordinates
             }

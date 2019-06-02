@@ -21,13 +21,17 @@ class ItemModel {
     var itemID: String?
     var foundID: String?
     var lostID: String?
+    
+    init(){ }
 
-//    init(description: String, category: String, date: Date, images: [UIImage]){
-//        self.description = description
-//        self.category = category
-//        self.dateLost = date
-//        self.images = images
-//    }
+    init(title: String, description: String, category: String, dateLost: String, dateFound: String, images: [UIImage]?){
+        self.title = title
+        self.description = description
+        self.category = category
+        self.dateLost = dateLost
+        self.dateFound = dateFound
+        self.images = images
+    }
 
 
     func getValues() -> [String: String?] {

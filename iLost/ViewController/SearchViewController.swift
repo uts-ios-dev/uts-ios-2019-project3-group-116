@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class SearchViewController: UIViewController {
+    var firebase = FirebaseHelper()
+    var vSpinner: UIView?
     var searchLost = true
     var lostItems = [ItemModel]()
     var foundItems = [ItemModel]()
@@ -19,12 +22,11 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        showSpinner(onView: self.view)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         setUpNavigationMenu()
         data()
-        searchResults = lostItems
     }
 
     // Setup the top navigation menu and handles the switching between lost and found search
@@ -46,24 +48,26 @@ class SearchViewController: UIViewController {
     
     // Dummy data
     func data(){
-        // TODO load found items to array foundItems
-        // TODO load lost items to array lostItems
-    
-        let item = ItemModel()
-        item.title = "title"
-        item.category = "Category"
-        item.dateLost = "18.05.2019"
-        item.description = "text text ..."
-        let image = UIImage(named: "cat")
-        item.images = [image!,image!,image!,image!]
-        lostItems.append(item)
-        
-        let item2 = ItemModel()
-        item2.title = "sss"
-        item2.category = "djhd"
-        item2.dateLost = "14.5.2018"
-        item2.description = "wkjdhskhhdsjkhfjhdsf"
-        foundItems.append(item2)
+        Database.database().reference().child("items").observe(.value, with: { (snapshot) in
+            if let test = snapshot.value as? [String:AnyObject] {
+                for child in test {
+                    let value = child.value as? NSDictionary
+                        let dateFound = value?["dateFound"] as? String ?? ""
+                        let dateLost = value?["dateLost"] as? String ?? ""
+                        if dateLost != "" && dateFound == "" {
+                            self.lostItems.append(ItemModel(title: value?["title"] as? String ?? "", description: value?["description"] as? String ?? "", category: value?["category"] as? String ?? "", dateLost: dateLost, dateFound: "", images: [UIImage()]))
+                        } else if dateFound != "" && dateLost == "" {
+                           self.foundItems.append(ItemModel(title: value?["title"] as? String ?? "", description: value?["description"] as? String ?? "", category: value?["category"] as? String ?? "", dateLost: "", dateFound: dateFound, images: [UIImage()]))
+                        }
+                }
+                self.searchResults = self.lostItems
+                self.tableView.reloadData()
+                self.removeSpinner()
+            }
+        })
+        { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -74,6 +78,28 @@ class SearchViewController: UIViewController {
                     destination.item = lostItems[indexpath]
                 }
             }
+        }
+    }
+    
+    func showSpinner(onView: UIView) {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+    
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            self.vSpinner?.removeFromSuperview()
+            self.vSpinner = nil
         }
     }
 }

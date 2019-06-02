@@ -19,6 +19,7 @@ class ReportViewController: UIViewController {
     var item = ItemModel()
     var firebase = FirebaseHelper()
     var map:MapHelper?
+    private var datePicker: UIDatePicker?
     
     // UI elements
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -35,9 +36,28 @@ class ReportViewController: UIViewController {
         imagesCollectionView.dataSource = self
         mapView.isUserInteractionEnabled = false
         map = MapHelper( mapView: mapView)
-        setTapGetureOnDateTextField()
         addPlusImageToImages()
         setUpNavigationMenu()
+        
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.addTarget(self, action: #selector(ReportViewController.dateChanged(datePicker:)), for: .valueChanged)
+        
+        let closeDatePicker = UITapGestureRecognizer(target: self, action: #selector(ReportViewController.viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(closeDatePicker)
+        
+        dateTextField.inputView = datePicker
+        
+    }
+    
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
+    
+    @objc func dateChanged(datePicker: UIDatePicker){
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MM/dd/yyyy"
+        dateTextField.text = dateFormatterPrint.string(from: datePicker.date)
     }
     
     // Setup the top navigation menu and handles the switching between lost and found report
@@ -64,7 +84,7 @@ class ReportViewController: UIViewController {
     @IBAction func unwindToReportViewControllerFromDatePicker(segue: UIStoryboardSegue) {
         dateTextField.text = item.dateLost
     }
-    
+
     // Unwind from map view to report view controller
     @IBAction func unwindToReportViewControllerFromMap(segue: UIStoryboardSegue) {
         map?.removeAllAnnotation()
@@ -74,18 +94,6 @@ class ReportViewController: UIViewController {
     // Handles the map button
     @IBAction func mapButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "MapSegue", sender: nil)
-    }
-    
-    // Handles the tap gesture on date text field
-    fileprivate func setTapGetureOnDateTextField() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(performSegueSetDate))
-        dateTextField.isUserInteractionEnabled = true
-        dateTextField.addGestureRecognizer(tapGesture)
-    }
-    
-    // Opens the date picker view 
-    @objc func performSegueSetDate(){
-        performSegue(withIdentifier: "SetDateSegue", sender: nil)
     }
     
     // Passes data to the image and map view
@@ -112,6 +120,7 @@ class ReportViewController: UIViewController {
             item.title = titleTextfield.text!
             item.category = categoryTextField.text!
             item.description = descriptionTextView.text!
+            item.images = images
             if (reportLost) {
                 item.dateLost = dateTextField.text!
             } else {
@@ -119,22 +128,13 @@ class ReportViewController: UIViewController {
             }
             
             firebase.saveItemDescription(item: item)
-            
-            if let image = images.first {
-                guard let data = image.jpegData(compressionQuality: CGFloat(0.0)) else { return }
-                firebase.saveImage(data: data, item: "Item1", fileName: "Image1")
-            }
         }
     }
     
     // Checks if the report is ready to be saved
     private func checkMandatoryFields() -> Bool {
         if (categoryTextField.text!.isEmpty) || (titleTextfield.text!.isEmpty) || (dateTextField.text!.isEmpty){
-            let alert = UIAlertController(title: "Incomplete Data", message: "Please fill in all mandatory text fields!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
-                //Cancel Action
-            }))
-            self.present(alert, animated: true, completion: nil)
+            self.present(CustomAlertBox.setup(title: "Incomplete Data", message: "Please fill in all mandatory text fields!", action: "OK"), animated: true, completion: nil)
             return false
         }
         return true
@@ -201,41 +201,13 @@ extension ReportViewController: ImagePickerDelegate {
     }
 }
 
-//// MARK: - Gestures
-//extension LostReportViewController {
-//    
-//    fileprivate func setTapGetureOnDateTextField() {
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(performSegueSetDate))
-//        dateTextField.isUserInteractionEnabled = true
-//        dateTextField.addGestureRecognizer(tapGesture)
-//    }
-//    
-//    
-//    @objc func performSegueSetDate(){
-//        performSegue(withIdentifier: "SetDateSegue", sender: nil)
-//    }
-//    
-//    
-//    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-//        if let category = categoryTextField.text {
-//            lostItem.category = category
-//        }
-//        if let date = dateTextField.text {
-//            lostItem.dateLost = date
-//        }
-//        if let description = descriptionTextView.text {
-//            lostItem.description = description
-//        }
-//        firebase.saveItemDescription(item: lostItem)
-//        
-//        if let image = images.first {
-//            guard let data = image.jpegData(compressionQuality: CGFloat(0.0)) else { return }
-//            firebase.saveImage(data: data, item: "Item1", fileName: "Image1")
-//        }
-//    }
-//    
-//    
-//    @IBAction func mapButtonTapped(_ sender: Any) {
-//        performSegue(withIdentifier: "MapSegue", sender: nil)
-//    }
-//}
+// Switch to Home Scene after login process was successful
+extension ReportViewController: FirebaseCreateUserDelegate {
+    func saved(success: Bool, errorMessage: String) {
+        if (success) {
+            performSegue(withIdentifier: "unwindToHomeViewControllerFromReport", sender: self)
+        } else {
+            self.present(CustomAlertBox.setup(title: "Not Saved", message: errorMessage, action: "Try again"), animated: true, completion: nil)
+        }
+    }
+}
