@@ -65,13 +65,13 @@ class SearchViewController: UIViewController {
         item2.description = "wkjdhskhhdsjkhfjhdsf"
         foundItems.append(item2)
     }
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LostSearchDetail" {
+        if segue.identifier == "SearchDetail" {
             if let destination = segue.destination as? LostSearchDetailViewController {
                 if let indexpath = tableView.indexPathForSelectedRow?.row {
-                     destination.lostItem = lostItems[indexpath]
+                    destination.item = lostItems[indexpath]
                 }
             }
         }

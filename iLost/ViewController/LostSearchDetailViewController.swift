@@ -12,7 +12,7 @@ import CoreLocation
 
 
 class LostSearchDetailViewController: UIViewController {
-    var lostItem:ItemModel?
+    var item:ItemModel?
     var map:MapHelper?
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -28,12 +28,18 @@ class LostSearchDetailViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         map = MapHelper(mapView: mapView)
-        dummyData()
+        
+        setupView()
     }
 
-    func dummyData(){
-        lostItem = ItemModel()
-        lostItem?.lostLocationsCoordinates = [CLLocationCoordinate2D(latitude: -33.86785, longitude: 151.20732)]
+    func setupView(){
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        map = MapHelper(mapView: mapView)
+        
+        descriptionTextView.text = item?.description
+        dateLabel.text = item?.dateLost
+        
     }
     
     @IBAction func notiyOwnerButtonPressed(_ sender: Any) {
@@ -42,7 +48,7 @@ class LostSearchDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ImageSegue" {
             if let viewController = segue.destination as? ImageViewController {
-                viewController.images = lostItem!.images
+                viewController.images = item!.images
                 viewController.currentImage = collectionView.indexPathsForSelectedItems!.first!.row
             }
         }
@@ -57,7 +63,7 @@ extension LostSearchDetailViewController: UICollectionViewDelegate, UICollection
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        guard let images = lostItem?.images else { return 0 }
+        guard let images = item?.images else { return 0 }
         return images.count
     }
 
@@ -65,7 +71,7 @@ extension LostSearchDetailViewController: UICollectionViewDelegate, UICollection
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! ItemCollectionViewCell
 
-        guard let images = lostItem?.images else { return ItemCollectionViewCell() }
+        guard let images = item?.images else { return ItemCollectionViewCell() }
 
         let row = indexPath.row
         let image = images[row]
