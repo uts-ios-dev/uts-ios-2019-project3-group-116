@@ -20,8 +20,11 @@ class HomeViewController: UIViewController {
     var sectionHeader = ["Lost Item", "Found Item", "Notification"]
     var row = ["Item1","Item2"]
     var lostRow = [String]()
+    var lostRowKeys = [String]()
     var foundRow = [String]()
+    var foundRowKeys = [String]()
     var sections:[[String]] = []
+    var test = "hello"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,21 +37,18 @@ class HomeViewController: UIViewController {
                     let value = child.value as? NSDictionary
                     let user = value?["User"] as? String ?? ""
                     let uid = Auth.auth().currentUser?.uid
-                    if user == uid {
+                    //if user != uid {
                         let title = value?["title"] as? String ?? ""
                         let dateFound = value?["dateFound"] as? String ?? ""
                         if dateFound == "" {
                             self.lostRow.append(title)
-                            //let item = ItemModel(description: description, category: category, dateLost: dateLost, dateFound: dateFound, images: nil)
+                            self.lostRowKeys.append(child.key)
                         } else {
                             self.foundRow.append(title)
+                            self.foundRowKeys.append(child.key)
                         }
-                    }
+                    //}
                 }
-//                print(self.lostRow)
-//                self.sections = [self.lostRow, self.row, self.row]
-//                self.tableView.delegate = self
-//                self.tableView.dataSource = self
                 self.sections = [self.lostRow, self.foundRow, self.row]
                 self.tableView.delegate = self
                 self.tableView.dataSource = self
@@ -134,6 +134,24 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = sections[indexPath.section][indexPath.row]
 //        cell.textLabel?.text = lostRow[indexPath.row]
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ShowNotificationSegue") {
+            let viewController = segue.destination as! NotificationViewController
+            
+            let section = self.tableView.indexPathForSelectedRow?.section
+            let row = self.tableView.indexPathForSelectedRow?.row
+            if section == 0 {
+                viewController.itemId = lostRowKeys[row!]
+            } else if section == 1 {
+                viewController.itemId = foundRowKeys[row!]
+            }
+        } else if (segue.identifier == "UpdateReportItemSegue") {
+            _ = segue.destination as! ReportViewController
+        } else if (segue.identifier == "Settings") {
+            _ = segue.destination as! SettingsTableViewController
+        }
     }
 }
 
