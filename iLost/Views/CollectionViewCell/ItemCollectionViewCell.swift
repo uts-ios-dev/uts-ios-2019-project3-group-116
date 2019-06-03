@@ -20,8 +20,8 @@ class ItemCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
 
-//    @IBAction func xButtonTapped(_ sender: Any) {
-//        delegate?.deleteImage(indexPath: indexPath!)
-//       
-//    }
+    @IBAction func xButtonTapped(_ sender: Any) {
+        delegate?.deleteImage(indexPath: indexPath!)
+
+    }
 }
