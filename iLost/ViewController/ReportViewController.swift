@@ -57,7 +57,6 @@ class ReportViewController: UIViewController {
 
     // TODO: - not fully implemented
     func showItemDetails(){
-
         if item.lostFound {
             //Navigationbar: activate lost
         }
@@ -70,6 +69,19 @@ class ReportViewController: UIViewController {
         categoryTextField.text = item.category
         titleTextfield.text = item.title
         descriptionTextView.text = item.description
+        
+        if let urls = item.imagesURL {
+            for url in urls {
+                if let link = URL(string: url) {
+                    do {
+                        let data = try Data(contentsOf: link)
+                        images.append(UIImage(data: data)!)
+                    } catch let err {
+                        print("Error: \(err.localizedDescription)")
+                    }
+                }
+            }
+        }
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){

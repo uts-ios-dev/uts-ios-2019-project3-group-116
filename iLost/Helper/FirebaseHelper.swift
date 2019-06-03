@@ -277,7 +277,7 @@ class FirebaseHelper {
                         let dateLost = value?["dateLost"] as? String ?? ""
                         let description = value?["description"] as? String ?? ""
                         let category = value?["category"] as? String ?? ""
-                        print("title:" + title + dateLost)
+                        let imagesUrl = value?["imagesURL"] as? [String] ?? []
 
                         let item = ItemModel()
                         item.dateLost = dateLost
@@ -286,6 +286,7 @@ class FirebaseHelper {
                         item.itemID = child.key
                         item.category = category
                         item.description = description
+                        item.imagesURL = imagesUrl
                         items.append(item)
                     }
                 }

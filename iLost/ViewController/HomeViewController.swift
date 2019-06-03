@@ -12,7 +12,7 @@ import Firebase
 class HomeViewController: UIViewController {
     var firebase = FirebaseHelper()
     var vSpinner: UIView?
-    var sectionHeader = ["Lost Item", "Found Item"]
+    var sectionHeader = ["Lost Item", "Found Item", "Notification"]
     var notificationRow = [String]()
     var lostRow = [String]()
     var foundRow = [String]()
