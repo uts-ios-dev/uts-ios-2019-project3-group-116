@@ -75,7 +75,7 @@ class SearchViewController: UIViewController {
         if segue.identifier == "SearchDetail" {
             if let destination = segue.destination as? SearchDetailViewController {
                 if let indexpath = tableView.indexPathForSelectedRow?.row {
-                    destination.item = lostItems[indexpath]
+                    destination.item = searchResults[indexpath]
                 }
             }
         }
@@ -121,7 +121,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.text = searchResults[indexPath.row].title
         cell.searchImageView.image = searchResults[indexPath.row].images?.first
         cell.categoryLabel.text  = searchResults[indexPath.row].category
-        cell.dateLabel.text = searchResults[indexPath.row].dateLost
+        if (searchLost) {
+            cell.dateLabel.text = searchResults[indexPath.row].dateLost
+        } else {
+            cell.dateLabel.text = searchResults[indexPath.row].dateFound
+        }
         
         if (indexPath.row % 2 == 0)
         {
