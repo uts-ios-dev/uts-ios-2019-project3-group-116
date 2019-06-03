@@ -49,21 +49,14 @@ class FirebaseHelper {
                         user.imageURL = "\(url)"
                         values["imageURL"] = user.imageURL
                     }
-                    Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
-                        (error, ref) in
-                        if let error = error {
-                            print("Failed to update DB: ", error.localizedDescription)
-                            self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
-                            return
-                        }
-                        print("success update DB")
-                        self.delegateCreatedItem?.saved(success: true, errorMessage: "")
-                    })
+                    self.insertUser(uid: uid, values: values)
                 }
+            } else {
+                self.insertUser(uid: uid, values: values)
             }
         }
     }
-
+    
     func signIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
@@ -113,7 +106,7 @@ class FirebaseHelper {
                     let dateLost = value?["dateLost"] as? String ?? ""
                     let dateFound = value?["dateFound"] as? String ?? ""
                     if dateFound == "" {
-                        let item = ItemModel(title: title, description: description, category: category, dateLost: dateLost, dateFound: dateFound, images: nil)
+                        let item = ItemModel(title: title, description: description, category: category, dateLost: dateLost, dateFound: dateFound, images: nil, imagesURL: [])
                         items.append(item)
                     }
                 }
@@ -137,21 +130,25 @@ class FirebaseHelper {
             print("Profile Data updatet successful")
         })
     }
+    
+    func insertUser(uid: String, values: [String:String]) {
+        Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to update DB: ", error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
+                return
+            }
+            print("success update DB")
+            self.delegateCreatedItem?.saved(success: true, errorMessage: "")
+        })
+    }
 
     func saveItemDescription(item: ItemModel) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         var values = item.getValues()
         values["User"] = uid
-        
-        if let images = item.images  {
-            var i = 1
-            for image in images {
-                saveImage(image: image, folderName: "itemImages", fileName: "") { url in
-                    print(url)
-                }
-                i+=1
-            }
-        }
+        var itemId = ""
         
         let child = Database.database().reference().root.child("items").childByAutoId()
         child.updateChildValues(values as [AnyHashable : Any], withCompletionBlock: {
@@ -163,8 +160,27 @@ class FirebaseHelper {
             }
             print("success update DB")
             self.delegateCreatedItem?.saved(success: true, errorMessage: "")
+            
+            if let key = ref.key {
+                itemId = key
+            }
         })
-
+        
+        if let images = item.images, let title = item.title, let cat = item.category  {
+            var i = 1
+            var urls = [String]()
+            for image in images {
+                saveImage(image: image, folderName: "itemImages", fileName: "\(title)-\(cat)-\(i)") { url in
+                    if let imageUrl = url {
+                        urls.append("\(imageUrl)")
+                        values["imagesURL"] = urls
+                    }
+                    self.updateItem(uid: itemId, values: values)
+                }
+                i+=1
+            }
+        }
+        
         let locations = item.getLocations()
         for index in locations.indices {
             child.child("locations").child("Location \(index)").updateChildValues(locations[index], withCompletionBlock: {
@@ -178,10 +194,19 @@ class FirebaseHelper {
                 self.delegateCreatedItem?.saved(success: true, errorMessage: "")
             })
         }
-        
-        
-        
-        // saveImage(image: (item.images?.first)!, folderName: "items", fileName: "\(item.title)")
+    }
+    
+    func updateItem(uid: String, values: [String: Any]) {
+        Database.database().reference().root.child("items").child(uid).updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to update DB: ", error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
+                return
+            }
+            print("success update DB")
+            self.delegateCreatedItem?.saved(success: true, errorMessage: "")
+        })
     }
 
     func saveImage(image: UIImage, folderName: String, fileName: String, completion: @escaping ((_ url: URL?) -> ())) {

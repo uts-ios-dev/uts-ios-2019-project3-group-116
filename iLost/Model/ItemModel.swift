@@ -26,18 +26,19 @@ class ItemModel {
     
     init(){ }
 
-    init(title: String, description: String, category: String, dateLost: String, dateFound: String, images: [UIImage]?){
+    init(title: String, description: String, category: String, dateLost: String, dateFound: String, images: [UIImage]?, imagesURL: [String]){
         self.title = title
         self.description = description
         self.category = category
         self.dateLost = dateLost
         self.dateFound = dateFound
         self.images = images
+        self.imagesURL = imagesURL
     }
 
 
-    func getValues() -> [String: String?] {
-        let values = ["title": title, "description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound]
+    func getValues() -> [String: Any?] {
+        let values = ["title": title, "description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound, "imagesURL": [imagesURL]] as [String : Any]
         return values
     }
 

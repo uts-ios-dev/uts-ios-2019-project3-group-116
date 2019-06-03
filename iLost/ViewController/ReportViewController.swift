@@ -52,6 +52,7 @@ class ReportViewController: UIViewController {
 
         setUpDatePicker()
         showItemDetails()
+        firebase.delegateCreatedItem = self
     }
 
     // TODO: - not fully implemented
@@ -147,7 +148,6 @@ class ReportViewController: UIViewController {
             } else {
                 item.dateFound = dateTextField.text!
             }
-            
             firebase.saveItemDescription(item: item)
         }
     }

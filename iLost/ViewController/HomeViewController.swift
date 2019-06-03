@@ -166,7 +166,7 @@ extension HomeViewController: FirebaseLoadedItemsDelegate {
                 }
             }
         }
-        self.sections = [self.lostRow, self.foundRow]
+        self.sections = [self.lostRow, self.foundRow, self.notificationRow]
 
         self.tableView.reloadData()
         self.removeSpinner()
