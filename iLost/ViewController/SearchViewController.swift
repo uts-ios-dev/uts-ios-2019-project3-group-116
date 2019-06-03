@@ -46,7 +46,7 @@ class SearchViewController: UIViewController {
         navigationItem.titleView = navigationMenu
     }
     
-    // Dummy data
+    // Load all lost and found items from the database
     func data(){
         Database.database().reference().child("items").observe(.value, with: { (snapshot) in
             if let test = snapshot.value as? [String:AnyObject] {
@@ -73,7 +73,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // Passes data to the serach detail view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchDetail" {
             if let destination = segue.destination as? SearchDetailViewController {
@@ -84,6 +84,7 @@ class SearchViewController: UIViewController {
         }
     }
     
+    // Show spinner while loading the data
     func showSpinner(onView: UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
@@ -99,6 +100,7 @@ class SearchViewController: UIViewController {
         vSpinner = spinnerView
     }
     
+    // Remove spinner after data is loaded
     func removeSpinner() {
         DispatchQueue.main.async {
             self.vSpinner?.removeFromSuperview()
@@ -107,6 +109,7 @@ class SearchViewController: UIViewController {
     }
 }
 
+// Setup table 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -14,21 +14,10 @@ class NotificationViewController: UIViewController {
     var firebase = FirebaseHelper()
     var notification = NotificationModel()
 
+    // UI elements
     @IBOutlet weak var label: UILabel!
     @IBOutlet var titleField: UITextView!
 
-    @IBAction func notifyButtonTapped(_ sender: Any) {
-        guard let reciever = item.ownerID else {
-            return }
-        guard let sender = firebase.getUserId() else {
-            return }
-        guard let message = titleField.text else {
-            return }
-
-        let date = Date().description
-        firebase.saveNotification(values: ["userIdReciever": reciever, "userIdSender": sender, "date": date, "message": message, "answer": ""])
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if (item.dateLost != "" && item.dateFound == "") {
@@ -41,5 +30,18 @@ class NotificationViewController: UIViewController {
         if let message = notification.message {
             titleField.text = message
         }
+    }
+    
+    // Save the notification to the database 
+    @IBAction func notifyButtonTapped(_ sender: Any) {
+        guard let reciever = item.ownerID else {
+            return }
+        guard let sender = firebase.getUserId() else {
+            return }
+        guard let message = titleField.text else {
+            return }
+
+        let date = Date().description
+        firebase.saveNotification(values: ["userIdReciever": reciever, "userIdSender": sender, "date": date, "message": message, "answer": ""])
     }
 }

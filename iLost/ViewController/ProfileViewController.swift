@@ -72,7 +72,6 @@ extension ProfileViewController: FirebaseLoadedProfileDelegate {
         cityTextField.text = user.city
         usernameLabel.text = user.username
         postalcodeTextField.text = user.postcode
-//        emailTextField.text = user.email
         
         if let url = URL(string: user.imageURL) {
             do {

@@ -12,27 +12,32 @@ class ImageViewController: UIViewController {
     var images:[UIImage]?
     var currentImage = 0
 
+    // UI elements
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBAction func xButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     @IBOutlet weak var imageView: UIImageView!
+    
+    // Resource : https://stackoverflow.com/questions/38529775/how-to-create-a-side-swiping-photo-gallery-in-swift-ios
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image =  images?[currentImage]
         setupPageControl()
         addSwipeGesture()
     }
+    
+    // Closes the image view
+    @IBAction func xButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 
+    // Creates pages for each image
     func setupPageControl() {
         pageControl.currentPage = currentImage
         pageControl.numberOfPages = images!.count
         pageControl.hidesForSinglePage = true
     }
 
-// Resource : https://stackoverflow.com/questions/38529775/how-to-create-a-side-swiping-photo-gallery-in-swift-ios
-
+    // Handles the swipe gesture
     func addSwipeGesture() {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right

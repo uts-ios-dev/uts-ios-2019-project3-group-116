@@ -31,17 +31,6 @@ class ReportViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var titleTextfield: UITextField!
     
-    fileprivate func setUpDatePicker() {
-        datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
-        datePicker?.addTarget(self, action: #selector(ReportViewController.dateChanged(datePicker:)), for: .valueChanged)
-
-        let closeDatePicker = UITapGestureRecognizer(target: self, action: #selector(ReportViewController.viewTapped(gestureRecognizer:)))
-        view.addGestureRecognizer(closeDatePicker)
-
-        dateTextField.inputView = datePicker
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
@@ -69,16 +58,20 @@ class ReportViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         firebase.delegateCreatedItem = self
     }
 
+    // Setup the date picker
+    fileprivate func setUpDatePicker() {
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.addTarget(self, action: #selector(ReportViewController.dateChanged(datePicker:)), for: .valueChanged)
+        
+        let closeDatePicker = UITapGestureRecognizer(target: self, action: #selector(ReportViewController.viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(closeDatePicker)
+        
+        dateTextField.inputView = datePicker
+    }
+
     // TODO: - not fully implemented
     func showItemDetails(){
-        if item.lostFound {
-            //Navigationbar: activate lost
-        }
-        else {
-            //Navigationbar: activate found
-        }
-        // images
-        //annotations
         dateTextField.text = item.dateLost
         categoryTextField.text = item.category
         titleTextfield.text = item.title
@@ -106,10 +99,12 @@ class ReportViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         self.mapView.setRegion(region, animated: true)
     }
     
+    // Handles the tap gesture on the date textfield
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
         view.endEditing(true)
     }
     
+    // Formates the picked date 
     @objc func dateChanged(datePicker: UIDatePicker){
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MM/dd/yyyy"

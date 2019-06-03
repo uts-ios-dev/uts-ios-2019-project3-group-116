@@ -22,8 +22,7 @@ class SearchDetailViewController: UIViewController {
     @IBOutlet weak var dateDescriptionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-//    @IBOutlet weak var commentTextView: UITextView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -32,6 +31,7 @@ class SearchDetailViewController: UIViewController {
         setupView()
     }
 
+    // Add the text to the textfields
     func setupView(){
         descriptionTextView.text = item!.description
         categoryLabel.text = item!.category
@@ -45,6 +45,7 @@ class SearchDetailViewController: UIViewController {
         self.title = item!.title
     }
     
+    // Passes data to the image and notification view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ImageSegue" {
             if let viewController = segue.destination as? ImageViewController {
@@ -59,6 +60,7 @@ class SearchDetailViewController: UIViewController {
     }
 }
 
+// Setup table
 extension SearchDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

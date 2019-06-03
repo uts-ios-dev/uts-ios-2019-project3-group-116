@@ -50,6 +50,7 @@ class HomeViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // Show spinner while loading the data
     func showSpinner(onView: UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
@@ -65,6 +66,7 @@ class HomeViewController: UIViewController {
         vSpinner = spinnerView
     }
     
+    // Remove spinner after data is loaded
     func removeSpinner() {
         DispatchQueue.main.async {
             self.vSpinner?.removeFromSuperview()
@@ -109,7 +111,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    // TODO: - Notifications not implemented
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ShowNotificationAnswerSegue") {
             let viewController = segue.destination as! NotificationAnswerViewController
@@ -124,7 +125,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-// TODO: - Notifications are not implemented
+    // Opens the mapped view depending on where the user clicks
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             item = itemsLost[indexPath.row]
@@ -139,11 +140,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             performSegue(withIdentifier: "ShowNotificationAnswerSegue", sender: self)
         }
     }
-
-    // TODO: - Delete Items and Notification from DB and Table are not implemented
-
 }
 
+// Handles the connection to the database 
 extension HomeViewController: FirebaseLoadedItemsDelegate {
     func getNotifcations(notifications: [NotificationModel]) {
         notificationRow.removeAll()
