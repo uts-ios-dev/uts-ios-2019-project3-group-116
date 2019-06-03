@@ -11,39 +11,39 @@ import Firebase
 
 class NotificationViewController: UIViewController {
     var item = ItemModel()
-    
+    var firebase = FirebaseHelper()
+    var notification = NotificationModel()
+
+    @IBOutlet weak var label: UILabel!
     @IBOutlet var titleField: UITextView!
-    @IBOutlet var descriptionField: UITextView!
+
+    @IBAction func notifyButtonTapped(_ sender: Any) {
+        guard let reciever = item.ownerID else {
+//            print("error oID")
+            return }
+        guard let sender = firebase.getUserId() else {
+//            print("error uID")
+            return }
+        guard let message = titleField.text else {
+//            print("error message")
+            return }
+
+        let date = Date().description
+
+        firebase.saveNotification(values: ["userIdReciever": reciever, "userIdSender": sender, "date": date, "message": message, "answer": ""])
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if (item.dateLost != "" && item.dateFound == "") {
-            titleField.text = "Notify Owner"
-        } else if (item.dateFound != "" && item.dateLost == "") {
-            titleField.text = "Notify Finder"
+            label.text = "Notify Owner"
         }
-        
-//        Database.database().reference().child("items").child(itemId).observeSingleEvent(of: .value, with: { (snapshot) in
-//            let value = snapshot.value as? NSDictionary
-//            self.titleField.text = value?["title"] as? String ?? ""
-//            self.descriptionField.text = value?["description"] as? String ?? ""
-//        })
-//        { (error) in
-//            print(error.localizedDescription)
-//        }
+        else if (item.dateFound != "" && item.dateLost == "") {
+            label.text = "Notify Finder"
+        }
 
-        // Do any additional setup after loading the view.
+        if let message = notification.message {
+            titleField.text = message
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

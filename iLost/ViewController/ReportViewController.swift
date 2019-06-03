@@ -142,6 +142,7 @@ class ReportViewController: UIViewController {
             item.category = categoryTextField.text!
             item.description = descriptionTextView.text!
             item.images = images
+            item.ownerID = firebase.getUserId()
             if (reportLost) {
                 item.dateLost = dateTextField.text!
             } else {

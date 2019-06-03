@@ -21,22 +21,24 @@ class ItemModel {
     var itemID: String?
     var foundID: String?
     var lostID: String?
+    var ownerID: String?
     var lostFound: Bool = true
     
     init(){ }
 
-    init(title: String, description: String, category: String, dateLost: String, dateFound: String, images: [UIImage]?){
+    init(title: String, description: String, category: String, dateLost: String, dateFound: String, images: [UIImage]?, ownerId: String){
         self.title = title
         self.description = description
         self.category = category
         self.dateLost = dateLost
         self.dateFound = dateFound
         self.images = images
+        self.ownerID = ownerId
     }
 
 
     func getValues() -> [String: String?] {
-        let values = ["title": title, "description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound]
+        let values = ["title": title, "description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound, "userIdItemOwner": ownerID]
         return values
     }
 

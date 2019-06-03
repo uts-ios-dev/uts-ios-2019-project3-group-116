@@ -18,6 +18,8 @@
 		4162DE76229BD5B5003789BC /* DateFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */; };
 		4162DE78229BFCC1003789BC /* AddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */; };
 		4162DE7A229C1830003789BC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE79229C1830003789BC /* MapViewController.swift */; };
+		417796E422A4D39900C7B929 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417796E322A4D39900C7B929 /* Notification.swift */; };
+		417796E622A4FCCB00C7B929 /* NotificationAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417796E522A4FCCB00C7B929 /* NotificationAnswerViewController.swift */; };
 		41C07134228DC76500F73F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C07133228DC76400F73F69 /* GoogleService-Info.plist */; };
 		41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07135228DD2E300F73F69 /* LoginViewController.swift */; };
 		41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07137228DD2F500F73F69 /* SignUpViewController.swift */; };
@@ -54,6 +56,8 @@
 		4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterHelper.swift; sourceTree = "<group>"; };
 		4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4162DE79229C1830003789BC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		417796E322A4D39900C7B929 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		417796E522A4FCCB00C7B929 /* NotificationAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAnswerViewController.swift; sourceTree = "<group>"; };
 		41C07133228DC76400F73F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C07135228DD2E300F73F69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		41C07137228DD2F500F73F69 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */,
 				4162DE79229C1830003789BC /* MapViewController.swift */,
 				ED49F4DA22A35B450010E326 /* ContactViewController.swift */,
+				417796E522A4FCCB00C7B929 /* NotificationAnswerViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 			children = (
 				41DB928B228E32DF009031F0 /* UserModel.swift */,
 				41DB928D228E3969009031F0 /* ItemModel.swift */,
+				417796E322A4D39900C7B929 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A560ADF229C4AD60041DA50 /* CustomDropDownMenu.swift in Sources */,
+				417796E622A4FCCB00C7B929 /* NotificationAnswerViewController.swift in Sources */,
 				41DB9288228E2E01009031F0 /* ProfileViewController.swift in Sources */,
 				5AFF15AA229AA226006965DB /* CustomButton.swift in Sources */,
 				ED49F4DD22A35BEB0010E326 /* PrivacyViewController.swift in Sources */,
@@ -370,6 +377,7 @@
 				412180882292738F002BAC44 /* NotificationViewController.swift in Sources */,
 				410FBE8A2290E10700594A76 /* SearchViewController.swift in Sources */,
 				41DB928C228E32DF009031F0 /* UserModel.swift in Sources */,
+				417796E422A4D39900C7B929 /* Notification.swift in Sources */,
 				5AF7737122A403B200F86BB1 /* CustomAlertBox.swift in Sources */,
 				41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */,
 				41CD2FE5228DB90D00DD0A54 /* AppDelegate.swift in Sources */,

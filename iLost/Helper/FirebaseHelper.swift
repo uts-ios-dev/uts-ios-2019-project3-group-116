@@ -22,6 +22,7 @@ protocol FirebaseLoadedProfileDelegate {
 
 protocol FirebaseLoadedItemsDelegate {
     func getItemModels(items: [ItemModel])
+    func getNotifcations(notifications: [NotificationModel])
 }
 
 //Resource Firebase https://firebase.google.com/docs/database/ios/start?authuser=0
@@ -102,6 +103,7 @@ class FirebaseHelper {
             let address = value?["address"] as? String ?? ""
             let postcode = value?["postcode"] as? String ?? ""
             let city = value?["city"] as? String ?? ""
+            
 
             let user = UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil)
             self.delegateLoadedProfile?.userProfile(user: user)
@@ -123,8 +125,9 @@ class FirebaseHelper {
                     let category = value?["category"] as? String ?? ""
                     let dateLost = value?["dateLost"] as? String ?? ""
                     let dateFound = value?["dateFound"] as? String ?? ""
+                    let ownerId  = value?["userIdItemOwner"] as? String ?? ""
                     if dateFound == "" {
-                        let item = ItemModel(title: title, description: description, category: category, dateLost: dateLost, dateFound: dateFound, images: nil)
+                        let item = ItemModel(title: title, description: description, category: category, dateLost: dateLost, dateFound: dateFound, images: nil, ownerId: ownerId )
                         items.append(item)
                     }
                 }
@@ -153,6 +156,7 @@ class FirebaseHelper {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         var values = item.getValues()
         values["User"] = uid
+
         let child = Database.database().reference().root.child("items").childByAutoId()
         child.updateChildValues(values as [AnyHashable : Any], withCompletionBlock: {
             (error, ref) in
@@ -251,6 +255,10 @@ class FirebaseHelper {
         return username
     }
 
+    func getUserId() -> String? {
+        guard let userID = Auth.auth().currentUser?.uid else { return nil }
+        return userID
+    }
 
     func loadItems() {
         var items: [ItemModel] = []
@@ -266,6 +274,7 @@ class FirebaseHelper {
                         let dateLost = value?["dateLost"] as? String ?? ""
                         let description = value?["description"] as? String ?? ""
                         let category = value?["category"] as? String ?? ""
+                        let userIdItemOwner = value?["userIdItemOwner"] as? String ?? ""
                         print("title:" + title + dateLost)
 
                         let item = ItemModel()
@@ -275,6 +284,7 @@ class FirebaseHelper {
                         item.itemID = child.key
                         item.category = category
                         item.description = description
+                        item.ownerID = userIdItemOwner
                         items.append(item)
                     }
                 }
@@ -284,6 +294,53 @@ class FirebaseHelper {
         { (error) in
             print(error.localizedDescription)
         }
+    }
+
+    func saveNotification(values: [String:String]) {
+        let ref = Database.database().reference()
+        guard let key = Auth.auth().currentUser?.uid else { return }
+        let child = ref.root.child("notifications").childByAutoId()
+        child.updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to save in DB: ", error.localizedDescription)
+                return
+            }
+            print("Success to save in DB")
+        })
+
+    }
+
+    func loadAllNotifications() {
+        var notifications: [NotificationModel] = []
+        Database.database().reference().child("notifications").observe(.value, with: { (snapshot) in
+            if let snapshots = snapshot.value as? [String:AnyObject] {
+                for child in snapshots {
+                    let value = child.value as? NSDictionary
+                    let user = value?["userIdReciever"] as? String ?? ""
+                    let uid = Auth.auth().currentUser?.uid
+                    if user == uid {
+                        let userIdReciever = value?["userIdReciever"] as? String ?? ""
+                        let userIdSender = value?["userIdSender"] as? String ?? ""
+                        let date = value?["date"] as? String ?? ""
+                        let message = value?["message"] as? String ?? ""
+
+                        let notification = NotificationModel()
+                        notification.userIdReciever = userIdReciever
+                        notification.userIdSender = userIdSender
+                        notification.date = date
+                        notification.message = message
+
+                        notifications.append(notification)
+                    }
+                }
+                self.delegateloadedItems?.getNotifcations(notifications: notifications)
+            }
+        })
+        { (error) in
+            print(error.localizedDescription)
+        }
+
     }
     
 }

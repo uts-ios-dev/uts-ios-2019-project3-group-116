@@ -19,7 +19,9 @@ class HomeViewController: UIViewController {
     var sections:[[String]] = []
     var itemsLost: [ItemModel] = []
     var itemsFound: [ItemModel] = []
+    var notifications: [NotificationModel] = []
     var item: ItemModel = ItemModel()
+    var notification: NotificationModel = NotificationModel()
 
     // UI elements
     @IBOutlet weak var tableView: UITableView!
@@ -31,11 +33,15 @@ class HomeViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.firebase.delegateloadedItems = self
+        self.sections = [self.lostRow, self.foundRow, self.notificationRow]
+        firebase.loadAllNotifications()
         firebase.loadItems()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-       firebase.loadItems()
+        self.sections = [self.lostRow, self.foundRow, self.notificationRow]
+        firebase.loadAllNotifications()
+        firebase.loadItems()
     }
 
     // Switch to Login Scene after logout process was successful
@@ -65,16 +71,6 @@ class HomeViewController: UIViewController {
             self.vSpinner = nil
         }
     }
-
-    // TODO: - Is it implemented???
-    @IBAction func unwindToHomeViewControllerFromReport(segue: UIStoryboardSegue) {
-        sections.removeAll()
-        lostRow.removeAll()
-        foundRow.removeAll()
-        notificationRow.removeAll()
-    }
-
-
 }
 
 // Setup table 
@@ -117,22 +113,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     // TODO: - Notifications not implemented
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "ShowNotificationSegue") {
-            let viewController = segue.destination as! NotificationViewController
-            
-            let section = self.tableView.indexPathForSelectedRow?.section
-            let row = self.tableView.indexPathForSelectedRow?.row
-            if section == 0 {
-//                viewController.itemId = lostRowKeys[row!]
-            } else if section == 1 {
-//                viewController.itemId = foundRowKeys[row!]
-            }
-        } else if (segue.identifier == "UpdateReportItemSegue") {
+        if (segue.identifier == "ShowNotificationAnswerSegue") {
+            let viewController = segue.destination as! NotificationAnswerViewController
+                viewController.notification = notification
+        }
+        else if (segue.identifier == "UpdateReportItemSegue") {
             let destVC = segue.destination as! ReportViewController
-            destVC.item = item
-
-
-        } else if (segue.identifier == "Settings") {
+                destVC.item = item
+        }
+        else if (segue.identifier == "Settings") {
             _ = segue.destination as! SettingsTableViewController
         }
     }
@@ -148,19 +137,26 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             performSegue(withIdentifier: "UpdateReportItemSegue", sender: self)
         }
         if indexPath.section == 2 {
-            performSegue(withIdentifier: "ShowNotificationSegue", sender: self)
+            notification = notifications[indexPath.row]
+            performSegue(withIdentifier: "ShowNotificationAnswerSegue", sender: self)
         }
     }
 
-    // TODO: - Delete are not implemented
-
-    func deleteItemsFromTableView(){
-
-    }
-
+    // TODO: - Delete Items and Notification from DB and Table are not implemented
 }
 
 extension HomeViewController: FirebaseLoadedItemsDelegate {
+    func getNotifcations(notifications: [NotificationModel]) {
+        notificationRow.removeAll()
+        self.notifications.removeAll()
+        print("Count items notification:" + String(notifications.count))
+        for notification in notifications{
+            self.notifications.append(notification)
+            notificationRow.append(notification.date!)
+        }
+         self.sections[2] =  self.notificationRow
+    }
+
     func getItemModels(items: [ItemModel]) {
         print("Count items:" + String(items.count))
         lostRow.removeAll()
@@ -179,10 +175,12 @@ extension HomeViewController: FirebaseLoadedItemsDelegate {
                 }
             }
         }
-        self.sections = [self.lostRow, self.foundRow, self.notificationRow]
-
+        self.sections[0] = self.lostRow
+        self.sections[1] = self.foundRow
         self.tableView.reloadData()
         self.removeSpinner()
     }
+
+
 }
 
