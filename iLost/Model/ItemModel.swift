@@ -21,6 +21,7 @@ class ItemModel {
     var itemID: String?
     var foundID: String?
     var lostID: String?
+    var lostFound: Bool = true
     
     init(){ }
 

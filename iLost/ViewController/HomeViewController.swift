@@ -15,10 +15,11 @@ class HomeViewController: UIViewController {
     var sectionHeader = ["Lost Item", "Found Item", "Notification"]
     var notificationRow = [String]()
     var lostRow = [String]()
-    var lostRowKeys = [String]()
     var foundRow = [String]()
-    var foundRowKeys = [String]()
     var sections:[[String]] = []
+    var itemsLost: [ItemModel] = []
+    var itemsFound: [ItemModel] = []
+    var item: ItemModel = ItemModel()
 
     // UI elements
     @IBOutlet weak var tableView: UITableView!
@@ -27,42 +28,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         showSpinner(onView: self.view)
-        loadData()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.firebase.delegateloadedItems = self
+        firebase.loadItems()
     }
 
-    // Loads the lost, found items and the notifications from the database
-    func loadData() {
-        Database.database().reference().child("items").observe(.value, with: { (snapshot) in
-            if let test = snapshot.value as? [String:AnyObject] {
-                for child in test {
-                    let value = child.value as? NSDictionary
-                    let user = value?["User"] as? String ?? ""
-                    let uid = Auth.auth().currentUser?.uid
-                    if user == uid {
-                        let title = value?["title"] as? String ?? ""
-                        let dateFound = value?["dateFound"] as? String ?? ""
-                        let dateLost = value?["dateLost"] as? String ?? ""
-                        if dateLost != "" && dateFound == "" {
-                            self.lostRow.append(title)
-                            self.lostRowKeys.append(child.key)
-                        } else if dateFound != "" && dateLost == "" {
-                            self.foundRow.append(title)
-                            self.foundRowKeys.append(child.key)
-                        }
-                    }
-                }
-                self.sections = [self.lostRow, self.foundRow, self.notificationRow]
-                self.tableView.delegate = self
-                self.tableView.dataSource = self
-                self.tableView.reloadData()
-                self.removeSpinner()
-            }
-        })
-        { (error) in
-            print(error.localizedDescription)
-        }
-    }
-    
+
     // Switch to Login Scene after logout process was successful
     @IBAction func lougoutButtonPressed(_ sender: Any) {
         firebase.logOutUser()
@@ -90,7 +62,8 @@ class HomeViewController: UIViewController {
             self.vSpinner = nil
         }
     }
-    
+
+    // TODO: - Is it implemented???
     @IBAction func unwindToHomeViewControllerFromReport(segue: UIStoryboardSegue) {
         sections.removeAll()
         lostRow.removeAll()
@@ -136,7 +109,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         print(indexPath.row)
         return cell
     }
-    
+
+    // TODO: - Notifications not implemented
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ShowNotificationSegue") {
             let viewController = segue.destination as! NotificationViewController
@@ -144,15 +118,57 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let section = self.tableView.indexPathForSelectedRow?.section
             let row = self.tableView.indexPathForSelectedRow?.row
             if section == 0 {
-                viewController.itemId = lostRowKeys[row!]
+//                viewController.itemId = lostRowKeys[row!]
             } else if section == 1 {
-                viewController.itemId = foundRowKeys[row!]
+//                viewController.itemId = foundRowKeys[row!]
             }
         } else if (segue.identifier == "UpdateReportItemSegue") {
-            _ = segue.destination as! ReportViewController
+            let destVC = segue.destination as! ReportViewController
+            destVC.item = item
+
+
         } else if (segue.identifier == "Settings") {
             _ = segue.destination as! SettingsTableViewController
         }
+    }
+
+// TODO: - Notifications are not implemented
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            item = itemsLost[indexPath.row]
+            performSegue(withIdentifier: "UpdateReportItemSegue", sender: self)
+        }
+        if indexPath.section == 1 {
+            item = itemsFound[indexPath.row]
+            performSegue(withIdentifier: "UpdateReportItemSegue", sender: self)
+        }
+        if indexPath.section == 2 {
+            performSegue(withIdentifier: "ShowNotificationSegue", sender: self)
+        }
+    }
+
+}
+
+extension HomeViewController: FirebaseLoadedItemsDelegate {
+    func getItemModels(items: [ItemModel]) {
+        print(items.count)
+        for item in items {
+            if item.dateLost != "" && item.dateFound == "" {
+                self.itemsLost.append(item)
+                if let dateLost = item.dateLost {
+                    self.lostRow.append(item.title! + " " + dateLost)
+                }
+            }
+            if item.dateFound != "" && item.dateLost == "" {
+                self.itemsFound.append(item)
+                if let dateFound = item.dateFound {
+                   self.foundRow.append(item.title! + " " + dateFound)
+                }
+            }
+        }
+        self.sections = [self.lostRow, self.foundRow, self.notificationRow]
+        self.tableView.reloadData()
+        self.removeSpinner()
     }
 }
 

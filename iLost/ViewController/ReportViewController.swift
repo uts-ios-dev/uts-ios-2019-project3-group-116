@@ -29,6 +29,17 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var titleTextfield: UITextField!
     
+    fileprivate func setUpDatePicker() {
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.addTarget(self, action: #selector(ReportViewController.dateChanged(datePicker:)), for: .valueChanged)
+
+        let closeDatePicker = UITapGestureRecognizer(target: self, action: #selector(ReportViewController.viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(closeDatePicker)
+
+        dateTextField.inputView = datePicker
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
@@ -38,16 +49,26 @@ class ReportViewController: UIViewController {
         map = MapHelper( mapView: mapView)
         addPlusImageToImages()
         setUpNavigationMenu()
-        
-        datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .date
-        datePicker?.addTarget(self, action: #selector(ReportViewController.dateChanged(datePicker:)), for: .valueChanged)
-        
-        let closeDatePicker = UITapGestureRecognizer(target: self, action: #selector(ReportViewController.viewTapped(gestureRecognizer:)))
-        view.addGestureRecognizer(closeDatePicker)
-        
-        dateTextField.inputView = datePicker
-        
+
+        setUpDatePicker()
+        showItemDetails()
+    }
+
+    // TODO: - not fully implemented
+    func showItemDetails(){
+
+        if item.lostFound {
+            //Navigationbar: activate lost
+        }
+        else {
+            //Navigationbar: activate found
+        }
+        // images
+        //annotations
+        dateTextField.text = item.dateLost
+        categoryTextField.text = item.category
+        titleTextfield.text = item.title
+        descriptionTextView.text = item.description
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
@@ -201,7 +222,7 @@ extension ReportViewController: ImagePickerDelegate {
     }
 }
 
-// Switch to Home Scene after login process was successful
+// Switch to Home Scene after report save process was successfull
 extension ReportViewController: FirebaseCreateUserDelegate {
     func saved(success: Bool, errorMessage: String) {
         if (success) {

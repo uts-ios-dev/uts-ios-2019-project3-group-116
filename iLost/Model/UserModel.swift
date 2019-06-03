@@ -21,7 +21,7 @@ class UserModel {
     var image: UIImage?
     var imageURL: String
     var userID: String?
-
+    
     init(name: String, surname: String, username: String, email: String, phone: String, address: String, postcode: String, city: String, image: UIImage?)
     {
         self.name = name

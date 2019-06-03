@@ -20,6 +20,10 @@ protocol FirebaseLoadedProfileDelegate {
     func userProfile(user: UserModel)
 }
 
+protocol FirebaseLoadedItemsDelegate {
+    func getItemModels(items: [ItemModel])
+}
+
 //Resource Firebase https://firebase.google.com/docs/database/ios/start?authuser=0
 
 class FirebaseHelper {
@@ -28,6 +32,7 @@ class FirebaseHelper {
     var delegateSignIn: FirebaseSignInDelegate?
     var delegateCreatedUser: FirebaseCreateUserDelegate?
     var delegateLoadedProfile: FirebaseLoadedProfileDelegate?
+    var delegateloadedItems: FirebaseLoadedItemsDelegate?
     
     func createUser(user: UserModel, password: String) {
         Auth.auth().createUser(withEmail: user.email, password: password) { (result, error) in
@@ -245,4 +250,41 @@ class FirebaseHelper {
         guard let username = Auth.auth().currentUser?.displayName else { return nil }
         return username
     }
+
+
+    func loadItems() {
+        var items: [ItemModel] = []
+        Database.database().reference().child("items").observe(.value, with: { (snapshot) in
+            if let snapshots = snapshot.value as? [String:AnyObject] {
+                for child in snapshots {
+                    let value = child.value as? NSDictionary
+                    let user = value?["User"] as? String ?? ""
+                    let uid = Auth.auth().currentUser?.uid
+                    if user == uid {
+                        let title = value?["title"] as? String ?? ""
+                        let dateFound = value?["dateFound"] as? String ?? ""
+                        let dateLost = value?["dateLost"] as? String ?? ""
+                        let description = value?["description"] as? String ?? ""
+                        let category = value?["category"] as? String ?? ""
+                        print("title:" + title + dateLost)
+
+                        let item = ItemModel()
+                        item.dateLost = dateLost
+                        item.dateFound = dateFound
+                        item.title = title
+                        item.itemID = child.key
+                        item.category = category
+                        item.description = description
+                        items.append(item)
+                    }
+                }
+                self.delegateloadedItems?.getItemModels(items: items)
+            }
+        })
+        { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
 }
+

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		410FBE8A2290E10700594A76 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE892290E10700594A76 /* SearchViewController.swift */; };
 		410FBE8E2290E1E600594A76 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8D2290E1E600594A76 /* SearchTableViewCell.swift */; };
-		410FBE902290E4F300594A76 /* LostSearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8F2290E4F300594A76 /* LostSearchDetailViewController.swift */; };
+		410FBE902290E4F300594A76 /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8F2290E4F300594A76 /* SearchDetailViewController.swift */; };
 		410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */; };
 		410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */; };
 		411C327822912DC600D44C80 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C327722912DC600D44C80 /* MapHelper.swift */; };
@@ -45,7 +45,7 @@
 /* Begin PBXFileReference section */
 		410FBE892290E10700594A76 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		410FBE8D2290E1E600594A76 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		410FBE8F2290E4F300594A76 /* LostSearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostSearchDetailViewController.swift; sourceTree = "<group>"; };
+		410FBE8F2290E4F300594A76 /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundSearchTableViewCell.swift; sourceTree = "<group>"; };
 		410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		411C327722912DC600D44C80 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 				41DB9287228E2E01009031F0 /* ProfileViewController.swift */,
 				41D4C21A228EA873006195E9 /* ImageViewController.swift */,
 				410FBE892290E10700594A76 /* SearchViewController.swift */,
-				410FBE8F2290E4F300594A76 /* LostSearchDetailViewController.swift */,
+				410FBE8F2290E4F300594A76 /* SearchDetailViewController.swift */,
 				410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */,
 				412180872292738F002BAC44 /* NotificationViewController.swift */,
 				4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */,
@@ -361,7 +361,7 @@
 				41CD2FE7228DB90D00DD0A54 /* HomeViewController.swift in Sources */,
 				41DB9286228E2DD9009031F0 /* ReportViewController.swift in Sources */,
 				4162DE78229BFCC1003789BC /* AddImageCollectionViewCell.swift in Sources */,
-				410FBE902290E4F300594A76 /* LostSearchDetailViewController.swift in Sources */,
+				410FBE902290E4F300594A76 /* SearchDetailViewController.swift in Sources */,
 				41DB9291228E40CD009031F0 /* FirebaseHelper.swift in Sources */,
 				41D4C21B228EA873006195E9 /* ImageViewController.swift in Sources */,
 				41DB929A228E75A3009031F0 /* ItemCollectionViewCell.swift in Sources */,
@@ -524,7 +524,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3VDR5RTGU8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iLost/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -544,7 +544,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3VDR5RTGU8;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iLost/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
