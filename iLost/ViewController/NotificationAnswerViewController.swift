@@ -20,17 +20,12 @@ class NotificationAnswerViewController: UIViewController {
 
     @IBAction func notifyButtonTapped(_ sender: Any) {
         guard let reciever = notification.userIdSender else {
-//            print("error oID")
             return }
         guard let sender = firebase.getUserId() else {
-//            print("error uID")
             return }
         guard let answerMessage = answerField.text else {
-//            print("error message")
             return }
-
         guard let message = messageField.text else {
-//            print("error answer")
             return }
 
         let date = Date().description

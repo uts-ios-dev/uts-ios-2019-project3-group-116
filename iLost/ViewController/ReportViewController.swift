@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import BTNavigationDropdownMenu
 
-class ReportViewController: UIViewController {
+class ReportViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var reportLost: Bool = true
     var images = [UIImage]()
     var imagePicker: ImagePickerHelper!
@@ -20,6 +20,8 @@ class ReportViewController: UIViewController {
     var firebase = FirebaseHelper()
     var map:MapHelper?
     private var datePicker: UIDatePicker?
+    private var locationManager: CLLocationManager!
+    private var currentLocation: CLLocation?
     
     // UI elements
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -52,11 +54,23 @@ class ReportViewController: UIViewController {
 
         setUpDatePicker()
         showItemDetails()
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        // Check for Location Services
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+
+        firebase.delegateCreatedItem = self
     }
 
     // TODO: - not fully implemented
     func showItemDetails(){
-
         if item.lostFound {
             //Navigationbar: activate lost
         }
@@ -69,6 +83,27 @@ class ReportViewController: UIViewController {
         categoryTextField.text = item.category
         titleTextfield.text = item.title
         descriptionTextView.text = item.description
+        
+        if let urls = item.imagesURL {
+            for url in urls {
+                if let link = URL(string: url) {
+                    do {
+                        let data = try Data(contentsOf: link)
+                        images.append(UIImage(data: data)!)
+                    } catch let err {
+                        print("Error: \(err.localizedDescription)")
+                    }
+                }
+            }
+        }
+        
+        let pLat = item.lostLocationsCoordinates.latitude
+        let pLong = item.lostLocationsCoordinates.longitude
+        let center = CLLocationCoordinate2D(latitude: pLat, longitude: pLong)
+        
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.mapView.setRegion(region, animated: true)
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
@@ -148,7 +183,7 @@ class ReportViewController: UIViewController {
             } else {
                 item.dateFound = dateTextField.text!
             }
-            
+            item.lostLocationsCoordinates = (locationManager.location?.coordinate)!
             firebase.saveItemDescription(item: item)
         }
     }
@@ -224,10 +259,14 @@ extension ReportViewController: ImagePickerDelegate {
 }
 
 // Switch to Home Scene after report save process was successfull
-extension ReportViewController: FirebaseCreateUserDelegate {
+extension ReportViewController: FirebaseCreateItemDelegate {
     func saved(success: Bool, errorMessage: String) {
         if (success) {
-            performSegue(withIdentifier: "unwindToHomeViewControllerFromReport", sender: self)
+            self.present(CustomAlertBox.setup(title: "Saved", message: "Item successfully saved", action: "OK"), animated: true, completion: nil)
+            titleTextfield.text = ""
+            dateTextField.text = ""
+            categoryTextField.text = ""
+            descriptionTextView.text = ""
         } else {
             self.present(CustomAlertBox.setup(title: "Not Saved", message: errorMessage, action: "Try again"), animated: true, completion: nil)
         }

@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController{
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var postalcodeTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     
     override func viewDidLoad() {
@@ -42,7 +43,7 @@ class ProfileViewController: UIViewController{
         guard let username = user?.username else { return }
         guard let email = user?.email else { return }
 
-        let userNew = UserModel(name: name, surname: surname , username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil)
+        let userNew = UserModel(name: name, surname: surname , username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil, imageURL: "")
 
         firebase.saveUserProfile(values: userNew.getValues())
     }
@@ -71,7 +72,16 @@ extension ProfileViewController: FirebaseLoadedProfileDelegate {
         cityTextField.text = user.city
         usernameLabel.text = user.username
         postalcodeTextField.text = user.postcode
+//        emailTextField.text = user.email
+        
+        if let url = URL(string: user.imageURL) {
+            do {
+                let data = try Data(contentsOf: url)
+                self.profileImageView.image = UIImage(data: data)
+            } catch let err {
+                print("Error: \(err.localizedDescription)")
+            }
+        }
+        
     }
-
-
 }

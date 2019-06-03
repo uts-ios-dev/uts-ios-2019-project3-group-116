@@ -22,7 +22,7 @@ class UserModel {
     var imageURL: String
     var userID: String?
     
-    init(name: String, surname: String, username: String, email: String, phone: String, address: String, postcode: String, city: String, image: UIImage?)
+    init(name: String, surname: String, username: String, email: String, phone: String, address: String, postcode: String, city: String, image: UIImage?, imageURL: String)
     {
         self.name = name
         self.surname = surname
@@ -33,7 +33,7 @@ class UserModel {
         self.postcode = postcode
         self.city = city
         self.image = image
-        self.imageURL = ""
+        self.imageURL = imageURL
     }
 
     func getValues() -> [String:String] {

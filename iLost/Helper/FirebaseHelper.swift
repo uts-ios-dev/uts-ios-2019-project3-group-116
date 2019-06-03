@@ -12,7 +12,7 @@ import Firebase
 protocol FirebaseSignInDelegate {
     func SignedIn(success: Bool)
 }
-protocol FirebaseCreateUserDelegate {
+protocol FirebaseCreateItemDelegate {
     func saved(success: Bool, errorMessage: String)
 }
 
@@ -31,7 +31,7 @@ class FirebaseHelper {
 
     var uid:String?
     var delegateSignIn: FirebaseSignInDelegate?
-    var delegateCreatedUser: FirebaseCreateUserDelegate?
+    var delegateCreatedItem: FirebaseCreateItemDelegate?
     var delegateLoadedProfile: FirebaseLoadedProfileDelegate?
     var delegateloadedItems: FirebaseLoadedItemsDelegate?
     
@@ -39,44 +39,25 @@ class FirebaseHelper {
         Auth.auth().createUser(withEmail: user.email, password: password) { (result, error) in
             if let error = error {
                 print("Failed to register: ", error.localizedDescription)
-                self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
                 return
             }
             guard let uid = result?.user.uid else { return }
-//            let storage = Storage.storage()
-//            let storageRef = storage.reference()
-//            let riversRef = storageRef.child("userProfile/\(user.username).jpg")
-            //_ = riversRef.putData((user.image?.pngData())!, metadata: nil) { (metadata, error) in
-//                guard let metadata = metadata else {
-//                    // Uh-oh, an error occurred!
-//                    return
-//                }
-                // Metadata contains file metadata such as size, content-type.
-                //_ = metadata.size
-                // You can also access to download URL after upload.
-//                riversRef.downloadURL { (url, error) in
-//                    guard url != nil else {
-//                        // Uh-oh, an error occurred!
-//                        return
-//                    }
-//                    user.imageURL = "\(url)"
-//                }
-//            }
-            let values = user.getValues()
-        Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
-            (error, ref) in
-            if let error = error {
-                print("Failed to update DB: ", error.localizedDescription)
-                self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
-                return
+            var values = user.getValues()
+            if let image = user.image {
+                self.saveImage(image: image, folderName: "userProfile", fileName: "\(user.name) \(user.surname)") { url in
+                    if let url = url {
+                        user.imageURL = "\(url)"
+                        values["imageURL"] = user.imageURL
+                    }
+                    self.insertUser(uid: uid, values: values)
+                }
+            } else {
+                self.insertUser(uid: uid, values: values)
             }
-            print("success update DB")
-            self.delegateCreatedUser?.saved(success: true, errorMessage: "")
-            self.signIn(email: user.email, password: password);
-            })
         }
     }
-
+    
     func signIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
@@ -103,9 +84,9 @@ class FirebaseHelper {
             let address = value?["address"] as? String ?? ""
             let postcode = value?["postcode"] as? String ?? ""
             let city = value?["city"] as? String ?? ""
-            
+            let imageUrl = value?["imageURL"] as? String ?? ""
 
-            let user = UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil)
+            let user = UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil, imageURL: imageUrl)
             self.delegateLoadedProfile?.userProfile(user: user)
             print("Profile Data loaded successful")
         })
@@ -127,7 +108,9 @@ class FirebaseHelper {
                     let dateFound = value?["dateFound"] as? String ?? ""
                     let ownerId  = value?["userIdItemOwner"] as? String ?? ""
                     if dateFound == "" {
-                        let item = ItemModel(title: title, description: description, category: category, dateLost: dateLost, dateFound: dateFound, images: nil, ownerId: ownerId )
+
+                        let item = ItemModel(title: title, description: description, category: category, dateLost: dateLost, dateFound: dateFound, images: nil, imagesURL: [], ownerId: ownerId )
+
                         items.append(item)
                     }
                 }
@@ -151,76 +134,89 @@ class FirebaseHelper {
             print("Profile Data updatet successful")
         })
     }
+    
+    func insertUser(uid: String, values: [String:String]) {
+        Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to update DB: ", error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
+                return
+            }
+            print("success update DB")
+            self.delegateCreatedItem?.saved(success: true, errorMessage: "")
+        })
+    }
 
     func saveItemDescription(item: ItemModel) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         var values = item.getValues()
         values["User"] = uid
-
+        var itemId = ""
+        
         let child = Database.database().reference().root.child("items").childByAutoId()
         child.updateChildValues(values as [AnyHashable : Any], withCompletionBlock: {
             (error, ref) in
             if let error = error {
                 print("Failed to update DB: ", error.localizedDescription)
-                self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
                 return
             }
             print("success update DB")
-            self.delegateCreatedUser?.saved(success: true, errorMessage: "")
+            self.delegateCreatedItem?.saved(success: true, errorMessage: "")
+            
+            if let key = ref.key {
+                itemId = key
+            }
         })
-
-        let locations = item.getLocations()
-        for index in locations.indices {
-            child.child("locations").child("Location \(index)").updateChildValues(locations[index], withCompletionBlock: {
-                (error, ref) in
-                if let error = error {
-                    print("Failed to update DB: ", error.localizedDescription)
-                    self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
-                    return
+        if let images = item.images, let title = item.title, let cat = item.category  {
+            var i = 1
+            var urls = [String]()
+            for image in images {
+                saveImage(image: image, folderName: "itemImages", fileName: "\(title)-\(cat)-\(i)") { url in
+                    if let imageUrl = url {
+                        urls.append("\(imageUrl)")
+                        values["imagesURL"] = urls
+                    }
+                    self.updateItem(uid: itemId, values: values as [String : Any])
                 }
-                print("success update DB")
-                self.delegateCreatedUser?.saved(success: true, errorMessage: "")
-            })
+                i+=1
+            }
         }
-        
-        saveImage(image: (item.images?.first)!, folderName: "items", fileName: "\(item.title)")
+    }
+    
+    func updateItem(uid: String, values: [String: Any]) {
+        Database.database().reference().root.child("items").child(uid).updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to update DB: ", error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
+                return
+            }
+            print("success update DB")
+            self.delegateCreatedItem?.saved(success: true, errorMessage: "")
+        })
     }
 
-    func saveImage(image: UIImage, folderName: String, fileName: String ) -> URL? {
-//        guard let uid = uid else { return }
+    func saveImage(image: UIImage, folderName: String, fileName: String, completion: @escaping ((_ url: URL?) -> ())) {
         let storage = Storage.storage()
         let storageRef = storage.reference()
-//        let imagesRef = storageRef.child("images").child(uid).child(item)
-//        let spaceRef = imagesRef.child(fileName)
-//        let _ = spaceRef.putData(data, metadata: nil) { (metadata, error) in
-////            guard let metadata = metadata else { return }
-//            if let error = error {
-//                print("Failed Image Upload: ", error.localizedDescription)
-//                return
-//            }
-//        }
-        var imageUrl: URL?
-        
         let imagesRef = storageRef.child("\(folderName)/\(fileName).jpg")
         imagesRef.putData((image.pngData())!, metadata: nil) { (metadata, error) in
-//            guard let metadata = metadata else {
-//                // Uh-oh, an error occurred!
-//                return
-//            }
-             // Metadata contains file metadata such as size, content-type.
-            // _ = metadata.size
-             // You can also access to download URL after upload.
+            guard metadata != nil else {
+                // Uh-oh, an error occurred!
+                completion(nil)
+                return
+            }
             imagesRef.downloadURL { (url, error) in
                 guard url != nil else {
                     // Uh-oh, an error occurred!
+                    completion(nil)
                     return
                 }
-                imageUrl = url
+                completion(url)
             }
         }
-        print("image URL: \(String(describing: imageUrl))")
-        
-        return imageUrl
     }
 
     func downloadImage(item: String, fileName: String) {
@@ -274,8 +270,11 @@ class FirebaseHelper {
                         let dateLost = value?["dateLost"] as? String ?? ""
                         let description = value?["description"] as? String ?? ""
                         let category = value?["category"] as? String ?? ""
+
                         let userIdItemOwner = value?["userIdItemOwner"] as? String ?? ""
                         print("title:" + title + dateLost)
+
+                        let imagesUrl = value?["imagesURL"] as? [String] ?? []
 
                         let item = ItemModel()
                         item.dateLost = dateLost
@@ -285,6 +284,7 @@ class FirebaseHelper {
                         item.category = category
                         item.description = description
                         item.ownerID = userIdItemOwner
+                        item.imagesURL = imagesUrl
                         items.append(item)
                     }
                 }

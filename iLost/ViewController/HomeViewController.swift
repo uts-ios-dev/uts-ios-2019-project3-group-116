@@ -106,8 +106,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = UIColor(red: 183/255, green: 183/255, blue: 183/255, alpha: 1)
         }
         cell.textLabel?.text = sections[indexPath.section][indexPath.row]
-        print(sections[indexPath.section][indexPath.row])
-        print(indexPath.row)
         return cell
     }
 
@@ -143,6 +141,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     // TODO: - Delete Items and Notification from DB and Table are not implemented
+
 }
 
 extension HomeViewController: FirebaseLoadedItemsDelegate {

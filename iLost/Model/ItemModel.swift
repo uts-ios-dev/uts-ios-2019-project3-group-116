@@ -15,9 +15,10 @@ class ItemModel {
     var description: String?
     var category: String?
     var images: [UIImage]?
+    var imagesURL: [String]?
     var dateLost: String?
     var dateFound: String?
-    var lostLocationsCoordinates = [CLLocationCoordinate2D]()
+    var lostLocationsCoordinates = CLLocationCoordinate2D()
     var itemID: String?
     var foundID: String?
     var lostID: String?
@@ -26,7 +27,9 @@ class ItemModel {
     
     init(){ }
 
-    init(title: String, description: String, category: String, dateLost: String, dateFound: String, images: [UIImage]?, ownerId: String){
+
+    init(title: String, description: String, category: String, dateLost: String, dateFound: String, images: [UIImage]?,imagesURL: [String], ownerId: String){
+
         self.title = title
         self.description = description
         self.category = category
@@ -34,21 +37,19 @@ class ItemModel {
         self.dateFound = dateFound
         self.images = images
         self.ownerID = ownerId
+        self.imagesURL = imagesURL
     }
 
-
-    func getValues() -> [String: String?] {
-        let values = ["title": title, "description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound, "userIdItemOwner": ownerID]
+    func getValues() -> [String: Any?] {
+        let values = ["title": title, "description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound, "imagesURL": [imagesURL], "coordinates": getLocations(), "userIdItemOwner": ownerID] as [String : Any]
         return values
     }
 
     func getLocations() -> [[String: Double]] {
         var values = [[String: Double]]()
-        for location in lostLocationsCoordinates {
-            let latitude = Double(location.latitude)
-            let longitude = Double(location.longitude)
-            values.append(["latitude": latitude, "longitude":longitude])
-        }
+        let latitude = Double(lostLocationsCoordinates.latitude)
+        let longitude = Double(lostLocationsCoordinates.longitude)
+        values.append(["latitude": latitude, "longitude":longitude])
         return values
     }
 
