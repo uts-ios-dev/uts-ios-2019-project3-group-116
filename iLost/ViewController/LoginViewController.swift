@@ -21,9 +21,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         firebase.delegateSignIn = self
-        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
 

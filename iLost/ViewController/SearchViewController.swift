@@ -107,7 +107,6 @@ class SearchViewController: UIViewController {
     }
 }
 
-// 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

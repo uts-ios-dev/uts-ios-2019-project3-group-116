@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class MapViewController: UIViewController {
     var map:MapHelper?
     var locationsCoordinates: [CLLocationCoordinate2D]?

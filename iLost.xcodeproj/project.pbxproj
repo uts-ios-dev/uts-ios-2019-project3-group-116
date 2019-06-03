@@ -119,6 +119,7 @@
 		41C07139228DD35400F73F69 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				ED49F4DC22A35BEB0010E326 /* PrivacyViewController.swift */,
 				41CD2FE6228DB90D00DD0A54 /* HomeViewController.swift */,
 				41C07135228DD2E300F73F69 /* LoginViewController.swift */,
 				41C07137228DD2F500F73F69 /* SignUpViewController.swift */,
@@ -196,7 +197,6 @@
 				41C0713A228DD36400F73F69 /* Support */,
 				41C07139228DD35400F73F69 /* ViewController */,
 				41CD2FE4228DB90D00DD0A54 /* AppDelegate.swift */,
-				ED49F4DC22A35BEB0010E326 /* PrivacyViewController.swift */,
 			);
 			path = iLost;
 			sourceTree = "<group>";

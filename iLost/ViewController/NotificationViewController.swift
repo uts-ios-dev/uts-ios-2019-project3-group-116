@@ -19,17 +19,13 @@ class NotificationViewController: UIViewController {
 
     @IBAction func notifyButtonTapped(_ sender: Any) {
         guard let reciever = item.ownerID else {
-//            print("error oID")
             return }
         guard let sender = firebase.getUserId() else {
-//            print("error uID")
             return }
         guard let message = titleField.text else {
-//            print("error message")
             return }
 
         let date = Date().description
-
         firebase.saveNotification(values: ["userIdReciever": reciever, "userIdSender": sender, "date": date, "message": message, "answer": ""])
     }
     
@@ -41,7 +37,7 @@ class NotificationViewController: UIViewController {
         else if (item.dateFound != "" && item.dateLost == "") {
             label.text = "Notify Finder"
         }
-
+        
         if let message = notification.message {
             titleField.text = message
         }

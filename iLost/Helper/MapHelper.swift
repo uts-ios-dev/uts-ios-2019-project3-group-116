@@ -101,21 +101,6 @@ extension MapHelper {
         let allAnnotations = self.mapView!.annotations
         self.mapView!.removeAnnotations(allAnnotations)
     }
-
-
-
-//    func setAnnotationWithLongPress(sender: UILongPressGestureRecognizer){
-//        let location = sender.location(in: self.mapView)
-//        let locationCoordinate = self.mapView!.convert(location, toCoordinateFrom: self.mapView)
-//        let annotation = MKPointAnnotation()
-//        annotation.coordinate = locationCoordinate
-//        //            annotation.title = "Title "
-//        //            annotation.subtitle = "Subtitle"
-//        lostLocationsCoordinates.append(annotation.coordinate)
-//        print("anno set")
-// //       delegate?.annotaionSet(lostLocationsCoordinates: lostLocationsCoordinates)
-//        self.mapView!.addAnnotation(annotation)
-//    }
 }
 
 extension MapHelper: CLLocationManagerDelegate {

@@ -61,7 +61,7 @@ class HomeViewController: UIViewController {
             spinnerView.addSubview(ai)
             onView.addSubview(spinnerView)
         }
-        
+
         vSpinner = spinnerView
     }
     

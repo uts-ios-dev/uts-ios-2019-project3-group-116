@@ -12,6 +12,7 @@ import Firebase
 protocol FirebaseSignInDelegate {
     func SignedIn(success: Bool)
 }
+
 protocol FirebaseCreateItemDelegate {
     func saved(success: Bool, errorMessage: String)
 }
@@ -72,7 +73,7 @@ class FirebaseHelper {
          self.uid = Auth.auth().currentUser?.uid
     }
 
-    func loadUserProfile(){
+    func loadUserProfile() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -308,7 +309,6 @@ class FirebaseHelper {
             }
             print("Success to save in DB")
         })
-
     }
 
     func loadAllNotifications() {
@@ -340,8 +340,6 @@ class FirebaseHelper {
         { (error) in
             print(error.localizedDescription)
         }
-
     }
-    
 }
 

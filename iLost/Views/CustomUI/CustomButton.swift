@@ -32,7 +32,7 @@ class CustomButton: UIButton {
         layer.borderWidth = 0
     }
     
-    private func setShadow(){
+    private func setShadow() {
         layer.shadowColor = UIColor(red: 73/255, green: 73/255, blue: 73/255, alpha: 1).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 4.0)
         layer.shadowRadius = 8.0

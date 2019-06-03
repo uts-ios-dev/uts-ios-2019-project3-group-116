@@ -33,7 +33,7 @@ class ImageViewController: UIViewController {
 
 // Resource : https://stackoverflow.com/questions/38529775/how-to-create-a-side-swiping-photo-gallery-in-swift-ios
 
-    func addSwipeGesture(){
+    func addSwipeGesture() {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)

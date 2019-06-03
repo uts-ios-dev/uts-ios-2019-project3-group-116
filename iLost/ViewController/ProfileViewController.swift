@@ -82,6 +82,5 @@ extension ProfileViewController: FirebaseLoadedProfileDelegate {
                 print("Error: \(err.localizedDescription)")
             }
         }
-        
     }
 }
