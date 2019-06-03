@@ -34,6 +34,9 @@ class HomeViewController: UIViewController {
         firebase.loadItems()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+       firebase.loadItems()
+    }
 
     // Switch to Login Scene after logout process was successful
     @IBAction func lougoutButtonPressed(_ sender: Any) {
@@ -70,6 +73,8 @@ class HomeViewController: UIViewController {
         foundRow.removeAll()
         notificationRow.removeAll()
     }
+
+
 }
 
 // Setup table 
@@ -147,11 +152,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    // TODO: - Delete are not implemented
+
+    func deleteItemsFromTableView(){
+
+    }
+
 }
 
 extension HomeViewController: FirebaseLoadedItemsDelegate {
     func getItemModels(items: [ItemModel]) {
-        print(items.count)
+        print("Count items:" + String(items.count))
+        lostRow.removeAll()
+        foundRow.removeAll()
         for item in items {
             if item.dateLost != "" && item.dateFound == "" {
                 self.itemsLost.append(item)
@@ -167,6 +180,7 @@ extension HomeViewController: FirebaseLoadedItemsDelegate {
             }
         }
         self.sections = [self.lostRow, self.foundRow, self.notificationRow]
+
         self.tableView.reloadData()
         self.removeSpinner()
     }

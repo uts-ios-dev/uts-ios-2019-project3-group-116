@@ -100,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/Helper/FirebaseHelper.swift"
-            timestampString = "581215731.208935"
+            timestampString = "581217483.707987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
@@ -241,7 +241,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/Helper/FirebaseHelper.swift"
-            timestampString = "581215731.209493"
+            timestampString = "581217483.708159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -257,7 +257,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/Helper/FirebaseHelper.swift"
-            timestampString = "581215731.2098269"
+            timestampString = "581217483.708222"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -669,12 +669,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/ReportViewController.swift"
-            timestampString = "581215731.210464"
+            timestampString = "581217483.708573"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "194"
             endingLineNumber = "194"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -685,28 +685,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/ReportViewController.swift"
-            timestampString = "581215731.210537"
+            timestampString = "581217483.7086461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "195"
             endingLineNumber = "195"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/ReportViewController.swift"
-            timestampString = "581215731.2105989"
+            timestampString = "581217483.708701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "196"
             endingLineNumber = "196"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -729,33 +729,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/ReportViewController.swift"
-            timestampString = "581215731.210683"
+            timestampString = "581217483.708774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
             endingLineNumber = "124"
-            landmarkName = "unwindToReportViewControllerFromMap(segue:)"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/ReportViewController.swift"
-            timestampString = "581215731.210745"
+            timestampString = "581217483.708837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "125"
             endingLineNumber = "125"
-            landmarkName = "ReportViewController"
-            landmarkType = "3">
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -765,13 +765,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.210807"
+            timestampString = "581217483.708894"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "HomeViewController"
-            landmarkType = "21">
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -781,11 +781,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.210873"
+            timestampString = "581217483.709414"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "getItemModels(items:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -797,11 +797,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.210932"
+            timestampString = "581217483.709761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "getItemModels(items:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -813,11 +813,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.211015"
+            timestampString = "581217483.710122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "getItemModels(items:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -829,11 +829,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.211076"
+            timestampString = "581217483.71044"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "getItemModels(items:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -845,11 +845,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.211135"
+            timestampString = "581217483.710754"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "getItemModels(items:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -861,7 +861,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/ReportViewController.swift"
-            timestampString = "581215731.211195"
+            timestampString = "581217483.711063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -877,11 +877,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.211254"
+            timestampString = "581217483.7111239"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180">
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "getItemModels(items:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -891,11 +893,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.21131"
+            timestampString = "581217483.711399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180">
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "getItemModels(items:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -905,11 +909,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.2113661"
+            timestampString = "581217483.71167"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180">
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "getItemModels(items:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -919,11 +925,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.211422"
+            timestampString = "581217483.7119401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180">
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "getItemModels(items:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -933,11 +941,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.2114789"
+            timestampString = "581217483.712208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180">
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "getItemModels(items:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -947,12 +957,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iLost/ViewController/HomeViewController.swift"
-            timestampString = "581215731.211534"
+            timestampString = "581217483.7124799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "unwindToHomeViewControllerFromReport(segue:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iLost/ViewController/HomeViewController.swift"
+            timestampString = "581217483.7127891"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iLost/ViewController/HomeViewController.swift"
+            timestampString = "581217483.713086"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "HomeViewController"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iLost/ViewController/HomeViewController.swift"
+            timestampString = "581217509.678144"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "deleteItemsFromTableView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
