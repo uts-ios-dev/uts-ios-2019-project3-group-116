@@ -36,7 +36,7 @@ class ItemModel {
 
 
     func getValues() -> [String: String?] {
-        let values = ["description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound]
+        let values = ["title": title, "description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound]
         return values
     }
 

@@ -11,38 +11,38 @@ import MapKit
 import CoreLocation
 
 
-class LostSearchDetailViewController: UIViewController {
+class SearchDetailViewController: UIViewController {
     var item:ItemModel?
     var map:MapHelper?
     
+    // UI elements
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dateDescriptionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var commentTextView: UITextView!
+//    @IBOutlet weak var commentTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
         map = MapHelper(mapView: mapView)
-        
         setupView()
     }
 
     func setupView(){
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        map = MapHelper(mapView: mapView)
-        
-        descriptionTextView.text = item?.description
-        dateLabel.text = item?.dateLost
-        
-    }
-    
-    @IBAction func notiyOwnerButtonPressed(_ sender: Any) {
+        descriptionTextView.text = item!.description
+        categoryLabel.text = item!.category
+        if (item!.dateLost != "" && item!.dateFound == "") {
+            dateDescriptionLabel.text = "Date Lost"
+            dateLabel.text = item!.dateLost
+        } else if (item!.dateFound != "" && item!.dateLost == "") {
+            dateDescriptionLabel.text = "Date Found"
+            dateLabel.text = item!.dateFound
+        }
+        self.title = item!.title
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,11 +51,15 @@ class LostSearchDetailViewController: UIViewController {
                 viewController.images = item!.images
                 viewController.currentImage = collectionView.indexPathsForSelectedItems!.first!.row
             }
+        } else if segue.identifier == "SendNotificationSegue" {
+            if let viewController = segue.destination as? NotificationViewController {
+                viewController.item = item!
+            }
         }
     }
 }
 
-extension LostSearchDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SearchDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1     //return number of sections in collection view

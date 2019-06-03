@@ -222,7 +222,7 @@ extension ReportViewController: ImagePickerDelegate {
     }
 }
 
-// Switch to Home Scene after login process was successful
+// Switch to Home Scene after report save process was successfull
 extension ReportViewController: FirebaseCreateUserDelegate {
     func saved(success: Bool, errorMessage: String) {
         if (success) {

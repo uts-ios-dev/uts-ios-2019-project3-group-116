@@ -15,9 +15,7 @@ class HomeViewController: UIViewController {
     var sectionHeader = ["Lost Item", "Found Item", "Notification"]
     var notificationRow = [String]()
     var lostRow = [String]()
-    var lostRowKeys = [String]()
     var foundRow = [String]()
-    var foundRowKeys = [String]()
     var sections:[[String]] = []
     var itemsLost: [ItemModel] = []
     var itemsFound: [ItemModel] = []
@@ -125,9 +123,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let section = self.tableView.indexPathForSelectedRow?.section
             let row = self.tableView.indexPathForSelectedRow?.row
             if section == 0 {
-                viewController.itemId = lostRowKeys[row!]
+//                viewController.itemId = lostRowKeys[row!]
             } else if section == 1 {
-                viewController.itemId = foundRowKeys[row!]
+//                viewController.itemId = foundRowKeys[row!]
             }
         } else if (segue.identifier == "UpdateReportItemSegue") {
             let destVC = segue.destination as! ReportViewController
@@ -144,8 +142,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             item = itemsLost[indexPath.row]
             performSegue(withIdentifier: "UpdateReportItemSegue", sender: self)
-
-
         }
         if indexPath.section == 1 {
             item = itemsFound[indexPath.row]
@@ -170,14 +166,13 @@ extension HomeViewController: FirebaseLoadedItemsDelegate {
         lostRow.removeAll()
         foundRow.removeAll()
         for item in items {
-            if item.dateLost != "" {
+            if item.dateLost != "" && item.dateFound == "" {
                 self.itemsLost.append(item)
                 if let dateLost = item.dateLost {
-                    print(dateLost)
                     self.lostRow.append(item.title! + " " + dateLost)
                 }
             }
-            if item.dateFound != "" {
+            if item.dateFound != "" && item.dateLost == "" {
                 self.itemsFound.append(item)
                 if let dateFound = item.dateFound {
                    self.foundRow.append(item.title! + " " + dateFound)
