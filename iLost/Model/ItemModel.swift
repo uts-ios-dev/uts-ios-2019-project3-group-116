@@ -15,6 +15,7 @@ class ItemModel {
     var description: String?
     var category: String?
     var images: [UIImage]?
+    var imagesURL: [String]?
     var dateLost: String?
     var dateFound: String?
     var lostLocationsCoordinates = [CLLocationCoordinate2D]()
