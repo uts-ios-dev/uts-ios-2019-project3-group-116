@@ -49,17 +49,10 @@ class FirebaseHelper {
                         user.imageURL = "\(url)"
                         values["imageURL"] = user.imageURL
                     }
-                    Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
-                        (error, ref) in
-                        if let error = error {
-                            print("Failed to update DB: ", error.localizedDescription)
-                            self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
-                            return
-                        }
-                        print("success update DB")
-                        self.delegateCreatedUser?.saved(success: true, errorMessage: "")
-                    })
+                    self.insertUser(uid: uid, values: values)
                 }
+            } else {
+                self.insertUser(uid: uid, values: values)
             }
         }
     }
@@ -135,6 +128,19 @@ class FirebaseHelper {
                 return
             }
             print("Profile Data updatet successful")
+        })
+    }
+    
+    func insertUser(uid: String, values: [String:String]) {
+        Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to update DB: ", error.localizedDescription)
+                self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
+                return
+            }
+            print("success update DB")
+            self.delegateCreatedUser?.saved(success: true, errorMessage: "")
         })
     }
 
