@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        customizeNavigationBar()
+        customizeTabBar()
+        
         return true
     }
 
@@ -42,7 +45,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    // Set navigation bar layout
+    func customizeNavigationBar() {
+        let navigationBarAppearance = UINavigationBar.appearance()
+        
+        navigationBarAppearance.tintColor = UIColor(red: 39/255, green: 159/255, blue: 238/255, alpha: 1)
+        navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Verdana", size: 20)!,NSAttributedString.Key.foregroundColor : UIColor(red: 73/255, green: 73/255, blue: 73/255, alpha: 1)]
+        
+        navigationBarAppearance.barTintColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
+    }
+    
+    // Set tab bar layout
+    func customizeTabBar() {
+        let tabBarAppearance = UITabBar.appearance()
+        let tabBarItemAppreance = UITabBarItem.appearance()
+        
+        tabBarAppearance.barTintColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1)
+        tabBarAppearance.tintColor = UIColor(red: 39/255, green: 159/255, blue: 238/255, alpha: 1)
+        tabBarAppearance.unselectedItemTintColor = UIColor(red: 73/255, green: 73/255, blue: 73/255, alpha: 1)
+        
+        tabBarItemAppreance.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Verdana", size: 12)!], for: .normal)
+    }
 }
 

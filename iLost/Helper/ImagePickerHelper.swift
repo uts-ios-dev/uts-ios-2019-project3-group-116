@@ -56,7 +56,6 @@ class ImagePickerHelper: NSObject {
     }
 }
 
-
 //Resource: https://stackoverflow.com/questions/51342028/cannot-subscript-a-value-of-type-string-any-with-an-index-of-type-uiimage
 
 extension ImagePickerHelper: UIImagePickerControllerDelegate {

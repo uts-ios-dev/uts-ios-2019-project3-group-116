@@ -10,14 +10,20 @@ import Foundation
 import Firebase
 
 protocol FirebaseSignInDelegate {
-    func SignedIn()
+    func SignedIn(success: Bool)
 }
-protocol FirebaseCreateUserDelegate {
-    func userCreated()
+
+protocol FirebaseCreateItemDelegate {
+    func saved(success: Bool, errorMessage: String)
 }
 
 protocol FirebaseLoadedProfileDelegate {
     func userProfile(user: UserModel)
+}
+
+protocol FirebaseLoadedItemsDelegate {
+    func getItemModels(items: [ItemModel])
+    func getNotifcations(notifications: [NotificationModel])
 }
 
 //Resource Firebase https://firebase.google.com/docs/database/ios/start?authuser=0
@@ -26,44 +32,48 @@ class FirebaseHelper {
 
     var uid:String?
     var delegateSignIn: FirebaseSignInDelegate?
-    var delegateCreatedUser: FirebaseCreateUserDelegate?
+    var delegateCreatedItem: FirebaseCreateItemDelegate?
     var delegateLoadedProfile: FirebaseLoadedProfileDelegate?
-
+    var delegateloadedItems: FirebaseLoadedItemsDelegate?
+    
     func createUser(user: UserModel, password: String) {
         Auth.auth().createUser(withEmail: user.email, password: password) { (result, error) in
             if let error = error {
                 print("Failed to register: ", error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
                 return
             }
             guard let uid = result?.user.uid else { return }
-            let values = user.getValues()
-            Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
-                (error, ref) in
-                if let error = error {
-                    print("Failed to update DB: ", error.localizedDescription)
-                    return
+            var values = user.getValues()
+            if let image = user.image {
+                self.saveImage(image: image, folderName: "userProfile", fileName: "\(user.name) \(user.surname)") { url in
+                    if let url = url {
+                        user.imageURL = "\(url)"
+                        values["imageURL"] = user.imageURL
+                    }
+                    self.insertUser(uid: uid, values: values)
                 }
-                print("success update DB")
-                self.delegateCreatedUser?.userCreated()
-            })
+            } else {
+                self.insertUser(uid: uid, values: values)
+            }
         }
     }
-
+    
     func signIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("Failed to Login: ", error.localizedDescription)
+                self.delegateSignIn?.SignedIn(success: false)
                 return
             }else{
                 print("signed in")
-
-                self.delegateSignIn?.SignedIn()
+                self.delegateSignIn?.SignedIn(success: true)
             }
         }
          self.uid = Auth.auth().currentUser?.uid
     }
 
-    func loadUserProfile(){
+    func loadUserProfile() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -75,12 +85,39 @@ class FirebaseHelper {
             let address = value?["address"] as? String ?? ""
             let postcode = value?["postcode"] as? String ?? ""
             let city = value?["city"] as? String ?? ""
+            let imageUrl = value?["imageURL"] as? String ?? ""
 
-            let user = UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city)
+            let user = UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil, imageURL: imageUrl)
             self.delegateLoadedProfile?.userProfile(user: user)
             print("Profile Data loaded successful")
         })
             { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func loadLostItems(){
+        var items = [ItemModel]()
+        Database.database().reference().child("items").observe(.value, with: { (snapshot) in
+            if let test = snapshot.value as? [String:AnyObject] {
+                for child in test {
+                    let value = child.value as? NSDictionary
+                    let title = value?["title"] as? String ?? ""
+                    let description = value?["description"] as? String ?? ""
+                    let category = value?["category"] as? String ?? ""
+                    let dateLost = value?["dateLost"] as? String ?? ""
+                    let dateFound = value?["dateFound"] as? String ?? ""
+                    let ownerId  = value?["userIdItemOwner"] as? String ?? ""
+                    if dateFound == "" {
+
+                        let item = ItemModel(title: title, description: description, category: category, dateLost: dateLost, dateFound: dateFound, images: nil, imagesURL: [], ownerId: ownerId )
+
+                        items.append(item)
+                    }
+                }
+            }
+        })
+        { (error) in
             print(error.localizedDescription)
         }
     }
@@ -98,47 +135,87 @@ class FirebaseHelper {
             print("Profile Data updatet successful")
         })
     }
+    
+    func insertUser(uid: String, values: [String:String]) {
+        Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to update DB: ", error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
+                return
+            }
+            print("success update DB")
+            self.delegateCreatedItem?.saved(success: true, errorMessage: "")
+        })
+    }
 
-    func saveItemDescription(item: ItemModel){
+    func saveItemDescription(item: ItemModel) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         var values = item.getValues()
         values["User"] = uid
+        var itemId = ""
+        
         let child = Database.database().reference().root.child("items").childByAutoId()
         child.updateChildValues(values as [AnyHashable : Any], withCompletionBlock: {
             (error, ref) in
             if let error = error {
                 print("Failed to update DB: ", error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
                 return
             }
             print("success update DB")
-            self.delegateCreatedUser?.userCreated()
+            self.delegateCreatedItem?.saved(success: true, errorMessage: "")
+            
+            if let key = ref.key {
+                itemId = key
+            }
         })
-
-        let locations = item.getLocations()
-        for index in locations.indices {
-            child.child("locations").child("Location \(index)").updateChildValues(locations[index], withCompletionBlock: {
-                (error, ref) in
-                if let error = error {
-                    print("Failed to update DB: ", error.localizedDescription)
-                    return
+        if let images = item.images, let title = item.title, let cat = item.category  {
+            var i = 1
+            var urls = [String]()
+            for image in images {
+                saveImage(image: image, folderName: "itemImages", fileName: "\(title)-\(cat)-\(i)") { url in
+                    if let imageUrl = url {
+                        urls.append("\(imageUrl)")
+                        values["imagesURL"] = urls
+                    }
+                    self.updateItem(uid: itemId, values: values as [String : Any])
                 }
-                print("success update DB")
-                self.delegateCreatedUser?.userCreated()
-            })
+                i+=1
+            }
         }
     }
+    
+    func updateItem(uid: String, values: [String: Any]) {
+        Database.database().reference().root.child("items").child(uid).updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to update DB: ", error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
+                return
+            }
+            print("success update DB")
+            self.delegateCreatedItem?.saved(success: true, errorMessage: "")
+        })
+    }
 
-    func saveImage(data: Data, item: String, fileName: String ){
-        guard let uid = uid else { return }
+    func saveImage(image: UIImage, folderName: String, fileName: String, completion: @escaping ((_ url: URL?) -> ())) {
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let imagesRef = storageRef.child("images").child(uid).child(item)
-        let spaceRef = imagesRef.child(fileName)
-        let _ = spaceRef.putData(data, metadata: nil) { (metadata, error) in
-//            guard let metadata = metadata else { return }
-            if let error = error {
-                print("Failed Image Upload: ", error.localizedDescription)
+        let imagesRef = storageRef.child("\(folderName)/\(fileName).jpg")
+        imagesRef.putData((image.pngData())!, metadata: nil) { (metadata, error) in
+            guard metadata != nil else {
+                // Uh-oh, an error occurred!
+                completion(nil)
                 return
+            }
+            imagesRef.downloadURL { (url, error) in
+                guard url != nil else {
+                    // Uh-oh, an error occurred!
+                    completion(nil)
+                    return
+                }
+                completion(url)
             }
         }
     }
@@ -174,4 +251,95 @@ class FirebaseHelper {
         guard let username = Auth.auth().currentUser?.displayName else { return nil }
         return username
     }
+
+    func getUserId() -> String? {
+        guard let userID = Auth.auth().currentUser?.uid else { return nil }
+        return userID
+    }
+
+    func loadItems() {
+        var items: [ItemModel] = []
+        Database.database().reference().child("items").observe(.value, with: { (snapshot) in
+            if let snapshots = snapshot.value as? [String:AnyObject] {
+                for child in snapshots {
+                    let value = child.value as? NSDictionary
+                    let user = value?["User"] as? String ?? ""
+                    let uid = Auth.auth().currentUser?.uid
+                    if user == uid {
+                        let title = value?["title"] as? String ?? ""
+                        let dateFound = value?["dateFound"] as? String ?? ""
+                        let dateLost = value?["dateLost"] as? String ?? ""
+                        let description = value?["description"] as? String ?? ""
+                        let category = value?["category"] as? String ?? ""
+
+                        let userIdItemOwner = value?["userIdItemOwner"] as? String ?? ""
+                        print("title:" + title + dateLost)
+
+                        let imagesUrl = value?["imagesURL"] as? [String] ?? []
+
+                        let item = ItemModel()
+                        item.dateLost = dateLost
+                        item.dateFound = dateFound
+                        item.title = title
+                        item.itemID = child.key
+                        item.category = category
+                        item.description = description
+                        item.ownerID = userIdItemOwner
+                        item.imagesURL = imagesUrl
+                        items.append(item)
+                    }
+                }
+                self.delegateloadedItems?.getItemModels(items: items)
+            }
+        })
+        { (error) in
+            print(error.localizedDescription)
+        }
+    }
+
+    func saveNotification(values: [String:String]) {
+        let ref = Database.database().reference()
+        guard let key = Auth.auth().currentUser?.uid else { return }
+        let child = ref.root.child("notifications").childByAutoId()
+        child.updateChildValues(values, withCompletionBlock: {
+            (error, ref) in
+            if let error = error {
+                print("Failed to save in DB: ", error.localizedDescription)
+                return
+            }
+            print("Success to save in DB")
+        })
+    }
+
+    func loadAllNotifications() {
+        var notifications: [NotificationModel] = []
+        Database.database().reference().child("notifications").observe(.value, with: { (snapshot) in
+            if let snapshots = snapshot.value as? [String:AnyObject] {
+                for child in snapshots {
+                    let value = child.value as? NSDictionary
+                    let user = value?["userIdReciever"] as? String ?? ""
+                    let uid = Auth.auth().currentUser?.uid
+                    if user == uid {
+                        let userIdReciever = value?["userIdReciever"] as? String ?? ""
+                        let userIdSender = value?["userIdSender"] as? String ?? ""
+                        let date = value?["date"] as? String ?? ""
+                        let message = value?["message"] as? String ?? ""
+
+                        let notification = NotificationModel()
+                        notification.userIdReciever = userIdReciever
+                        notification.userIdSender = userIdSender
+                        notification.date = date
+                        notification.message = message
+
+                        notifications.append(notification)
+                    }
+                }
+                self.delegateloadedItems?.getNotifcations(notifications: notifications)
+            }
+        })
+        { (error) in
+            print(error.localizedDescription)
+        }
+    }
 }
+

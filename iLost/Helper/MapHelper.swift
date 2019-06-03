@@ -6,31 +6,32 @@
 //  Copyright © 2019 ak. All rights reserved.
 //
 
+
 import Foundation
 
 import CoreLocation
 import MapKit
 
-public protocol MapViewDelegate: class {
-    func annotationRemove(lostLocationsCoordinates: [CLLocationCoordinate2D])
-    func annotaionSet(lostLocationsCoordinates: [CLLocationCoordinate2D])
-}
-
 class MapHelper: NSObject {
     var mapView:MKMapView?
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 2500
-    var lostLocationsCoordinates = [CLLocationCoordinate2D]()
-    var delegate: MapViewDelegate?
+    var lostLocationsCoordinates = [CLLocationCoordinate2D]() {
+        didSet {
+            setAnnotation()
+        }
+    }
 
-    init(delegate: MapViewDelegate, mapView: MKMapView) {
+    init(mapView: MKMapView) {
         super.init()
         self.mapView = mapView
-        self.delegate = delegate
         self.checkLocationServices()
         self.mapView!.delegate = self
+        let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(addPinGesture))
+        mapView.addGestureRecognizer(longTapGesture)
     }
 }
+
 extension MapHelper {
     @IBAction func addPinGesture(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
@@ -41,8 +42,6 @@ extension MapHelper {
             //            annotation.title = "Title "
             //            annotation.subtitle = "Subtitle"
             lostLocationsCoordinates.append(annotation.coordinate)
-            delegate?.annotaionSet(lostLocationsCoordinates: lostLocationsCoordinates)
-
             self.mapView?.addAnnotation(annotation)
         }
     }
@@ -90,7 +89,7 @@ extension MapHelper {
         }
     }
 
-    func setAnnotation(lostLocationsCoordinates: [CLLocationCoordinate2D]){
+    func setAnnotation() {
         for locationCoordinate in lostLocationsCoordinates {
             let annotation = MKPointAnnotation()
             annotation.coordinate = locationCoordinate
@@ -98,17 +97,9 @@ extension MapHelper {
         }
     }
 
-    func setAnnotationWithLongPress(sender: UILongPressGestureRecognizer){
-        let location = sender.location(in: self.mapView)
-        let locationCoordinate = self.mapView!.convert(location, toCoordinateFrom: self.mapView)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = locationCoordinate
-        //            annotation.title = "Title "
-        //            annotation.subtitle = "Subtitle"
-        lostLocationsCoordinates.append(annotation.coordinate)
-        print("anno set")
-        delegate?.annotaionSet(lostLocationsCoordinates: lostLocationsCoordinates)
-        self.mapView!.addAnnotation(annotation)
+    func removeAllAnnotation(){
+        let allAnnotations = self.mapView!.annotations
+        self.mapView!.removeAnnotations(allAnnotations)
     }
 }
 
@@ -125,7 +116,6 @@ extension MapHelper: MKMapViewDelegate {
         if let annotation = view.annotation {
             mapView.removeAnnotation(annotation)
             lostLocationsCoordinates.removeAll(where: { $0.latitude == annotation.coordinate.latitude && $0.longitude == annotation.coordinate.longitude } )
-            delegate?.annotationRemove(lostLocationsCoordinates: lostLocationsCoordinates)
         }
     }
 }

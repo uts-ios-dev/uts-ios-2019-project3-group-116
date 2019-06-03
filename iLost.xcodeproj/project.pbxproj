@@ -3,20 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		410FBE8A2290E10700594A76 /* LostSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE892290E10700594A76 /* LostSearchTableViewController.swift */; };
-		410FBE8C2290E11600594A76 /* FoundSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8B2290E11600594A76 /* FoundSearchTableViewController.swift */; };
-		410FBE8E2290E1E600594A76 /* LostSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8D2290E1E600594A76 /* LostSearchTableViewCell.swift */; };
-		410FBE902290E4F300594A76 /* LostSearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8F2290E4F300594A76 /* LostSearchDetailViewController.swift */; };
-		410FBE952290FA4F00594A76 /* FoundReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE942290FA4F00594A76 /* FoundReportViewController.swift */; };
-		410FBE9722910A6800594A76 /* FoundSearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9622910A6800594A76 /* FoundSearchDetailViewController.swift */; };
+		410FBE8A2290E10700594A76 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE892290E10700594A76 /* SearchViewController.swift */; };
+		410FBE8E2290E1E600594A76 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8D2290E1E600594A76 /* SearchTableViewCell.swift */; };
+		410FBE902290E4F300594A76 /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE8F2290E4F300594A76 /* SearchDetailViewController.swift */; };
 		410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */; };
 		410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */; };
 		411C327822912DC600D44C80 /* MapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C327722912DC600D44C80 /* MapHelper.swift */; };
 		412180882292738F002BAC44 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412180872292738F002BAC44 /* NotificationViewController.swift */; };
+		4162DE74229BD192003789BC /* DatePickerPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */; };
+		4162DE76229BD5B5003789BC /* DateFormatterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */; };
+		4162DE78229BFCC1003789BC /* AddImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */; };
+		4162DE7A229C1830003789BC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4162DE79229C1830003789BC /* MapViewController.swift */; };
+		417796E422A4D39900C7B929 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417796E322A4D39900C7B929 /* Notification.swift */; };
+		417796E622A4FCCB00C7B929 /* NotificationAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417796E522A4FCCB00C7B929 /* NotificationAnswerViewController.swift */; };
 		41C07134228DC76500F73F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C07133228DC76400F73F69 /* GoogleService-Info.plist */; };
 		41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07135228DD2E300F73F69 /* LoginViewController.swift */; };
 		41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C07137228DD2F500F73F69 /* SignUpViewController.swift */; };
@@ -26,27 +29,35 @@
 		41CD2FEC228DB90F00DD0A54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CD2FEB228DB90F00DD0A54 /* Assets.xcassets */; };
 		41CD2FEF228DB90F00DD0A54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CD2FED228DB90F00DD0A54 /* LaunchScreen.storyboard */; };
 		41D4C21B228EA873006195E9 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4C21A228EA873006195E9 /* ImageViewController.swift */; };
-		41DB9286228E2DD9009031F0 /* LostReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9285228E2DD9009031F0 /* LostReportViewController.swift */; };
+		41DB9286228E2DD9009031F0 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9285228E2DD9009031F0 /* ReportViewController.swift */; };
 		41DB9288228E2E01009031F0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9287228E2E01009031F0 /* ProfileViewController.swift */; };
 		41DB928C228E32DF009031F0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB928B228E32DF009031F0 /* UserModel.swift */; };
 		41DB928E228E3969009031F0 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB928D228E3969009031F0 /* ItemModel.swift */; };
 		41DB9291228E40CD009031F0 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9290228E40CD009031F0 /* FirebaseHelper.swift */; };
 		41DB9298228E5CE1009031F0 /* ImagePickerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9297228E5CE1009031F0 /* ImagePickerHelper.swift */; };
-		41DB929A228E75A3009031F0 /* LostItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9299228E75A3009031F0 /* LostItemCollectionViewCell.swift */; };
+		41DB929A228E75A3009031F0 /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DB9299228E75A3009031F0 /* ItemCollectionViewCell.swift */; };
+		5A560ADF229C4AD60041DA50 /* CustomDropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A560ADE229C4AD60041DA50 /* CustomDropDownMenu.swift */; };
+		5AF7737122A403B200F86BB1 /* CustomAlertBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF7737022A403B200F86BB1 /* CustomAlertBox.swift */; };
+		5AFF15AA229AA226006965DB /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFF15A9229AA226006965DB /* CustomButton.swift */; };
 		D2A34ADC512A6F2BF2BAA5ED /* Pods_iLost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA8986420B08DA5DBD96C15 /* Pods_iLost.framework */; };
+		ED49F4DB22A35B450010E326 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49F4DA22A35B450010E326 /* ContactViewController.swift */; };
+		ED49F4DD22A35BEB0010E326 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49F4DC22A35BEB0010E326 /* PrivacyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		410FBE892290E10700594A76 /* LostSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostSearchTableViewController.swift; sourceTree = "<group>"; };
-		410FBE8B2290E11600594A76 /* FoundSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundSearchTableViewController.swift; sourceTree = "<group>"; };
-		410FBE8D2290E1E600594A76 /* LostSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostSearchTableViewCell.swift; sourceTree = "<group>"; };
-		410FBE8F2290E4F300594A76 /* LostSearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostSearchDetailViewController.swift; sourceTree = "<group>"; };
-		410FBE942290FA4F00594A76 /* FoundReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundReportViewController.swift; sourceTree = "<group>"; };
-		410FBE9622910A6800594A76 /* FoundSearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundSearchDetailViewController.swift; sourceTree = "<group>"; };
+		410FBE892290E10700594A76 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		410FBE8D2290E1E600594A76 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		410FBE8F2290E4F300594A76 /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundSearchTableViewCell.swift; sourceTree = "<group>"; };
 		410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		411C327722912DC600D44C80 /* MapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHelper.swift; sourceTree = "<group>"; };
 		412180872292738F002BAC44 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopupViewController.swift; sourceTree = "<group>"; };
+		4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterHelper.swift; sourceTree = "<group>"; };
+		4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4162DE79229C1830003789BC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		417796E322A4D39900C7B929 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		417796E522A4FCCB00C7B929 /* NotificationAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAnswerViewController.swift; sourceTree = "<group>"; };
 		41C07133228DC76400F73F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C07135228DD2E300F73F69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		41C07137228DD2F500F73F69 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -58,16 +69,21 @@
 		41CD2FEE228DB90F00DD0A54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41CD2FF0228DB90F00DD0A54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		41D4C21A228EA873006195E9 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
-		41DB9285228E2DD9009031F0 /* LostReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostReportViewController.swift; sourceTree = "<group>"; };
+		41DB9285228E2DD9009031F0 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		41DB9287228E2E01009031F0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		41DB928B228E32DF009031F0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		41DB928D228E3969009031F0 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		41DB9290228E40CD009031F0 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		41DB9297228E5CE1009031F0 /* ImagePickerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHelper.swift; sourceTree = "<group>"; };
-		41DB9299228E75A3009031F0 /* LostItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LostItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		41DB9299228E75A3009031F0 /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FA8986420B08DA5DBD96C15 /* Pods_iLost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iLost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A560ADE229C4AD60041DA50 /* CustomDropDownMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDropDownMenu.swift; sourceTree = "<group>"; };
+		5AF7737022A403B200F86BB1 /* CustomAlertBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertBox.swift; sourceTree = "<group>"; };
+		5AFF15A9229AA226006965DB /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		70470777BECD89C900D04D24 /* Pods-iLost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iLost.debug.xcconfig"; path = "Target Support Files/Pods-iLost/Pods-iLost.debug.xcconfig"; sourceTree = "<group>"; };
 		BC0C5CCBFD9C374E903EDD46 /* Pods-iLost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iLost.release.xcconfig"; path = "Target Support Files/Pods-iLost/Pods-iLost.release.xcconfig"; sourceTree = "<group>"; };
+		ED49F4DA22A35B450010E326 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		ED49F4DC22A35BEB0010E326 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +101,7 @@
 		411C327922913CF200D44C80 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				410FBE8D2290E1E600594A76 /* LostSearchTableViewCell.swift */,
+				410FBE8D2290E1E600594A76 /* SearchTableViewCell.swift */,
 				410FBE9822910ACC00594A76 /* FoundSearchTableViewCell.swift */,
 			);
 			path = TableViewCell;
@@ -94,7 +110,8 @@
 		411C327A22913CFF00D44C80 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				41DB9299228E75A3009031F0 /* LostItemCollectionViewCell.swift */,
+				41DB9299228E75A3009031F0 /* ItemCollectionViewCell.swift */,
+				4162DE77229BFCC1003789BC /* AddImageCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -102,19 +119,21 @@
 		41C07139228DD35400F73F69 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				ED49F4DC22A35BEB0010E326 /* PrivacyViewController.swift */,
 				41CD2FE6228DB90D00DD0A54 /* HomeViewController.swift */,
 				41C07135228DD2E300F73F69 /* LoginViewController.swift */,
 				41C07137228DD2F500F73F69 /* SignUpViewController.swift */,
-				41DB9285228E2DD9009031F0 /* LostReportViewController.swift */,
+				41DB9285228E2DD9009031F0 /* ReportViewController.swift */,
 				41DB9287228E2E01009031F0 /* ProfileViewController.swift */,
 				41D4C21A228EA873006195E9 /* ImageViewController.swift */,
-				410FBE892290E10700594A76 /* LostSearchTableViewController.swift */,
-				410FBE8B2290E11600594A76 /* FoundSearchTableViewController.swift */,
-				410FBE8F2290E4F300594A76 /* LostSearchDetailViewController.swift */,
-				410FBE942290FA4F00594A76 /* FoundReportViewController.swift */,
-				410FBE9622910A6800594A76 /* FoundSearchDetailViewController.swift */,
+				410FBE892290E10700594A76 /* SearchViewController.swift */,
+				410FBE8F2290E4F300594A76 /* SearchDetailViewController.swift */,
 				410FBE9A22910F3D00594A76 /* SettingsTableViewController.swift */,
 				412180872292738F002BAC44 /* NotificationViewController.swift */,
+				4162DE73229BD192003789BC /* DatePickerPopupViewController.swift */,
+				4162DE79229C1830003789BC /* MapViewController.swift */,
+				ED49F4DA22A35B450010E326 /* ContactViewController.swift */,
+				417796E522A4FCCB00C7B929 /* NotificationAnswerViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -132,6 +151,7 @@
 		41C0713B228DD37100F73F69 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5AFF15A8229AA20E006965DB /* CustomUI */,
 				411C327A22913CFF00D44C80 /* CollectionViewCell */,
 				411C327922913CF200D44C80 /* TableViewCell */,
 				41CD2FE8228DB90D00DD0A54 /* Main.storyboard */,
@@ -145,6 +165,7 @@
 			children = (
 				41DB928B228E32DF009031F0 /* UserModel.swift */,
 				41DB928D228E3969009031F0 /* ItemModel.swift */,
+				417796E322A4D39900C7B929 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,8 +207,19 @@
 				41DB9290228E40CD009031F0 /* FirebaseHelper.swift */,
 				41DB9297228E5CE1009031F0 /* ImagePickerHelper.swift */,
 				411C327722912DC600D44C80 /* MapHelper.swift */,
+				4162DE75229BD5B5003789BC /* DateFormatterHelper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		5AFF15A8229AA20E006965DB /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				5AFF15A9229AA226006965DB /* CustomButton.swift */,
+				5A560ADE229C4AD60041DA50 /* CustomDropDownMenu.swift */,
+				5AF7737022A403B200F86BB1 /* CustomAlertBox.swift */,
+			);
+			path = CustomUI;
 			sourceTree = "<group>";
 		};
 		9D470C0046D0CBE792D566FA /* Frameworks */ = {
@@ -283,22 +315,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iLost/Pods-iLost-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-iLost/Pods-iLost-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-iLost/Pods-iLost-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -334,26 +355,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A560ADF229C4AD60041DA50 /* CustomDropDownMenu.swift in Sources */,
+				417796E622A4FCCB00C7B929 /* NotificationAnswerViewController.swift in Sources */,
 				41DB9288228E2E01009031F0 /* ProfileViewController.swift in Sources */,
+				5AFF15AA229AA226006965DB /* CustomButton.swift in Sources */,
+				ED49F4DD22A35BEB0010E326 /* PrivacyViewController.swift in Sources */,
 				41DB9298228E5CE1009031F0 /* ImagePickerHelper.swift in Sources */,
+				4162DE76229BD5B5003789BC /* DateFormatterHelper.swift in Sources */,
+				ED49F4DB22A35B450010E326 /* ContactViewController.swift in Sources */,
 				41C07136228DD2E300F73F69 /* LoginViewController.swift in Sources */,
-				410FBE8E2290E1E600594A76 /* LostSearchTableViewCell.swift in Sources */,
+				410FBE8E2290E1E600594A76 /* SearchTableViewCell.swift in Sources */,
 				41CD2FE7228DB90D00DD0A54 /* HomeViewController.swift in Sources */,
-				41DB9286228E2DD9009031F0 /* LostReportViewController.swift in Sources */,
-				410FBE902290E4F300594A76 /* LostSearchDetailViewController.swift in Sources */,
+				41DB9286228E2DD9009031F0 /* ReportViewController.swift in Sources */,
+				4162DE78229BFCC1003789BC /* AddImageCollectionViewCell.swift in Sources */,
+				410FBE902290E4F300594A76 /* SearchDetailViewController.swift in Sources */,
 				41DB9291228E40CD009031F0 /* FirebaseHelper.swift in Sources */,
 				41D4C21B228EA873006195E9 /* ImageViewController.swift in Sources */,
-				410FBE9722910A6800594A76 /* FoundSearchDetailViewController.swift in Sources */,
-				41DB929A228E75A3009031F0 /* LostItemCollectionViewCell.swift in Sources */,
+				41DB929A228E75A3009031F0 /* ItemCollectionViewCell.swift in Sources */,
 				41DB928E228E3969009031F0 /* ItemModel.swift in Sources */,
+				4162DE74229BD192003789BC /* DatePickerPopupViewController.swift in Sources */,
 				412180882292738F002BAC44 /* NotificationViewController.swift in Sources */,
-				410FBE8A2290E10700594A76 /* LostSearchTableViewController.swift in Sources */,
-				410FBE8C2290E11600594A76 /* FoundSearchTableViewController.swift in Sources */,
+				410FBE8A2290E10700594A76 /* SearchViewController.swift in Sources */,
 				41DB928C228E32DF009031F0 /* UserModel.swift in Sources */,
+				417796E422A4D39900C7B929 /* Notification.swift in Sources */,
+				5AF7737122A403B200F86BB1 /* CustomAlertBox.swift in Sources */,
 				41C07138228DD2F500F73F69 /* SignUpViewController.swift in Sources */,
 				41CD2FE5228DB90D00DD0A54 /* AppDelegate.swift in Sources */,
+				4162DE7A229C1830003789BC /* MapViewController.swift in Sources */,
 				410FBE9922910ACC00594A76 /* FoundSearchTableViewCell.swift in Sources */,
-				410FBE952290FA4F00594A76 /* FoundReportViewController.swift in Sources */,
 				410FBE9B22910F3D00594A76 /* SettingsTableViewController.swift in Sources */,
 				411C327822912DC600D44C80 /* MapHelper.swift in Sources */,
 			);
@@ -503,15 +532,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R7PGRNW5U4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iLost/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ak-design.iLost";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uts.iLost-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -522,15 +552,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R7PGRNW5U4;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = iLost/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ak-design.iLost";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uts.iLost-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
