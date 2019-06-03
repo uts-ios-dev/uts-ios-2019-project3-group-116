@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     var sections:[[String]] = []
     var itemsLost: [ItemModel] = []
     var itemsFound: [ItemModel] = []
+    var item: ItemModel = ItemModel()
 
     // UI elements
     @IBOutlet weak var tableView: UITableView!
@@ -63,7 +64,8 @@ class HomeViewController: UIViewController {
             self.vSpinner = nil
         }
     }
-    
+
+    // TODO: - Is it implemented???
     @IBAction func unwindToHomeViewControllerFromReport(segue: UIStoryboardSegue) {
         sections.removeAll()
         lostRow.removeAll()
@@ -109,7 +111,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         print(indexPath.row)
         return cell
     }
-    
+
+    // TODO: - Notifications not implemented
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ShowNotificationSegue") {
             let viewController = segue.destination as! NotificationViewController
@@ -122,19 +125,25 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 viewController.itemId = foundRowKeys[row!]
             }
         } else if (segue.identifier == "UpdateReportItemSegue") {
-            _ = segue.destination as! ReportViewController
+            let destVC = segue.destination as! ReportViewController
+            destVC.item = item
+
+
         } else if (segue.identifier == "Settings") {
             _ = segue.destination as! SettingsTableViewController
         }
     }
 
-
+// TODO: - Notifications are not implemented
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
+            item = itemsLost[indexPath.row]
             performSegue(withIdentifier: "UpdateReportItemSegue", sender: self)
+
 
         }
         if indexPath.section == 1 {
+            item = itemsFound[indexPath.row]
             performSegue(withIdentifier: "UpdateReportItemSegue", sender: self)
         }
         if indexPath.section == 2 {
@@ -146,7 +155,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: FirebaseLoadedItemsDelegate {
     func getItemModels(items: [ItemModel]) {
-        sections = []
         print(items.count)
         for item in items {
             if item.dateLost != "" {
