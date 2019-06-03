@@ -12,7 +12,7 @@ import Firebase
 class HomeViewController: UIViewController {
     var firebase = FirebaseHelper()
     var vSpinner: UIView?
-    var sectionHeader = ["Lost Item", "Found Item", "Notification"]
+    var sectionHeader = ["Lost Item", "Found Item"]
     var notificationRow = [String]()
     var lostRow = [String]()
     var foundRow = [String]()
@@ -65,16 +65,6 @@ class HomeViewController: UIViewController {
             self.vSpinner = nil
         }
     }
-
-    // TODO: - Is it implemented???
-    @IBAction func unwindToHomeViewControllerFromReport(segue: UIStoryboardSegue) {
-        sections.removeAll()
-        lostRow.removeAll()
-        foundRow.removeAll()
-        notificationRow.removeAll()
-    }
-
-
 }
 
 // Setup table 
@@ -110,8 +100,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = UIColor(red: 183/255, green: 183/255, blue: 183/255, alpha: 1)
         }
         cell.textLabel?.text = sections[indexPath.section][indexPath.row]
-        print(sections[indexPath.section][indexPath.row])
-        print(indexPath.row)
         return cell
     }
 
@@ -123,15 +111,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let section = self.tableView.indexPathForSelectedRow?.section
             let row = self.tableView.indexPathForSelectedRow?.row
             if section == 0 {
-//                viewController.itemId = lostRowKeys[row!]
+                //                viewController.itemId = lostRowKeys[row!]
             } else if section == 1 {
-//                viewController.itemId = foundRowKeys[row!]
+                //                viewController.itemId = foundRowKeys[row!]
             }
         } else if (segue.identifier == "UpdateReportItemSegue") {
             let destVC = segue.destination as! ReportViewController
             destVC.item = item
-
-
+            
+            
         } else if (segue.identifier == "Settings") {
             _ = segue.destination as! SettingsTableViewController
         }
@@ -153,7 +141,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     // TODO: - Delete are not implemented
-
     func deleteItemsFromTableView(){
 
     }
@@ -179,7 +166,7 @@ extension HomeViewController: FirebaseLoadedItemsDelegate {
                 }
             }
         }
-        self.sections = [self.lostRow, self.foundRow, self.notificationRow]
+        self.sections = [self.lostRow, self.foundRow]
 
         self.tableView.reloadData()
         self.removeSpinner()

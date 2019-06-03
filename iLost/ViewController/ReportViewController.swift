@@ -223,10 +223,14 @@ extension ReportViewController: ImagePickerDelegate {
 }
 
 // Switch to Home Scene after report save process was successfull
-extension ReportViewController: FirebaseCreateUserDelegate {
+extension ReportViewController: FirebaseCreateItemDelegate {
     func saved(success: Bool, errorMessage: String) {
         if (success) {
-            performSegue(withIdentifier: "unwindToHomeViewControllerFromReport", sender: self)
+            self.present(CustomAlertBox.setup(title: "Saved", message: "Item successfully saved", action: "OK"), animated: true, completion: nil)
+            titleTextfield.text = ""
+            dateTextField.text = ""
+            categoryTextField.text = ""
+            descriptionTextView.text = ""
         } else {
             self.present(CustomAlertBox.setup(title: "Not Saved", message: errorMessage, action: "Try again"), animated: true, completion: nil)
         }

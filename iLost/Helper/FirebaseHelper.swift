@@ -12,7 +12,7 @@ import Firebase
 protocol FirebaseSignInDelegate {
     func SignedIn(success: Bool)
 }
-protocol FirebaseCreateUserDelegate {
+protocol FirebaseCreateItemDelegate {
     func saved(success: Bool, errorMessage: String)
 }
 
@@ -30,7 +30,7 @@ class FirebaseHelper {
 
     var uid:String?
     var delegateSignIn: FirebaseSignInDelegate?
-    var delegateCreatedUser: FirebaseCreateUserDelegate?
+    var delegateCreatedItem: FirebaseCreateItemDelegate?
     var delegateLoadedProfile: FirebaseLoadedProfileDelegate?
     var delegateloadedItems: FirebaseLoadedItemsDelegate?
     
@@ -38,7 +38,7 @@ class FirebaseHelper {
         Auth.auth().createUser(withEmail: user.email, password: password) { (result, error) in
             if let error = error {
                 print("Failed to register: ", error.localizedDescription)
-                self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
                 return
             }
             guard let uid = result?.user.uid else { return }
@@ -53,11 +53,11 @@ class FirebaseHelper {
                         (error, ref) in
                         if let error = error {
                             print("Failed to update DB: ", error.localizedDescription)
-                            self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
+                            self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
                             return
                         }
                         print("success update DB")
-                        self.delegateCreatedUser?.saved(success: true, errorMessage: "")
+                        self.delegateCreatedItem?.saved(success: true, errorMessage: "")
                     })
                 }
             }
@@ -158,11 +158,11 @@ class FirebaseHelper {
             (error, ref) in
             if let error = error {
                 print("Failed to update DB: ", error.localizedDescription)
-                self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
+                self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
                 return
             }
             print("success update DB")
-            self.delegateCreatedUser?.saved(success: true, errorMessage: "")
+            self.delegateCreatedItem?.saved(success: true, errorMessage: "")
         })
 
         let locations = item.getLocations()
@@ -171,11 +171,11 @@ class FirebaseHelper {
                 (error, ref) in
                 if let error = error {
                     print("Failed to update DB: ", error.localizedDescription)
-                    self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
+                    self.delegateCreatedItem?.saved(success: false, errorMessage: error.localizedDescription)
                     return
                 }
                 print("success update DB")
-                self.delegateCreatedUser?.saved(success: true, errorMessage: "")
+                self.delegateCreatedItem?.saved(success: true, errorMessage: "")
             })
         }
         
