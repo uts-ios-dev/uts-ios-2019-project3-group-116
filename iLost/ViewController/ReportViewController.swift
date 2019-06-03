@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import BTNavigationDropdownMenu
 
-class ReportViewController: UIViewController {
+class ReportViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var reportLost: Bool = true
     var images = [UIImage]()
     var imagePicker: ImagePickerHelper!
@@ -20,6 +20,8 @@ class ReportViewController: UIViewController {
     var firebase = FirebaseHelper()
     var map:MapHelper?
     private var datePicker: UIDatePicker?
+    private var locationManager: CLLocationManager!
+    private var currentLocation: CLLocation?
     
     // UI elements
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -52,6 +54,17 @@ class ReportViewController: UIViewController {
 
         setUpDatePicker()
         showItemDetails()
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        // Check for Location Services
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        }
     }
 
     // TODO: - not fully implemented
@@ -81,6 +94,14 @@ class ReportViewController: UIViewController {
                 }
             }
         }
+        
+        let pLat = item.lostLocationsCoordinates.latitude
+        let pLong = item.lostLocationsCoordinates.longitude
+        let center = CLLocationCoordinate2D(latitude: pLat, longitude: pLong)
+        
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.mapView.setRegion(region, animated: true)
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
@@ -159,7 +180,8 @@ class ReportViewController: UIViewController {
             } else {
                 item.dateFound = dateTextField.text!
             }
-            
+            item.lostLocationsCoordinates = (locationManager.location?.coordinate)!
+
             firebase.saveItemDescription(item: item)
         }
     }

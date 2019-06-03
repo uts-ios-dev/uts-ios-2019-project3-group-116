@@ -175,24 +175,10 @@ class FirebaseHelper {
                         urls.append("\(imageUrl)")
                         values["imagesURL"] = urls
                     }
-                    self.updateItem(uid: itemId, values: values)
+                    self.updateItem(uid: itemId, values: values as [String : Any])
                 }
                 i+=1
             }
-        }
-
-        let locations = item.getLocations()
-        for index in locations.indices {
-            child.child("locations").child("Location \(index)").updateChildValues(locations[index], withCompletionBlock: {
-                (error, ref) in
-                if let error = error {
-                    print("Failed to update DB: ", error.localizedDescription)
-                    self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
-                    return
-                }
-                print("success update DB")
-                self.delegateCreatedUser?.saved(success: true, errorMessage: "")
-            })
         }
     }
     

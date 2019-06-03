@@ -18,7 +18,7 @@ class ItemModel {
     var imagesURL: [String]?
     var dateLost: String?
     var dateFound: String?
-    var lostLocationsCoordinates = [CLLocationCoordinate2D]()
+    var lostLocationsCoordinates = CLLocationCoordinate2D()
     var itemID: String?
     var foundID: String?
     var lostID: String?
@@ -38,17 +38,15 @@ class ItemModel {
 
 
     func getValues() -> [String: Any?] {
-        let values = ["title": title, "description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound, "imagesURL": [imagesURL]] as [String : Any]
+        let values = ["title": title, "description": description, "category": category, "dateLost": dateLost, "dateFound":  dateFound, "imagesURL": [imagesURL], "coordinates": getLocations()] as [String : Any]
         return values
     }
 
     func getLocations() -> [[String: Double]] {
         var values = [[String: Double]]()
-        for location in lostLocationsCoordinates {
-            let latitude = Double(location.latitude)
-            let longitude = Double(location.longitude)
-            values.append(["latitude": latitude, "longitude":longitude])
-        }
+        let latitude = Double(lostLocationsCoordinates.latitude)
+        let longitude = Double(lostLocationsCoordinates.longitude)
+        values.append(["latitude": latitude, "longitude":longitude])
         return values
     }
 
