@@ -55,9 +55,9 @@ class SearchViewController: UIViewController {
                         let dateFound = value?["dateFound"] as? String ?? ""
                         let dateLost = value?["dateLost"] as? String ?? ""
                         if dateLost != "" && dateFound == "" {
-                            self.lostItems.append(ItemModel(title: value?["title"] as? String ?? "", description: value?["description"] as? String ?? "", category: value?["category"] as? String ?? "", dateLost: dateLost, dateFound: "", images: [UIImage()]))
+                            self.lostItems.append(ItemModel(title: value?["title"] as? String ?? "", description: value?["description"] as? String ?? "", category: value?["category"] as? String ?? "", dateLost: dateLost, dateFound: "", images: [UIImage()], imagesURL: []))
                         } else if dateFound != "" && dateLost == "" {
-                           self.foundItems.append(ItemModel(title: value?["title"] as? String ?? "", description: value?["description"] as? String ?? "", category: value?["category"] as? String ?? "", dateLost: "", dateFound: dateFound, images: [UIImage()]))
+                           self.foundItems.append(ItemModel(title: value?["title"] as? String ?? "", description: value?["description"] as? String ?? "", category: value?["category"] as? String ?? "", dateLost: "", dateFound: dateFound, images: [UIImage()], imagesURL: []))
                         }
                 }
                 self.searchResults = self.lostItems

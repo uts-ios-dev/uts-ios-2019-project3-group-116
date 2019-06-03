@@ -73,7 +73,6 @@ extension ProfileViewController: FirebaseLoadedProfileDelegate {
         usernameLabel.text = user.username
         postalcodeTextField.text = user.postcode
         emailTextField.text = user.email
-        print("url is: ---- \(user.imageURL)")
         
         if let url = URL(string: user.imageURL) {
             do {
