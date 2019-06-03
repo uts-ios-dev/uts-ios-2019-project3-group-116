@@ -42,36 +42,19 @@ class FirebaseHelper {
                 return
             }
             guard let uid = result?.user.uid else { return }
-//            let storage = Storage.storage()
-//            let storageRef = storage.reference()
-//            let riversRef = storageRef.child("userProfile/\(user.username).jpg")
-            //_ = riversRef.putData((user.image?.pngData())!, metadata: nil) { (metadata, error) in
-//                guard let metadata = metadata else {
-//                    // Uh-oh, an error occurred!
-//                    return
-//                }
-                // Metadata contains file metadata such as size, content-type.
-                //_ = metadata.size
-                // You can also access to download URL after upload.
-//                riversRef.downloadURL { (url, error) in
-//                    guard url != nil else {
-//                        // Uh-oh, an error occurred!
-//                        return
-//                    }
-//                    user.imageURL = "\(url)"
-//                }
-//            }
             let values = user.getValues()
-        Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
-            (error, ref) in
-            if let error = error {
-                print("Failed to update DB: ", error.localizedDescription)
-                self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
-                return
+            if let image = user.image {
+                user.imageURL = "\(String(describing: self.saveImage(image: image, folderName: "userProfile", fileName: "\(user.name) \(user.surname)")))"
             }
-            print("success update DB")
-            self.delegateCreatedUser?.saved(success: true, errorMessage: "")
-            self.signIn(email: user.email, password: password);
+            Database.database().reference().root.child("users").child(uid).updateChildValues(values, withCompletionBlock: {
+                (error, ref) in
+                if let error = error {
+                    print("Failed to update DB: ", error.localizedDescription)
+                    self.delegateCreatedUser?.saved(success: false, errorMessage: error.localizedDescription)
+                    return
+                }
+                print("success update DB")
+                self.delegateCreatedUser?.saved(success: true, errorMessage: "")
             })
         }
     }
@@ -183,29 +166,16 @@ class FirebaseHelper {
     }
 
     func saveImage(image: UIImage, folderName: String, fileName: String ) -> URL? {
-//        guard let uid = uid else { return }
         let storage = Storage.storage()
         let storageRef = storage.reference()
-//        let imagesRef = storageRef.child("images").child(uid).child(item)
-//        let spaceRef = imagesRef.child(fileName)
-//        let _ = spaceRef.putData(data, metadata: nil) { (metadata, error) in
-////            guard let metadata = metadata else { return }
-//            if let error = error {
-//                print("Failed Image Upload: ", error.localizedDescription)
-//                return
-//            }
-//        }
         var imageUrl: URL?
         
         let imagesRef = storageRef.child("\(folderName)/\(fileName).jpg")
         imagesRef.putData((image.pngData())!, metadata: nil) { (metadata, error) in
-//            guard let metadata = metadata else {
-//                // Uh-oh, an error occurred!
-//                return
-//            }
-             // Metadata contains file metadata such as size, content-type.
-            // _ = metadata.size
-             // You can also access to download URL after upload.
+            guard metadata != nil else {
+                // Uh-oh, an error occurred!
+                return
+            }
             imagesRef.downloadURL { (url, error) in
                 guard url != nil else {
                     // Uh-oh, an error occurred!

@@ -31,6 +31,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.imagePicker = ImagePickerHelper(presentationController: self, delegate: self)
+        firebase.delegateCreatedUser = self
     }
     
     // Create user if all the user information are entered to the textfields
@@ -93,7 +94,7 @@ class SignUpViewController: UIViewController {
             password = passwordTextField.text!
         }
         // Create user
-        return UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: nil)// self.photoImageView.image)
+        return UserModel(name: name, surname: surname, username: username, email: email, phone: phone, address: address, postcode: postcode, city: city, image: self.photoImageView.image)
     }
     
     // Handles the sign up and create user process
